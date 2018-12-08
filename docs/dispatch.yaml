@@ -1,0 +1,3 @@
+dispatch:
+  - url: "*lit-element.polymer-jp.org/*"
+    service: lit-element
