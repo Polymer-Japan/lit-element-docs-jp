@@ -59,7 +59,7 @@ class StackBlitz extends LitElement {
       <div id="container">
         <button class="pretty-button" @click="${this.loadProject}"
             .disabled="${this._loading}">
-          ${this._loading ? 'Loading Code Editor...' : 'Launch Code Editor'}
+          ${this._loading ? 'コードエディタを読み込んでいます...' : 'コードエディタを起動'}
         </button>
       </div>`;
   }

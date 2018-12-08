@@ -1,22 +1,22 @@
 import { LitElement, html } from '@polymer/lit-element'; 
 
-// Create your custom component
+// カスタムコンポーネントをつくる
 class CustomGreeting extends LitElement {
-  // Declare properties
+  // プロパティを宣言
   static get properties() {
     return {
       name: { type: String }
     };
   }
-  // Initialize properties
+  // プロパティを初期化
   constructor() {
     super();
     this.name = 'World';
   }
-  // Define a template
+  // テンプレートを定義
   render() {
     return html`<p>Hello, ${this.name}!</p>`;
   }
 }
-// Register the element with the browser
+// ブラウザにカスタム要素を登録
 customElements.define('custom-greeting', CustomGreeting);
