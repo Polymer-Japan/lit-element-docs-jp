@@ -1,10 +1,10 @@
 name: LitElement
-description: A simple base class for creating fast, lightweight web components
+description: 軽量で高速なWebコンポーネントをつくるシンプルなベースクラス
 exclude: [package.json, polymer.json, src, node_modules, package-lock.json]
 markdown: kramdown
 kramdown: 
   parse_block_html: true
-google_analytics: UA-39334307-23
+google_analytics: 
 projects: includes/projects
 collections:
   includes:
