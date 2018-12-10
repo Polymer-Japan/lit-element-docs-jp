@@ -1,6 +1,6 @@
 /**
- * Try LitElement https://lit-element.polymer-project.org/try
- * Completed code for 6. Style
+ * LitElementを試してみよう https://lit-element.polymer-jp.org/try
+ * 完成コード (6. スタイル)
  */
 
 import { LitElement, html } from '@polymer/lit-element'; 
@@ -23,7 +23,7 @@ class MyElement extends LitElement {
 
   render() {
     return html`
-      <!-- DONE: Add a style block. -->
+      <!-- DONE: styleタグを追加 -->
       <style>
         p {
           font-family: Roboto;
@@ -38,7 +38,7 @@ class MyElement extends LitElement {
         }
       </style>
 
-      <!-- DONE: Add a styled paragraph. -->
+      <!-- DONE: styleを適用 -->
       <p class="${this.myBool?'red':'blue'}">styled paragraph</p>
       
       <p>${this.message}</p>

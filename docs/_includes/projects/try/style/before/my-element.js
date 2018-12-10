@@ -1,6 +1,6 @@
 /**
- * Try LitElement https://lit-element.polymer-project.org/try
- * Starting code for 6. Style
+ * LitElementを試してみよう https://lit-element.polymer-jp.org/try
+ * 穴埋めコード (6. スタイル)
  */
 
 import { LitElement, html } from '@polymer/lit-element'; 
@@ -23,9 +23,9 @@ class MyElement extends LitElement {
 
   render() {
     return html`
-      <!-- TODO: Add a style block. -->
+      <!-- TODO: styleタグを追加 -->
 
-      <!-- TODO: Add a styled paragraph. -->
+      <!-- TODO: styleを適用 -->
 
       <p>${this.message}</p>
       <ul>
