@@ -12,7 +12,7 @@ Modify your template to add a loop and a conditional.
 **Starting code**
 -->
 
-LitElementのテンプレートでロジック(例えば、繰り返しや条件分岐)の処理は簡単です。特に覚えることもなく、JavaScriptの式を書くだけです。
+LitElementのテンプレートでロジック(例えば、繰り返しや条件分岐)の処理は簡単です。特別な構文はなく、JavaScriptの式を書くだけです。
 
 テンプレートに繰り返しと条件分岐を追加します。
 

@@ -10,7 +10,7 @@ Use lit-html's `@event` annotation to add an event listener to an element inside
 **Starting code**
 -->
 
-lit-htmlでは`@イベント名`という書き方で、テンプレート内の要素にイベントリスナーを追加します。
+lit-htmlでは`@イベント名`という構文で、テンプレート内の要素にイベントリスナーを追加します。
 
 **穴埋めコード**
 
@@ -55,7 +55,7 @@ If you're stuck, click **Launch Code Editor** below to see the completed code at
     <button @click="${(event) => this.clickHandler(event)}">Click</button>
     ```
 
-    `click`イベントに接頭辞`@`をつけてリスナーを登録します。
+    この構文で`click`イベントにリスナーが追加されます。
 
 2. **イベントハンドラを実装** 
 
