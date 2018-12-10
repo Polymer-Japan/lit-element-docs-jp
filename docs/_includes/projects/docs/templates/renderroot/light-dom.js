@@ -1,19 +1,19 @@
 import { LitElement, html } from '@polymer/lit-element';
 
 /**
- * This element renders its template as light DOM children.
+ * この要素はテンプレートをlight DOMとして描画します
  */
 class LightDom extends LitElement {
   render(){
     return html`
-      <p><b>Render root overridden.</b> Template renders in light DOM.</p>
+      <p><b>上書きされたレンダールート</b> light DOMに描画されたテンプレート</p>
     `;
   }
   /**
-   * To customize an element's render root, implement createRenderRoot. Return
-   * the node into which to render the element's template.
+   * コンポーネントのレンダールートを変更するには
+   * `createRenderRoot`を実装し、描画させたいノードを指定する
    * 
-   * This element renders child nodes into its light DOM.
+   * この要素はlight DOMに描画される
    */
   createRenderRoot(){
     return this;

@@ -42,7 +42,7 @@ toc:
         # title: Create a component
         title: コンポーネントをつくる
         # desc: Create a new web component with LitElement. Import and use LitElement components in HTML and JavaScript.
-        desc: LitElementでWebコンポーネントをつくります。 HTMLかJavaScriptでLitElementをインポートして使う
+        desc: HTMLとJavaScriptでLitElementのWebコンポーネントをつくります
         url: /docs/create
         toc:
           install: 
@@ -53,67 +53,67 @@ toc:
             # title: Create a new component
             title: 新規でコンポーネントをつくる
             # desc: Create a new class for your web component by extending the LitElement base class.
-            desc: LitElementのベースクラスを継承して新規でWebコンポーネントをつくる
+            desc: LitElementのベースクラスを継承して新規でWebコンポーネントをつくります
             url: /docs/create#class
           typescript:
             # title: Use TypeScript to create a component
             title: コンポーネントをつくるのにTypeScriptを使う
             # desc: Use LitElement TypeScript decorators to create a new class for a LitElement-based component.
-            desc: LitElementベースのコンポーネントをつくるのに新規でクラスを生成するTypeScriptデコレータを使う
+            desc: LitElementベースのコンポーネントをつくるのに新規でクラスを生成するTypeScriptデコレータを使います
             url: /docs/create#typescript
           import: 
             # title: Import an element
             title: エレメントのインポート
             # desc: Import your own or third-party LitElement components in HTML or JavaScript.
-            desc: HTMLもしくはJavaScirptで独自もしくは他で作られたLitElementのコンポーネントをインポートする
+            desc: HTMLもしくはJavaScirptで独自もしくは他で作られたLitElementのコンポーネントをインポートします
             url: /docs/create#import
       templates: 
         #  title: Templates
         title: テンプレート
         # desc: Create and render LitElement templates. Use JavaScript expressions to add properties and logic.
-        desc: LitElementのテンプレートをつくり、描画する。プロパティやロジックを追加するのにJavaScript文を使う
+        desc: LitElementのテンプレートをつくり、描画する。プロパティやロジックを追加するのにJavaScript文を使います
         url: /docs/templates/
         toc: 
           create: 
             # title: Create a template
             title: テンプレートをつくる
             # desc: Define a template and specify where it should render.
-            desc: 描画する場所にテンプレートを定義する
+            desc: 描画する場所にテンプレートを定義します
             type: task
             url: /docs/templates/create
           expressions:
             # title: Use properties and logic
             title: プロパティをロジックをつかう
             # desc: Use JavaScript expressions to add properties, loops, and conditionals to your templates.
-            desc: テンプレートに対してプロパティや繰り返し処理、条件式のJavaScript文を使う
+            desc: テンプレートに対してプロパティや繰り返し処理、条件式のJavaScript文を使います
             type: task
             url: /docs/templates/expressions
           databinding:
             # title: Bind data to a child element
             title: 子要素に対して値をバインドする
             # desc: Bind to the text content, properties, attributes, and event handlers of a child element.
-            desc: 子要素に対してテキストコンテンツ、プロパティ、属性、イベントハンドラをバインドする
+            desc: 子要素に対してテキストコンテンツ、プロパティ、属性、イベントハンドラをバインドします
             type: task
             url: /docs/templates/databinding
           compose:
             # title: Compose and nest templates
             title: テンプレートを入れ子にする
             # desc: Compose LitElement templates from other templates.
-            desc: LitElementのテンプレートを他のテンプレートの中に含める
+            desc: LitElementのテンプレートを他のテンプレートの中に含めます
             type: task
             url: /docs/templates/compose
           slots:
             # title: Render light DOM children
             title: light DOMの子要素を描画する
             # desc: Use slots to include light DOM children in shadow DOM templates.
-            desc: slotを使ってshadow DOMのテンプレートにlight DOMの子要素を含める
+            desc: slotを使ってshadow DOMのテンプレートにlight DOMの子要素を含めます
             type: task
             url: /docs/templates/slots
           design:
             # title: Template design concepts
             title: テンプレートの設計
             # desc: Concepts for designing templates that render and update efficiently.
-            desc: 効率的に描画や更新をするためのテンプレート設計
+            desc: 効率的に描画や更新をするためのテンプレートを設計します
             type: concept
             url: /docs/templates/design
           syntax:
@@ -127,7 +127,7 @@ toc:
         # title: Properties and attributes
         title: プロパティと属性
         # desc: Declare and configure a component's properties and attributes.
-        desc: コンポーネントのプロパティと属性の宣言と設定
+        desc: コンポーネントのプロパティと属性の宣言と設定します
         url: /docs/properties
         toc:
           declare: 
@@ -158,14 +158,14 @@ toc:
         # title: Element update lifecycle
         title: エレメントの更新ライフサイクル
         # desc: Specify when an element should update. Respond to updates, or wait for an update to complete.
-        desc: エレメントが更新されるべきタイミングを指定する。更新した瞬間か更新が完了したタイミングかなど。
+        desc: エレメントが更新されるべきタイミングを指定します。更新した瞬間か更新が完了したタイミングかなど。
         url: /docs/lifecycle/
         toc:
           about:
             # title: About the element update lifecycle
             title: エレメントの更新ライフサイクルについて
             # desc: Concepts for working with LitElement's asynchronous update lifecycle.
-            desc: LitElementの非同期更新サイクルの設計について知る
+            desc: LitElementの非同期更新サイクルの設計について
             type: concept
             url: /docs/lifecycle/about
           customize:
@@ -211,5 +211,5 @@ toc:
         # title: Sample project
         title: サンプルプロジェクト
         # desc: Clone, serve, and build a sample LitElement project.
-        desc: サンプルプロジェクトをローカルにコピーして確認、ビルドする
+        desc: サンプルプロジェクトをローカルにコピーして確認、ビルドします
         url: /tools/sample

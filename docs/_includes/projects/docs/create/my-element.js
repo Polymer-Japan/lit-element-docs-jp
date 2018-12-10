@@ -1,27 +1,27 @@
-// Import the LitElement base class and html helper function
+// `LitElement`のベースクラスと`html`ヘルパー関数をインポート
 import { LitElement, html } from '@polymer/lit-element';
 
-// Extend the LitElement base class
+// `LitElement`のベースクラスを継承
 class MyElement extends LitElement {
 
   /**
-   * Implement `render` to define a template for your element.
+   * テンプレートを描画する`render`関数を実装
    * 
-   * You must provide an implementation of `render` for any element
-   * that uses LitElement as a base class.
+   * LitElementを継承している場合、必ず`render`関数を
+   * 実装していなければいけません
    */
   render(){
     /** 
-     * `render` must return a lit-html `TemplateResult`. 
+     * `render`はlit-htmlの`TemplateResult`を返します
      *
-     * To create a `TemplateResult`, tag a JavaScript template literal
-     * with the `html` helper function: 
+     * `TemplateResult`を作るのに、`html`ヘルパー関数の
+     * JavaScriptタグリテラルを使います
      */
     return html`
-      <!-- template content -->
+      <!-- テンプレートの内容 -->
       <p>A paragraph</p>
     `;
   }
 }
-// Register the new element with the browser.
+// 新しいHTML要素をブラウザに登録
 customElements.define('my-element', MyElement);

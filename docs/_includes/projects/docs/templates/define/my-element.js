@@ -2,13 +2,13 @@ import { LitElement, html } from '@polymer/lit-element';
 
 class MyElement extends LitElement {
 
-  // Implement `render` to define a template for your element.
+  // テンプレートとして`render`関数を実装する
   render(){
     /** 
-     * Return a lit-html `TemplateResult`. 
+     * lit-html `TemplateResult`を返す
      * 
-     * To create a `TemplateResult`, tag a JavaScript template literal
-     * with the `html` helper function.
+     * `TemplateResult`を作るには、テンプレートリテラルに
+     * `html`ヘルパー関数でタグをつける
      */
     return html`
       <div>

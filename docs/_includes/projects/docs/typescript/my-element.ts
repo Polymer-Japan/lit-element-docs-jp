@@ -1,31 +1,31 @@
 /**
- * Import LitElement base class, html helper function,
- * and TypeScript decorators 
+ * LitElementのベースクラスとhtmlヘルパー関数及び
+ * TypeScriptのデコレータをインポート
  **/
 import { 
   LitElement, html, customElement, property 
 } from '@polymer/lit-element';
 
 /**
- * Use the customElement decorator to define your class as
- * a custom element. Registers <my-element> as an HTML tag.
+ * customElementデコレータを使ってカスタム要素を定義。
+ * <my-element>がHTMLタグとして登録される
  */
 @customElement('my-element')
 export class MyElement extends LitElement {
   
   /**
-   * Create an observed property. Triggers update on change.
+   * プロパティの定義。更新時にトリガされる
    */
   @property()
   foo = 'foo';
 
   /**
-   * Implement `render` to define a template for your element.
+   * テンプレートを描画する`render`関数を実装
    */
   render(){
     /**
-     * Use JavaScript expressions to include property values in
-     * the element template. 
+     * JavaScript式を使ってテンプレートに
+     * プロパティの値を表示
      */
     return html`<p>${this.foo}</p>`;
   }

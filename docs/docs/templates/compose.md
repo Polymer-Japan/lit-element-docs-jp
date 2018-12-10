@@ -5,7 +5,11 @@ topic: templates
 subtopic: compose
 ---
 
+<!-- original:
 You can compose LitElement templates from other LitElement templates. In the following example, we compose a template for an element called `<my-page>` from smaller templates for the standard HTML elements `<header>`, `<article>`, and `<footer>`:
+-->
+
+LitElementテンプレートは、他のLitElementテンプレートから作成できます。次の例では、標準のHTML要素 `<header>`、 `<article>`、および`<footer>`のより小さいテンプレートから `<my-page>`という要素のテンプレートを作成します:
 
 ```js
 class MyPage extends LitElement {
@@ -30,7 +34,12 @@ class MyPage extends LitElement {
 
 {% include project.html folder="docs/templates/compose" openFile="my-page.js" %}
 
+<!-- original:
 You can also compose templates by importing other elements and using them in your template:
+-->
+
+テンプレートを作成するには、他の要素をインポートしてテンプレートとして使用します:
+
 
 ```js
 import './my-header.js';

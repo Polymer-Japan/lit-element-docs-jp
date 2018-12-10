@@ -1,13 +1,13 @@
 import { LitElement, html } from '@polymer/lit-element';
 
 /**
- * This element renders its template into the default location:
- * a shadowRoot created by LitElement.
+ * このエレメントはデフォルトのshadowRoot
+ * に描画される
  */
 class DefaultRoot extends LitElement {
   render(){
     return html`
-      <p><b>Default render root.</b> Template renders in shadow DOM.</p>
+      <p><b>デフォルトのレンダールート</b> shadow DOMに描画されたテンプレート</p>
     `;
   }
 }
