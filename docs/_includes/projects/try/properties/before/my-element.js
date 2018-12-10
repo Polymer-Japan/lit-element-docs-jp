@@ -1,28 +1,28 @@
 /**
- * Try LitElement https://lit-element.polymer-project.org/try
- * Starting code for 3. Properties
+ * LitElementを試してみよう https://lit-element.polymer-jp.org/try
+ * 穴埋めコード (3. プロパティ)
  */
 
 import { LitElement, html } from '@polymer/lit-element'; 
 
 class MyElement extends LitElement {
   /**
-   * TODO: Declare a property.
+   * TODO: プロパティの宣言
    */
   static get properties() {
     return { };
   }
 
   /**
-   * TODO: Initialize the property.
+   * TODO: プロパティの初期化
    */
   constructor() {
-    // Always call superconstructor first
+    // 必ず最初に親クラスのコンストラクタを呼び必要があります
     super(); 
   }
 
   /**
-   * TODO: Add a property to your template with a JavaScript expression.
+   * TODO: JavaScript式でプロパティをテンプレートに追加
    */
   render() {
     return html`
