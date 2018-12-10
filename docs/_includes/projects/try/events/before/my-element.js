@@ -1,6 +1,6 @@
 /**
- * Try LitElement https://lit-element.polymer-project.org/try
- * Starting code for 5. Events
+ * LitElementを試してみよう https://lit-element.polymer-jp.org/try
+ * 穴埋めコード (5. イベント)
  */
 
 import { LitElement, html } from '@polymer/lit-element'; 
@@ -30,13 +30,13 @@ class MyElement extends LitElement {
         html`<p>Render some HTML if myBool is true</p>`:
         html`<p>Render some other HTML if myBool is false</p>`}
 
-      <!-- TODO: Add an event listener. -->
+      <!-- TODO: イベントリスナを登録 -->
       <button>Click</button>
     `;
   }
 
   /**
-   * TODO: Implement an event handler.
+   * TODO: イベントハンドラを実装
    */
 }
 customElements.define('my-element', MyElement);
