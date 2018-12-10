@@ -9,7 +9,7 @@
 import { LitElement, html } from '@polymer/lit-element'; 
 
 /**
- * TODO: LitElementを継承した独自のHTML要素クラスをつくる
+ * DONE: LitElementを継承した独自のHTML要素クラスをつくる
  */
 class MyElement extends LitElement {
   render() {

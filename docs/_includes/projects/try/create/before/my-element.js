@@ -1,20 +1,19 @@
 /**
- * Try LitElement https://lit-element.polymer-project.org/try
- * Starting code for 1. Create
+ * LitElementを試してみよう https://lit-element.polymer-jp.org/try
+ * 穴埋めコード (1. つくる)
  */
 
 /**
- * TODO: Import the LitElement base class and html helper function.
+ * TODO: LitElementのベースクラスとhtmlヘルパー関数をインポート
  */
 import { } from ''; 
 
 /**
- * TODO: Create a class for your element that extends the LitElement
- * base class.
+ * TODO: LitElementを継承した独自のHTML要素クラスをつくる
  */
 class MyElement { }    
 
 /**
- * TODO: Register the new element with the browser.
+ * TODO: HTML要素クラスをブラウザに登録する
  */
 customElements.define();
