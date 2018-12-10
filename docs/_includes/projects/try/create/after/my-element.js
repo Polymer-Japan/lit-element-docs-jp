@@ -1,16 +1,15 @@
 /**
- * Try LitElement https://lit-element.polymer-project.org/try
- * Completed code for 1. Create
+ * LitElementを試してみよう https://lit-element.polymer-jp.org/try
+ * 完成コード (1. つくる)
  */
 
 /**
- * DONE: Import the LitElement base class and html helper function.
+ * DONE: LitElementのベースクラスとhtmlヘルパー関数をインポート
  */
 import { LitElement, html } from '@polymer/lit-element'; 
 
 /**
- * DONE: Create a class for your element that extends the LitElement
- * base class.
+ * TODO: LitElementを継承した独自のHTML要素クラスをつくる
  */
 class MyElement extends LitElement {
   render() {
@@ -21,6 +20,6 @@ class MyElement extends LitElement {
 }
 
 /**
- * DONE: Register the new element with the browser.
+ * DONE: HTML要素クラスをブラウザに登録する
  */
 customElements.define('my-element', MyElement);
