@@ -1,4 +1,4 @@
----
+e---
 layout: post
 section: try
 ---
@@ -37,7 +37,7 @@ When you're ready to dive in, follow this guide to [Set up LitElement locally](/
 *  [1. コンポーネントをつくる](/try/create)
 *  [2. コンポーネントをインポートする](/try/import)
 *  [3. プロパティを追加する](/try/properties)
-*  [4. 繰り返しや条件式を追加する](/try/logic)
+*  [4. 繰り返しや条件分岐を追加する](/try/logic)
 *  [5. イベントハンドラを追加する](/try/events)
 *  [6. スタイリングする](/try/style)
 

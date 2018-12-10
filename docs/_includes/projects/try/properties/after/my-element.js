@@ -1,34 +1,34 @@
 /**
- * Try LitElement https://lit-element.polymer-project.org/try
- * Completed code for 3. Properties
+ * LitElementを試してみよう https://lit-element.polymer-jp.org/try
+ * 完成コード (3. プロパティ)
  */
 
 import { LitElement, html } from '@polymer/lit-element'; 
 
 class MyElement extends LitElement {
   /**
-   * DONE: Declare a property.
+   * DONE: プロパティの宣言
    */
   static get properties() {
     return { 
-      // Property declaration
+      // プロパティの宣言
       message: { type: String }
     };
   }
 
   /**
-   * DONE: Initialize the property.
+   * DONE: プロパティの初期化
    */
   constructor() {
-    // Always call superconstructor first
+    // 必ず最初に親クラスのコンストラクタを呼び必要があります
     super(); 
 
-    // Initialize property
+    // プロパティの初期化
     this.message='Hello world! From my-element';
   }
 
   /**
-   * DONE: Add a property to your template with a JavaScript expression.
+   * DONE: JavaScript式でプロパティをテンプレートに追加
    */
   render() {
     return html`
