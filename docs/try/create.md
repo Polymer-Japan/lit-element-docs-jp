@@ -74,7 +74,7 @@ If you're stuck, click **Launch Code Editor** below to see the completed code at
 
 2.  **LitElementを継承した独自のHTML要素クラスをつくる**
 
-    my-element.jsから`MyElement`のクラス宣言文を下記のコードで置き換えてください:
+    `MyElement`のクラス宣言文を下記のコードで置き換えてください:
 
     ```js
     class MyElement extends LitElement {
