@@ -1,6 +1,6 @@
 /**
- * Try LitElement https://lit-element.polymer-project.org/try
- * Starting code for 4. Logic
+ * LitElementを試してみよう https://lit-element.polymer-jp.org/try
+ * 穴埋めコード (4. ロジック)
  */
 
 import { LitElement, html } from '@polymer/lit-element'; 
@@ -24,9 +24,9 @@ class MyElement extends LitElement {
     return html`
       <p>${this.message}</p>
 
-      <!-- TODO: Add a loop -->
+      <!-- TODO: 繰り返しを追加 -->
 
-      <!-- TODO: Add a conditional -->
+      <!-- TODO: 条件分岐を追加 -->
     `;
   }
 }
