@@ -17,17 +17,17 @@ class MyElement extends LitElement {
     return html`
       <p>prop1: ${this.prop1}</p>
       <p>prop2: ${this.prop2}</p>
-      <button @click="${() => this.prop1=this.change()}">Change prop1</button>
-      <button @click="${() => this.prop2=this.change()}">Change prop2</button>
+      <button @click="${() => this.prop1=this.change()}">prop1を変更</button>
+      <button @click="${() => this.prop2=this.change()}">prop2を変更</button>
     `;
   }
   
   /**
-   * Only update element if prop1 changed. 
+   * prop1が変更された場合にのみ要素を更新します。
    */
   shouldUpdate(changedProperties) {
     changedProperties.forEach((oldValue, propName) => { 
-      console.log(`${propName} changed. oldValue: ${oldValue}`);
+      console.log(`${propName} が変更されました。古い値: ${oldValue}`);
     });
     return changedProperties.has('prop1');
   }

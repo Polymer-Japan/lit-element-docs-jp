@@ -6,18 +6,18 @@ class MyElement extends LitElement {
   };}
   
   /**
-   * Custom property setter for `foo`. 
+   * `foo`のカスタムプロパティ設定。
    * 
-   * Call `requestUpdate` when implementing a custom property setter
-   * to ensure that changes to the property will trigger updates
-   * when required.
+   * カスタムプロパティセッターを実装するときに `requestUpdate`を呼び出します
+   * プロパティの変更によって更新がトリガーされるようにする
+   * 必要な場合に。
    * 
-   * Pass the old value of the property to `requestUpdate` so that 
-   * any property options can be correctly applied.
-   */
+   * プロパティの古い値を `requestUpdate`に渡します。
+   * 任意のプロパティオプションを正しく適用することができます。
+  */
   set foo(newVal) { 
     let oldVal = this.foo;
-    console.log('setting foo from', oldVal, 'to', newVal);
+    console.log('値の設定 ', oldVal, 'から', newVal);
     this.setAttribute('foo', newVal);
     this.requestUpdate('foo', oldVal).then(
       result => console.log('updateComplete:', result)
@@ -25,7 +25,7 @@ class MyElement extends LitElement {
   }
 
   /**
-   * Custom property getter for `foo`. 
+   * `foo`のカスタムプロパティゲッター。
    */ 
   get foo() {
     return this.getAttribute('foo'); 
@@ -34,7 +34,7 @@ class MyElement extends LitElement {
   render() { 
     return html`
       ${this.foo}
-      <button @click="${this.getNewVal}">get new value</button>
+      <button @click="${this.getNewVal}">新しい値を取得</button>
     `;
   }
   

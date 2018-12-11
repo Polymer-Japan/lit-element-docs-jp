@@ -15,14 +15,14 @@ class MyElement extends LitElement {
   change() {
     let newVal = Math.random();
     /**
-     * Changes to object subproperties and array items are not observable. 
-     * Instead:
+     * オブジェクトのサブプロパティと配列項目に対する変更は、観察できません。
+     * そのかわりに:
      */ 
     
-    // Option 1: Rewrite the whole object, triggering an update
+    // Option 1: オブジェクト全体を書き直し、更新をトリガする
     // this.prop1 = Object.assign({}, this.prop1, { subProp: newVal });
 
-    // Option 2: Mutate a subproperty, then call requestUpdate
+    // Option 2: サブプロパティを変更してから、requestUpdateを呼び出します。
     this.prop1.subProp = newVal;
     this.requestUpdate();
   }

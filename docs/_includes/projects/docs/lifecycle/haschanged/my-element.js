@@ -31,12 +31,12 @@ class MyElement extends LitElement {
   render(){
     return html`
       <p>${this.myProp}</p>
-      <button @click="${this.getNewVal}">get new value</button>
+      <button @click="${this.getNewVal}">新しい値を取得</button>
     `;
   }
   
   updated(){
-    console.log('updated');
+    console.log('更新されました');
   }
 
   getNewVal(){
