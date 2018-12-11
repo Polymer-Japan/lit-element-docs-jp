@@ -1,6 +1,6 @@
 import { LitElement, html } from '@polymer/lit-element';
 
-// Anti-pattern. Avoid!
+// アンチパターン。こう書いてはいけません!
 
 class DomManip extends LitElement {
   constructor() {
@@ -12,13 +12,13 @@ class DomManip extends LitElement {
   }
   render() {
     return html`
-      <p id="message">Loading</p>
+      <p id="message">読み込み中</p>
     `;
   }
   loadStuff() {
     setInterval(() => {
       let loaded = new CustomEvent('stuff-loaded', { 
-        detail: 'Loading complete.'
+        detail: '読み込み完了'
       });
       this.dispatchEvent(loaded);
     }, 3000);

@@ -20,12 +20,12 @@ class MyElement extends LitElement {
   }
 
   /**
-   * Wait for additional state before completion of every update
+   * すべての更新が完了する前に追加の状態を待つ
    */
   get updateComplete() {
-    console.log('Waiting for additional state...');
+    console.log('状態が変るのを待っています...');
     return this.getMoreState().then(() => {
-      console.log('Additional state.');
+      console.log('状態が変更されました');
       return this._updatePromise;
     });
   }
@@ -36,7 +36,7 @@ class MyElement extends LitElement {
 
   async changeProp() {
     this.prop1 = Math.random();
-    console.log('updateComplete resolved: ', await this.updateComplete);
+    console.log('updateCompleteがresolveされました: ', await this.updateComplete);
   }
 }
 

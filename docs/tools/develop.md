@@ -5,17 +5,29 @@ topic: develop
 pageid: develop
 ---
 
+<!-- original:
 **On this page:** 
 
 * [Install Polymer CLI](#install)
 * [Configure a project for Polymer CLI dev server](#serve)
 * [Text editor](#ide)
+-->
+
+**ここでは:** 
+
+* [Polymer CLIのインストール](#install)
+* [Polymer CLI開発用サーバのプロジェクト設定](#serve)
+* [テキストエディタ](#ide)
 
 <a id="install">
 
-### [Install Polymer CLI](#install)
+### [Polymer CLIのインストール](#install)
 
+<!-- original:
 Requires npm and Nodejs.
+-->
+
+npmとNodejsが必要です。
 
 ```
 npm install -g polymer-cli
@@ -23,8 +35,9 @@ npm install -g polymer-cli
 
 <a id="serve">
 
-### [Configure a project for Polymer CLI dev server](#serve)
+### [Polymer CLI開発用サーバのプロジェクト設定](#serve)
 
+<!-- original:
 1.  Configure Polymer CLI to serve your project locally. 
 
     Create a polymer.json file in your top-level project folder. For example:
@@ -69,11 +82,63 @@ npm install -g polymer-cli
     ```
 
     To view the served project in the example above, open http://127.0.0.1:8081.
+-->
+
+1.  プロジェクトをローカルに提供するようにPolymer CLIを設定します。
+
+    最上位のプロジェクトフォルダにpolymer.jsonファイルを作成します。 例えば:
+
+    _プロジェクトフォルダ構造_
+
+    ```bash
+    my-project/
+      src/
+        index.html
+        my-project.js
+      package.json
+      polymer.json
+    ```
+
+    _polymer.json_
+
+    ```json
+    {
+      "npm": true,
+      "moduleResolution": "node",
+      "entrypoint": "src/index.html",
+      "shell": "src/my-project.js",
+    }
+    ```
+
+2.  トップレベルのプロジェクトフォルダから、npmコンポーネントをまだインストールしていない場合はインストールします。その後、`polymer serve`を実行します:
+
+    ```bash
+    cd my-project
+    npm install
+    polymer serve
+    ```
+
+    Polymer CLIはローカルサーバーを起動します。提供されたプロジェクトを表示するには、 `applications` URLを開きます。例えば:
+
+    ```
+    ~/my-project > polymer serve
+    info: [cli.command.serve] Files in this directory are available under the following URLs
+      applications: http://127.0.0.1:8081
+      reusable components: http://127.0.0.1:8081/components/my-project/
+    ```
+
+    上の例で提供されたプロジェクトを表示するには, http://127.0.0.1:8081 を開きます。
 
 <a id="ide">
 
-### [Text editor](#ide)
+### [テキストエディタ](#ide)
 
+<!-- original:
 You will need a text editor that does HTML syntax highlighting inside JavaScript template literals. 
 
 * [VS Code](https://code.visualstudio.com/) with [Matt Bierner's lit-html plugin](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html)
+-->
+
+JavaScriptテンプレートのリテラル内でHTML構文の強調表示を行うテキストエディタが必要です。
+
+* [VS Code](https://code.visualstudio.com/)の[Matt Bierner's lit-html plugin](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html)

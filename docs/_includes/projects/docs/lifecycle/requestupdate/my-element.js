@@ -4,7 +4,7 @@ class MyElement extends LitElement {
   constructor() {
     super();
     
-    // Request an update in response to an event
+    // イベントに応じて更新をリクエストする
     this.addEventListener('load-complete', async (e) => {
       console.log(e.detail.message);
       console.log(await this.requestUpdate());
@@ -12,12 +12,12 @@ class MyElement extends LitElement {
   }
   render() { 
     return html`
-      <button @click="${this.fire}">Fire a "load-complete" event</button>
+      <button @click="${this.fire}">"load-complete"イベントが発火</button>
     `;
   }
   fire() {
     let newMessage = new CustomEvent('load-complete', { 
-      detail: { message: 'hello. a load-complete happened.' }
+      detail: { message: 'こんにちは、load-completeが起きました' }
     });
     this.dispatchEvent(newMessage);
   }

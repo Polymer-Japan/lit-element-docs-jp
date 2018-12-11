@@ -9,8 +9,8 @@ class MyElement extends LitElement {
   }
   constructor(){
     super();
-    this.textAreaId = 'myText';
-    this.startingText = 'Focus me on first update';
+    this.textAreaId = 'サンプルテキスト';
+    this.startingText = '最初の読み込みでフォーカスされます';
   }
   render(){
     return html`
@@ -19,7 +19,7 @@ class MyElement extends LitElement {
   }
   firstUpdated(changedProperties){
     changedProperties.forEach((oldValue, propName) => { 
-      console.log(`${propName} changed. oldValue: ${oldValue}`);
+      console.log(`${propName}が更新されました。 古い値: ${oldValue}`);
     });
     const textArea = this.shadowRoot.getElementById(this.textAreaId);
     textArea.focus();

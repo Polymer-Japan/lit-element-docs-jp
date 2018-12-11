@@ -21,8 +21,8 @@ class MyElement extends LitElement {
         ${this.myArray.map(i => html`<li>${i}</li>`)}
       </ul>
       ${this.myBool?
-        html`<p>Render some HTML if myBool is true</p>`:
-        html`<p>Render some other HTML if myBool is false</p>`}
+        html`<p>myBoolが真の時に描画されるHTML</p>`:
+        html`<p>myBoolが偽の時に描画されるHTML</p>`}
     `;
   }
 }

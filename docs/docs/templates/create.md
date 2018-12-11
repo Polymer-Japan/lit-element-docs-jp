@@ -12,7 +12,7 @@ subtopic: create
 * [Specify the render root](#renderroot)
 -->
 
-**このページでは:**
+**ここでは:**
 
 * [テンプレートの定義](#define)
 * [レンダールート](#renderroot)

@@ -3,15 +3,15 @@ import { LitElement, html } from '@polymer/lit-element';
 class MyElement extends LitElement { 
   static get properties() { return { 
     /**
-     * Changes to attribute `my-prop` cause updates to property `myProp`
-     * Changes to property `myProp` reflect to attribute `my-prop`
-     */    
+     * 属性 `my-prop`を変更すると、プロパティ`myProp`が更新されます
+     * プロパティ`myProp`に対する変更は`my-prop`属性に反映されます
+    */    
     myProp: { type: String, attribute: 'my-prop', reflect: true },
 
     /**
-     * Changes to attribute `someprop` cause updates to property `someProp`
-     * Changes to property `someProp` do not reflect to attribute `someprop`
-     */
+     * 属性 `someprop`を変更すると、プロパティー` someProp`が更新されます
+     * 属性somePropへの変更は、属性 `someprop`には反映されません。
+    */
     someProp: { type: String },
   };}
 

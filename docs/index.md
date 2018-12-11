@@ -31,7 +31,7 @@ For rendering, LitElement uses [lit-html](https://lit-html.polymer-project.org/)
 
 LitElementは、どんなフレームワークのどんなWebページでも動作し、軽量で高速なWebコンポーネントを開発するためのシンプルなベースクラスです。
 
-描画(レンダリング)には[lit-html](https://lit-html.polymer-jp.org/)(高速HTMLテンプレートライブラリ)を使います。LitElementを使ってアプリを構築するのであれば、ぜひ[PWA Starter Kit](https://pwa-starter-kit.polymer-project.org/)をチェックしてください。
+描画(レンダリング)には[lit-html](https://lit-html.polymer-jp.org/)(高速HTMLテンプレートライブラリ)を使います。LitElementを使ってアプリを構築するのであれば、ぜひ[PWA Starter Kit](https://pwa-starter-kit-dot-polymer-japan.appspot.com/)をチェックしてください。
 
 </div>
 </div>

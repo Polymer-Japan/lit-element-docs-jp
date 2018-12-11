@@ -25,7 +25,7 @@ class MyElement extends LitElement {
   }
   updated(changedProperties){
     changedProperties.forEach((oldValue, propName) => { 
-      console.log(`${propName} changed. oldValue: ${oldValue}`);
+      console.log(`${propName}が更新されました。元の値は: ${oldValue}`);
     });
     let b = this.shadowRoot.getElementById('b');
     b.focus();
