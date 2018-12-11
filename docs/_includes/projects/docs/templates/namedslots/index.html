@@ -11,22 +11,22 @@
   <title>lit-element code sample</title>
 </head>
 <body>
-    <!-- Assign light DOM child to a specific slot -->
+    <!-- 指定したslotにlight DOMを設定する -->
 
     <my-element>
-      <p slot="two">Include me in slot "two".</p>
+      <p slot="two">slotのtwoとして表示</p>
     </my-element>
 
     <!-- 
-      Named slots only accept light DOM children with a matching `slot` attribute. 
+      名前付きslotは、一致する `slot`属性を持つlight DOMの子要素のみで使えます。
       
-      Light DOM children with a `slot` attribute can only go into a slot with a matching name. 
+      `slot`属性を持つlight DOMの子要素は、一致する`name`属性を持つslotの場所にだけ表示されます。
     -->
 
     <my-element>
-      <p slot="one">Include me in slot "one".</p>
-      <p slot="nope">This one will not render at all.</p>
-      <p>No default slot, so this one won't render either.</p>
+      <p slot="one">slotのoneとして表示</p>
+      <p slot="nope">ここは描画されない</p>
+      <p>デフォルトのslotもないので、ここも描画されない</p>
     </my-element>
 </body>
 </html>
