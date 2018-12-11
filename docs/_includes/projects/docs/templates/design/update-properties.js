@@ -1,7 +1,7 @@
 import { LitElement, html } from '@polymer/lit-element';
 
 /**
- * Use this pattern instead.
+ * 推奨パターン
  */
 class UpdateProperties extends LitElement {
   static get properties(){
@@ -11,7 +11,7 @@ class UpdateProperties extends LitElement {
   }
   constructor() {
     super();
-    this.message = 'Loading';
+    this.message = '読み込み中';
     this.addEventListener('stuff-loaded', (e) => { this.message = e.detail } );
     this.loadStuff();
   }
@@ -23,7 +23,7 @@ class UpdateProperties extends LitElement {
   loadStuff() {
     setInterval(() => {
       let loaded = new CustomEvent('stuff-loaded', { 
-        detail: 'Loading complete.'
+        detail: '読み込み完了'
       });
       this.dispatchEvent(loaded);
     }, 3000);
