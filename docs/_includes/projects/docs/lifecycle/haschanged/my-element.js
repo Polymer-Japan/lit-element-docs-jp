@@ -6,10 +6,9 @@ class MyElement extends LitElement {
       type: Number,
 
       /**
-       * Compare myProp's new value with its old value. 
+       * myPropの新しい値と古い値を比較します。
        * 
-       * Only consider myProp to have changed if newVal is larger than
-       * oldVal.
+       * newValがoldValより大きい場合にのみmyPropを変更したとみなしてください。
        */
       hasChanged(newVal, oldVal) {
         if (newVal > oldVal) {
