@@ -18,26 +18,26 @@ class MyElement extends LitElement {
   }
   render() {
     return html`
-      <!-- text binding -->
+      <!-- テキスト -->
       <div>${this.prop1}</div>
 
-      <!-- attribute binding -->
-      <div id="${this.prop2}">attribute binding</div>
+      <!-- 属性 -->
+      <div id="${this.prop2}">属性バインディング</div>
 
-      <!-- boolean attribute binding -->
+      <!-- 真偽値属性 -->
       <div>
-        boolean attribute binding
+        真偽値属性バインディング
         <input type="checkbox" ?checked="${this.prop3}"/>
       </div>
       
-      <!-- property binding -->
+      <!-- プロパティ -->
       <div>
-        property binding
+        プロパティ
         <input type="checkbox" .value="${this.prop4}"/>
       </div>
       
-      <!-- event handler binding -->
-      <div>event handler binding
+      <!-- イベントハンドラ -->
+      <div>イベントハンドラ・バインディング
         <button @click="${this.clickHandler}">click</button>
       </div>
     `;
