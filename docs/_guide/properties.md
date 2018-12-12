@@ -62,10 +62,6 @@ export class MyElement extends LitElement {
 
 <!-- original:
 When you set up your properties, you can specify a property declaration for each one. Within a property declaration, you can configure options for the property.
--->
-
-<!-- TODO: -->
-このセクションのプロパティオプションのいずれかをTypeScriptデコレータで指定することも、 `properties`ゲッターで指定することもできます。
 
 * Configure corresponding attributes and their behavior with the `type`, `attribute` and `reflect` options.
 * Specify the `hasChanged` function to control what constitutes a change for this property.
@@ -87,6 +83,33 @@ Property declarations can be specified in the `properties` getter or with TypeSc
   reflect: true,
 
   // Specifies how to evaluate whether the property has changed.
+  hasChanged(newValue, oldValue) { ... },
+}
+```
+-->
+
+このセクションのプロパティオプションのいずれかをTypeScriptデコレータで指定することも、 `properties`ゲッターで指定することもできます。
+
+* 対応する属性とその振舞いを `type`、` attribute`と `reflect`オプションで設定します。
+* `hasChanged`関数を指定すると、このプロパティの変更内容を制御します。
+
+プロパティの宣言は、 `properties`ゲッターまたはTypeScriptデコレータで指定することができます。
+
+```js
+/**
+ * プロパティ宣言の例
+ */
+{ 
+  // プロパティと属性間での型の変換方法を指定します。
+  type: String,
+
+  // 対応する監視属性を指定します。
+  attribute: 'my-prop', 
+
+  // 変更に属性を反映するかどうかを指定します。
+  reflect: true,
+
+  // プロパティーが変更されたかどうかを評価する方法を指定します。
   hasChanged(newValue, oldValue) { ... },
 }
 ```

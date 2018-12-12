@@ -30,6 +30,8 @@ To work locally with lit-element, you'll first need to install Git, npm and Node
     ```bash
     npm install -g polymer-cli@latest
     ```
+
+Read on to create a new LitElement project from scratch, or if you prefer, you can [download a sample LitElement project](https://github.com/PolymerLabs/start-lit-element).
 -->
 
 lit-elementでローカルで作業するには、まずGit、npmとNode.js、Polymer CLIをインストールする必要があります。
@@ -50,7 +52,7 @@ lit-elementでローカルで作業するには、まずGit、npmとNode.js、Po
     npm install -g polymer-cli@latest
     ```
 
-Read on to create a new LitElement project from scratch, or if you prefer, you can [download a sample LitElement project](https://github.com/PolymerLabs/start-lit-element).
+LitElementを使ったプロジェクト一からを作成する場合は、以下の手順に沿ってください。必要に応じて[サンプルのLitElementプロジェクトをダウンロード](https://github.com/PolymerLabs/start-lit-element)することもできます。
 
 ### 新しいLitElementプロジェクトを作る
 
