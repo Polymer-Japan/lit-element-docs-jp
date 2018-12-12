@@ -4,7 +4,7 @@ class MyElement extends LitElement {
   render() { 
     return html`
       <style>${this.myStyles}</style>
-      <p>hi world</p>
+      <p>こんにちわ</p>
     `; 
   }
   get myStyles() { 

@@ -12,7 +12,7 @@ class MyElement extends LitElement {
           color: blue;
         }
       </style>
-      <p>Inherits font styles from host</p>
+      <p>継承されたフォントスタイル</p>
     `;
   }
 }

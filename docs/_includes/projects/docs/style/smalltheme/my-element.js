@@ -7,7 +7,7 @@ class MyElement extends LitElement {
   }
   constructor() {
     super();
-    this.menuItems = [ 'Option1', 'Option2', 'Option3'];
+    this.menuItems = [ 'オプション1', 'オプション2', 'オプション3'];
   }
   render() {
     return html`

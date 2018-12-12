@@ -3,7 +3,7 @@ import { LitElement, html } from '@polymer/lit-element';
 class MyElement extends LitElement {
   render() {
     return html`
-      <span>More inheritance</span>
+      <span>さらに継承される</span>
     `;
   }
 }
