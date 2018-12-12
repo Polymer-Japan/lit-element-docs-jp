@@ -170,7 +170,7 @@ LitElementは全ての主要なブラウザで動作します(Chrome, Firefox, I
 - When you’re ready to dive in, [set up LitElement locally]({{ site.baseurl }}/tools) and start building components!
 -->
 
-- [試してみる]({{ site.baseurl }}/try)はオンラインで試せるチュートリアルです。インストールする必要があるものはなにもありません。
+- [試してみる]({{ site.baseurl }}/guide/try)はオンラインで試せるチュートリアルです。インストールする必要があるものはなにもありません。
 - もっと深く知りたければ、 [ローカルにセットアップ]({{ site.baseurl }}/tools) してコンポーネントを構築してください!
 
 </div>

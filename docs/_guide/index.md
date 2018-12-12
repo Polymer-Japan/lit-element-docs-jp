@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Introduction
+title: はじめに
 ---
 
 {::options toc_levels="1..3" /}
@@ -60,7 +60,7 @@ _my-element.js_
 
 {% include project.html folder="docs/create" openFile="my-element.js" %}
 
-## [TypeScriptデコレータを使う]
+## TypeScriptデコレータを使う
 
 <!-- original:
 You can use the `@customElement` TypeScript decorator to define your class as a custom element:
@@ -76,7 +76,7 @@ TypeScriptの`@customElement`デコレータを使って要素を定義できま
 
 <a name="import">
 
-## [コンポーネントをインポートする]
+## コンポーネントをインポートする
 
 ### 作成したコンポーネントのインポート
 
