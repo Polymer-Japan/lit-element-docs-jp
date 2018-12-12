@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Lifecycle
+title: ライフサイクル
 slug: lifecycle
 ---
 
@@ -8,6 +8,7 @@ slug: lifecycle
 * ToC
 {:toc}
 
+<!-- original:
 ## Overview
 
 LitElement-based components update asynchronously in response to observed property changes. Property changes are batched--if more properties change after an update is requested, but before the update starts, all of the changes are captured in the same update.
@@ -79,9 +80,83 @@ In call order, the methods and properties in the update lifecycle are:
 All declared properties have a function, `hasChanged`, which is called whenever the property is set; if `hasChanged` returns true, an update is scheduled.
 
 See the Properties documentation for information on [configuring `hasChanged` to customize what constitutes a property change](/properties#haschanged).
+-->
+
+## 概要
+
+LitElementベースのコンポーネントは、監視されているプロパティの変更に応じて非同期に更新されます。プロパティーの変更は一括処理されます。更新が要求された後、更新が開始される前にさらにプロパティーが変更されると、すべての変更が同じ更新で取り込まれます。
+
+更新ライフサイクルは:
+
+1. プロパティが設定されると、
+2. **プロパティ毎に設定** される `hasChanged`によって **プロパティが変更されたかどうか** を確認。
+3. プロパティが変更されたなら`requestUpdate()`を呼んで描画をスケジューリングし、
+4. `shouldUpdate` によって描画をすべきか確認。
+5. 描画してよいなら`update`が呼ばれて各属性やプロパティを更新し、
+6. lit-htmlがDOMに描画。
+7. **([訳者追加](https://github.com/Polymer/lit-element#advanced-update-lifecycle)** 最初の描画時は`firstUpdated`が呼ばれつつ) `update`が呼ばれ、プロパティも更新済みとなり、
+8. `updateComplete`がresolveされる
+
+####  LitElementとブラウザのイベントループ
+
+これらの概念の詳細については、[Jake Archibaldの記事](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)を参照してください。
+
+ブラウザは[イベントループ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)のタスクのキューを処理することによってJavaScriptコードを実行します。イベントループが繰り返されるたびに、ブラウザはキューからタスクを取り出し、完了まで実行します。
+
+タスクが完了すると、キューから次のタスクを実行する前に、ブラウザはDOM更新、ユーザー対話、マイクロタスクキューなどの他のソースから作業を実行するための時間を割り当てます。
+
+LitElementの更新は、Promisesとして非同期に要求され、マイクロタスクとしてキューに入れられます。これは、イベントループの各反復の最後に要素の更新が処理されることを意味し、更新をすばやく迅速に処理します。
+
+#### Promisesと非同期関数
+
+LitElementは、[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)オブジェクトを使用して要素の更新をスケジュールし、それに応答します。
+
+`async`と` await`を使うと、Promisesで簡単に作業できます。例えば、あなたは `updateComplete` Promiseを待つことができます:
+
+```js
+// `async`は関数をプロミスに戻し、` await`を使用させます
+async myFunc(data) {
+  // プロパティを設定し、更新をトリガする
+  this.myProp = data;
+
+  // updateCompleteの約束が解決するのを待つ
+  await this.updateComplete;
+  // ...なにか...
+  return 'done';
+}
+```
+
+`async`関数がPromiseを返すので、あなたもそれらを待つことができます:
+
+```js
+let result = await myFunc('stuff');
+// `result`が解決されました！あなたはそれで何かできる
+```
+
+詳細なチュートリアルについては、[Web Fundamentals primer on Promises](https://developers.google.com/web/fundamentals/primers/promises)を参照してください。
+
+## メソッドとプロパティ
+
+更新ライフサイクルで呼び出されるメソッドの順番としては:
+
+1.  [someProperty.hasChanged](#haschanged)
+1.  [requestUpdate](#requestupdate) 
+1.  [shouldUpdate](#shouldupdate)
+1.  [update](#update)
+1.  [render](#render)
+1.  [firstUpdated](#firstupdated)
+1.  [updated](#updated)
+1.  [updateComplete](#updatecomplete)
+
+### someProperty.hasChanged
+
+宣言されたすべてのプロパティには、プロパティが設定されるたびに呼び出される関数`hasChanged`があります。 `hasChanged`がtrueを返した場合、更新がスケジュールされます。
+
+[プロパティ変更動作をカスタマイズするために`hasChanged`を設定する](/properties#haschanged)も参照してください。
 
 ### requestUpdate
 
+<!-- original:
 ```js
 // Manually start an update
 this.requestUpdate();
@@ -101,6 +176,19 @@ To manually start an element update, call `requestUpdate` with no parameters.
 To implement a custom property setter that supports property options, pass the property name and its previous value as parameters.
 
 **Example: Manually start an element update**
+-->
+
+| **引数**<br/><br/>&nbsp; | `propertyName`<br/><br/>`oldValue`| 更新されるプロパティの名前。 <br/><br/> 以前のプロパティ値。 |
+| **返り値**  | `Promise` | 更新の完了時に解決する [`updateComplete` Promise](#updatecomplete)を返します。 |
+| **更新？** | いいえ | このメソッドの内部でのプロパティの変更は、要素の更新をトリガーしません。 |
+
+[`hasChanged`](＃haschanged)が` true`を返した場合、 `requestUpdate`が起動し、更新が行われます。
+
+要素の更新を手動で開始するには、パラメータなしで `requestUpdate`を呼び出します。
+
+プロパティオプションをサポートするカスタムプロパティセッターを実装するには、プロパティ名とその前の値をパラメーターとして渡します。
+
+**サンプル: 手動で要素の更新を開始する**
 
 ```js
 {% include projects/docs/lifecycle/requestupdate/my-element.js %}
@@ -108,7 +196,11 @@ To implement a custom property setter that supports property options, pass the p
 
 {% include project.html folder="docs/lifecycle/requestupdate" %}
 
+<!-- original:
 **Example: Call `requestUpdate` from a custom property setter**
+-->
+
+**サンプル: カスタムプロパティセッターから `requestUpdate`を呼び出します**
 
 ```js
 {% include projects/docs/lifecycle/customsetter/my-element.js %}
@@ -118,6 +210,7 @@ To implement a custom property setter that supports property options, pass the p
 
 ### shouldUpdate
 
+<!-- original:
 ```js
 /** 
  * Implement to override default behavior.
@@ -132,6 +225,20 @@ shouldUpdate(changedProperties) { ... }
 Controls whether an update should proceed. Implement `shouldUpdate` to specify which property changes should cause updates. By default, this method always returns true.
 
 **Example: Customize which property changes should cause updates**
+-->
+
+```js
+/** 
+ * デフォルト動作をオーバーライド
+ */
+shouldUpdate(changedProperties) { ... }
+```
+
+| **引数** | `changedProperties`| `Map`オブジェクトでキーは変更されたプロパティの名前です。<br/>値は対応する以前の値です。 |
+| **返り値**  | `Boolean` | `true`の場合、更新が進みます。デフォルトの戻り値は `true`です。 |
+| **更新？** | はい | このメソッドの内部でプロパティを変更すると、要素が更新されます。 |
+
+**サンプル: どのプロパティの変更によって更新が発生するかをカスタマイズする**
 
 ```js
 {% include projects/docs/lifecycle/shouldupdate/my-element.js %}
@@ -141,13 +248,21 @@ Controls whether an update should proceed. Implement `shouldUpdate` to specify w
 
 ### update
 
+<!-- original:
 | **Params** | `changedProperties`| `Map`. Keys are the names of changed properties; Values are the corresponding previous values. |
 | **Updates?** | No | Property changes inside this method do not trigger an element update. |
 
 Reflects property values to attributes and calls `render` to render DOM via lit-html. Provided here for reference. You don't need to override or call this method. 
+-->
+
+| **引数** | `changedProperties`| `Map`オブジェクトでキーは変更されたプロパティの名前です。<br/>値は対応する以前の値です。 |
+| **更新？** | いいえ | このメソッドの内部でのプロパティの変更は、要素の更新をトリガーしません。 |
+
+属性値を属性に反映させて要素を更新し、 `render（）`を呼び出します。このメソッドをオーバーライドまたは呼び出す必要はありません。
 
 ### render
 
+<!-- original:
 ```js
 /** 
  * Implement to override default behavior.
@@ -161,9 +276,25 @@ render() { ... }
 Uses lit-html to render the element template. You must implement `render` for any component that extends the LitElement base class.
 
 See the documentation on [Templates](/templates) for more information.
+-->
+
+```js
+/** 
+ * デフォルト動作をオーバーライド
+ */
+render() { ... }
+```
+
+| **返り値** | `TemplateResult` | lit-htmlの `TemplateResult`を返さなければなりません。 |
+| **更新？** | いいえ | このメソッドの内部でのプロパティの変更は、要素の更新をトリガーしません。 |
+
+lit-htmlを使用して要素テンプレートをレンダリングします。
+
+詳細については、[テンプレートの作成とレンダリング](../templates)のドキュメントを参照してください。
 
 ### firstUpdated
 
+<!-- original:
 ```js
 /** 
  * Implement to override default behavior.
@@ -179,6 +310,23 @@ Called after the element's DOM has been updated the first time, immediately befo
 Implement `firstUpdated` to perform one-time work after the element's template has been created.
 
 **Example: Focus an input element**
+-->
+
+```js
+/** 
+ * デフォルト動作をオーバーライド
+ */
+firstUpdated(changedProperties) { ... }
+```
+
+| **引数** | `changedProperties`| `Map`オブジェクトでキーは変更されたプロパティの名前です。<br/>値は対応する以前の値です。 |
+| **更新？** | はい | このメソッドの内部でプロパティを変更すると、要素が更新されます。 |
+
+要素のDOMが最初に更新された後、[`updated`](#updated)が呼び出される直前に呼び出されます。
+
+要素のテンプレートが作成された後にワンタイム作業を実行するように `firstUpdated`をカスタマイズします。
+
+**サンプル: 入力要素をフォーカスする**
 
 ```js
 {% include projects/docs/lifecycle/firstupdated/my-element.js %}
@@ -188,6 +336,7 @@ Implement `firstUpdated` to perform one-time work after the element's template h
 
 ### updated
 
+<!-- original:
 ```js
 /** 
  * Implement to override default behavior.
@@ -201,6 +350,21 @@ updated(changedProperties) { ... }
 Called when the element's DOM has been updated and rendered. Implement to perform some task after an update.
 
 **Example: Focus an element after update**
+-->
+
+```js
+/** 
+ * デフォルト動作をオーバーライド
+ */
+updated(changedProperties) { ... }
+```
+
+| **引数** | `changedProperties`| `Map`オブジェクトでキーは変更されたプロパティの名前です。<br/>値は対応する以前の値です。 |
+| **更新？** | はい | このメソッドの内部でプロパティを変更すると、要素が更新されます。 |
+
+要素のDOMが更新されレンダリングされたときに呼び出されます。何もしない。例えば、更新後の処理を実装する。フォーカスなど
+
+**サンプル: 更新後に要素をフォーカスする**
 
 ```js
 {% include projects/docs/lifecycle/updated/my-element.js %}
@@ -210,6 +374,7 @@ Called when the element's DOM has been updated and rendered. Implement to perfor
 
 ### updateComplete
 
+<!-- original:
 ```js
 // Await Promise property.
 await this.updateComplete;
@@ -240,6 +405,33 @@ To have `updateComplete` await additional state before it resolves, implement th
   ```
 
 **Example**
+-->
+
+| **型**&nbsp; | `Promise` | 要素の更新が終了すると、 `Boolean`が返されます。 |
+| **Resolves** <br/><br/>| より多くの保留中の更新がなければ `true`を返します。<br/> <br/>この更新サイクルが別の更新を引き起こした場合は` false`を返します。 |
+
+`updateComplete` Promiseは、要素の更新が完了した時点を解決します。 `updateComplete`を使って更新を待つ:
+
+  ```js
+  await updateComplete;
+  // なにか
+  ```
+
+  ```js
+  updateComplete.then(() => { /* なにか */ });
+  ```
+
+`updateComplete`を解決する前に追加状態を待たせるには、` updateComplete`ゲッターを実装してください:
+
+  ```js
+  get updateComplete() {
+    return this.getMoreState().then(() => {
+      return this._updatePromise;
+    });
+  }
+  ```
+
+**サンプル**
 
 ```js
 {% include projects/docs/lifecycle/updatecomplete/my-element.js %}
@@ -247,6 +439,7 @@ To have `updateComplete` await additional state before it resolves, implement th
 
 {% include project.html folder="docs/lifecycle/updatecomplete" %}
 
+<!-- original:
 ## Examples
 
 #### Customize which property changes should cause an update
@@ -258,9 +451,23 @@ shouldUpdate(changedProps) {
   return changedProps.has('prop1');
 }
 ```
+-->
+
+## サンプルコード
+
+#### 更新を引き起こすプロパティの変更をカスタマイズする
+
+[`shouldUpdate`を実装する](#shouldupdate):
+
+```js
+shouldUpdate(changedProps) {
+  return changedProps.has('prop1');
+}
+```
 
 {% include project.html folder="docs/lifecycle/shouldupdate" %}
 
+<!-- original:
 #### Customize what constitutes a property change
 
 Specify [`hasChanged`](#haschanged) for the property:
@@ -276,9 +483,27 @@ static get properties(){ return {
   }
 }
 ```
+-->
+
+#### プロパティ変更を構成するものをカスタマイズする
+
+プロパティに[`hasChanged`](methods#haschanged)を指定する:
+
+```js
+static get properties(){ return {
+  myProp: {
+    type: Number,
+    /* newVal> oldValの場合のみmyPropを変更したとみなします */
+    hasChanged(newVal, oldVal) {
+      return newVal > oldVal;
+    }
+  }
+}
+```
 
 {% include project.html folder="docs/lifecycle/haschanged" %}
 
+<!-- original:
 #### Manage property changes and updates for object subproperties
 
 Mutations (changes to object subproperties and array items) are not observable. Instead, either rewrite the whole object, or call [`requestUpdate`](#requestupdate) after a mutation.
@@ -291,9 +516,24 @@ this.prop1 = Object.assign({}, this.prop1, { subProp: 'data' });
 this.prop1.subProp = 'data';
 this.requestUpdate();
 ```
+-->
+
+#### オブジェクトのサブプロパティのプロパティの変更と更新の管理
+
+突然変異（オブジェクトのサブプロパティと配列アイテムの変更）は観測できません。代わりに、オブジェクト全体を書き換えるか、または突然変異の後に[`requestUpdate`](メソッド＃requestupdate)を呼び出します。
+
+```js
+// Option 1: オブジェクト全体を書き直し、更新をトリガする
+this.prop1 = Object.assign({}, this.prop1, { subProp: 'data' });
+
+// Option 2: サブプロパティを変更してから、requestUpdateを呼び出します。
+this.prop1.subProp = 'data';
+this.requestUpdate();
+```
 
 {% include project.html folder="docs/lifecycle/subproperties" %}
 
+<!-- original:
 #### Update in response to something that isn't a property change
 
 Call [`requestUpdate`](#requestupdate):
@@ -305,17 +545,37 @@ this.addEventListener('load-complete', async (e) => {
   console.log(await this.requestUpdate());
 });
 ```
+-->
+
+#### プロパティ変更ではないものに対する応答
+
+[`requestUpdate`](methods#requestupdate)を呼ぶ:
+
+```js
+// イベントに応じて更新をリクエストする
+this.addEventListener('load-complete', async (e) => {
+  console.log(e.detail.message);
+  console.log(await this.requestUpdate());
+});
+```
 
 {% include project.html folder="docs/lifecycle/shouldupdate" %}
 
+<!-- original:
 #### Request an update regardless of property changes
 
 Call [`requestUpdate()`](#requestupdate):
+-->
+
+#### プロパティの変更に関係なく更新を要求する
+
+[`requestUpdate()`](methods#requestupdate)を呼ぶ:
 
 ```js
 this.requestUpdate();
 ```
 
+<!-- original:
 #### Request an update for a specific property
 
 Call [`requestUpdate(propName, oldValue)`](#requestupdate):
@@ -325,12 +585,29 @@ let oldValue = this.prop1;
 this.prop1 = 'new value';
 this.requestUpdate('prop1', oldValue);
 ```
+-->
+
+#### 特定のプロパティの更新をリクエストする
+
+[`requestUpdate(propName, oldValue)`](methods#requestupdate)を呼ぶ:
+
+```js
+let oldValue = this.prop1;
+this.prop1 = '新しい値';
+this.requestUpdate('prop1', oldValue);
+```
 
 {% include project.html folder="docs/lifecycle/requestupdate" %}
 
+<!-- original:
 #### Do something after the first update
 
 Implement [`firstUpdated`](#firstupdated): 
+-->
+
+#### 最初の更新後に何かをする
+
+[`firstUpdated`](#firstupdated)を実装する:
 
 ```js
 firstUpdated(changedProps) {
@@ -340,9 +617,15 @@ firstUpdated(changedProps) {
 
 {% include project.html folder="docs/lifecycle/firstupdated" %}
 
+<!-- original:
 #### Do something after every update
 
 Implement [`updated`](#updated):
+-->
+
+#### 更新のたびに何かをする
+
+[`updated`](#updated)を実装する:
 
 ```js
 updated(changedProps) {
@@ -352,6 +635,7 @@ updated(changedProps) {
 
 {% include project.html folder="docs/lifecycle/updated" %}
 
+<!-- original:
 #### Do something when the element next updates
 
 Await the [`updateComplete`](#updatecomplete) promise:
@@ -378,6 +662,36 @@ let done = await updateComplete;
 ```js
 updateComplete.then(() => {
   // finished updating
+});
+```
+-->
+
+#### 要素が次回更新されたときに何かする
+
+[`updateComplete`](updatecomplete)のPromiseをawaitする:
+
+```js
+await updateComplete;
+// なにか
+```
+
+```js
+updateComplete.then(() => {
+  // なにか
+});
+```
+
+#### 要素の更新が完了するまで待つ
+
+[`updateComplete`](methods#updatecomplete)のPromiseをawaitする:
+
+```js
+let done = await updateComplete;
+```
+
+```js
+updateComplete.then(() => {
+  // アップデートの完了
 });
 ```
 
