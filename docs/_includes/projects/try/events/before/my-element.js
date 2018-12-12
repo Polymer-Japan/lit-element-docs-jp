@@ -1,5 +1,5 @@
 /**
- * LitElementを試してみよう https://lit-element.polymer-jp.org/try
+ * LitElementを試してみよう https://lit-element.polymer-jp.org/guide/try
  * 穴埋めコード (5. イベント)
  */
 
