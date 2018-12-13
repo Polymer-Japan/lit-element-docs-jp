@@ -109,7 +109,7 @@ Property declarations can be specified in the `properties` getter or with TypeSc
   // 変更に属性を反映するかどうかを指定します。
   reflect: true,
 
-  // プロパティーが変更されたかどうかを評価する方法を指定します。
+  // プロパティが変更されたかどうかを評価する方法を指定します。
   hasChanged(newValue, oldValue) { ... },
 }
 ```
@@ -211,7 +211,7 @@ By default, `type`, `fromAttribute` and `toAttribute` are the `String` construct
 To handle deserialization of strings, numbers, and booleans, you can use the corresponding constructor:
 -->
 
-要素のプロパティは任意の型にできますが、属性は常に文字列です。プロパティーは、対応する[監視対象属性](#attributes)との間で直列化および直列化復元する必要があります。 
+要素のプロパティは任意の型にできますが、属性は常に文字列です。プロパティは、対応する[監視対象属性](#attributes)との間で直列化および直列化復元する必要があります。 
 
 デフォルトでは、LitElementは `String`コンストラクタを使用してプロパティと属性を直列化および逆直列化します。非文字列のプロパティが正しく処理されるようにするには、プロパティの `type`オプションを設定します。
 
@@ -262,7 +262,7 @@ Note that when a property of type `Boolean` is deserialized, if it is truthy, th
 One option is to use `JSON.parse` and `JSON.stringify`:
 -->
 
-**オブジェクト（配列を含む）は、別の方法で処理する必要があります。** LitElementには、オブジェクトのプロパティと文字列の属性を変換するためのデフォルト処理はありません。複雑なプロパティを直列化して逆シリアル化する必要がある場合は、それらのために `type`を実装する必要があります。
+**オブジェクト(配列を含む)は、別の方法で処理する必要があります** LitElementには、オブジェクトのプロパティと文字列の属性を変換するためのデフォルト処理はありません。複雑なプロパティを直列化して逆シリアル化する必要がある場合は、それらのために `type`を実装する必要があります。
 
 1つの方法は `JSON.parse`と` JSON.stringify`を使うことです:
 
@@ -289,7 +289,7 @@ return {
 ```text
 return { 
   // これは文字列をオブジェクトに逆シリアル化しません
-  // `Object（" some string "）`を呼び出すだけです
+  // `Object("some string")`を呼び出すだけです
   myObj: { type: Object },
 }
 ```
@@ -330,7 +330,7 @@ myProp: { attribute: false }
 **Example: Configuring observed attributes**
 -->
 
-観測属性の変更は、[`attributeChangedCallback`](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks)をトリガーします。設定すると、監視対象の属性も対応するプロパティを更新します。プロパティの `type`オプションは、属性値（文字列）がどのようにプロパティに逆シリアル化されるかを決定します。
+観測属性の変更は、[`attributeChangedCallback`](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks)をトリガーします。設定すると、監視対象の属性も対応するプロパティを更新します。プロパティの `type`オプションは、属性値(文字列)がどのようにプロパティに逆シリアル化されるかを決定します。
 
 デフォルトでは、宣言されたすべてのプロパティは、対応する監視された属性を取得します。観測属性の名前はプロパティ名で、小文字:
 
@@ -371,7 +371,7 @@ myProp: { attribute: false }
 You can configure a property so that whenever it changes, its value is reflected to its [observed attribute](#attribute). For example:
 -->
 
-変更するたびにその値が[監視された属性]（＃属性）に反映されるようにプロパティを構成できます。例えば
+変更するたびにその値が[監視された属性](#attribute)に反映されるようにプロパティを構成できます。例えば
 
 ```js
 myProp: { type: String, attribute: 'my-prop', reflect: true }
@@ -381,7 +381,7 @@ myProp: { type: String, attribute: 'my-prop', reflect: true }
 The property's `type` option determines how the property will be serialized.
 -->
 
-プロパティの `type`オプションは、プロパティの直列化方法を決定します。詳細については、[プロパティタイプの設定]（＃タイプ）を参照してください。
+プロパティの `type`オプションは、プロパティの直列化方法を決定します。詳細については、[プロパティタイプの設定](#type)を参照してください。
 
 **サンプル: 属性への反映の設定**
 

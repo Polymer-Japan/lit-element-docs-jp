@@ -10,7 +10,7 @@ slug: styles
 **If you're using the Shady CSS polyfill, be aware that it has some limitations.** See the [Shady CSS README](https://github.com/webcomponents/shadycss/blob/master/README.md#limitations) for more information.
 -->
 
-**このガイドは、デフォルトの（shadow DOM）レンダールートを使用する場合にのみ適用されます。** 要素のレンダールートを変更して、シャドウルートではなくメインのDOMツリーにレンダリングする場合、これらの手順は適用されません。
+**このガイドは、デフォルトの(shadow DOM)レンダールートを使用する場合にのみ適用されます。** 要素のレンダールートを変更して、シャドウルートではなくメインのDOMツリーにレンダリングする場合、これらの手順は適用されません。
 
 **Shady CSSポリフィルを使用している場合、いくつかの制限があることに注意してください。** 詳細については、[Shady CSS README](https://github.com/webcomponents/shadycss/blob/master/README.md#limitations)を参照してください。
 

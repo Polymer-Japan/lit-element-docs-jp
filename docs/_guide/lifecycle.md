@@ -84,7 +84,7 @@ See the Properties documentation for information on [configuring `hasChanged` to
 
 ## 概要
 
-LitElementベースのコンポーネントは、監視されているプロパティの変更に応じて非同期に更新されます。プロパティーの変更は一括処理されます。更新が要求された後、更新が開始される前にさらにプロパティーが変更されると、すべての変更が同じ更新で取り込まれます。
+LitElementベースのコンポーネントは、監視されているプロパティの変更に応じて非同期で更新されます。プロパティの変更は一括処理されます。更新が要求された後、更新が開始される前にさらにプロパティが変更されると、すべての変更が同じ更新で反映されます。
 
 更新ライフサイクルは:
 
@@ -105,7 +105,7 @@ LitElementベースのコンポーネントは、監視されているプロパ�
 
 タスクが完了すると、キューから次のタスクを実行する前に、ブラウザはDOM更新、ユーザー対話、マイクロタスクキューなどの他のソースから作業を実行するための時間を割り当てます。
 
-LitElementの更新は、Promisesとして非同期に要求され、マイクロタスクとしてキューに入れられます。これは、イベントループの各反復の最後に要素の更新が処理されることを意味し、更新をすばやく迅速に処理します。
+LitElementの更新は、Promiseとして非同期に要求され、マイクロタスクとしてキューに入れられます。これは、イベントループの各反復の最後に要素の更新が処理されることを意味し、更新をすばやく迅速に処理します。
 
 #### Promisesと非同期関数
 
@@ -114,12 +114,12 @@ LitElementは、[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScrip
 `async`と` await`を使うと、Promisesで簡単に作業できます。例えば、あなたは `updateComplete` Promiseを待つことができます:
 
 ```js
-// `async`は関数をプロミスに戻し、` await`を使用させます
+// `async`は関数をPromiseに戻し、` await`を使用させます
 async myFunc(data) {
   // プロパティを設定し、更新をトリガする
   this.myProp = data;
 
-  // updateCompleteの約束が解決するのを待つ
+  // updateCompleteのPromiseが解決するのを待つ
   await this.updateComplete;
   // ...なにか...
   return 'done';
@@ -130,7 +130,7 @@ async myFunc(data) {
 
 ```js
 let result = await myFunc('stuff');
-// `result`が解決されました！あなたはそれで何かできる
+// `result`が解決されました！次の処理に移れます。
 ```
 
 詳細なチュートリアルについては、[Web Fundamentals primer on Promises](https://developers.google.com/web/fundamentals/primers/promises)を参照してください。
@@ -258,7 +258,7 @@ Reflects property values to attributes and calls `render` to render DOM via lit-
 | **引数** | `changedProperties`| `Map`オブジェクトでキーは変更されたプロパティの名前です。<br/>値は対応する以前の値です。 |
 | **更新？** | いいえ | このメソッドの内部でのプロパティの変更は、要素の更新をトリガーしません。 |
 
-属性値を属性に反映させて要素を更新し、 `render（）`を呼び出します。このメソッドをオーバーライドまたは呼び出す必要はありません。
+属性値を属性に反映させて要素を更新し、 `render()`を呼び出します。このメソッドをオーバーライドまたは呼び出す必要はありません。
 
 ### render
 
@@ -362,7 +362,7 @@ updated(changedProperties) { ... }
 | **引数** | `changedProperties`| `Map`オブジェクトでキーは変更されたプロパティの名前です。<br/>値は対応する以前の値です。 |
 | **更新？** | はい | このメソッドの内部でプロパティを変更すると、要素が更新されます。 |
 
-要素のDOMが更新されレンダリングされたときに呼び出されます。何もしない。例えば、更新後の処理を実装する。フォーカスなど
+要素のDOMが更新されレンダリングされたときに呼び出されます。更新後の処理を実装してください。
 
 **サンプル: 更新後に要素をフォーカスする**
 
@@ -410,7 +410,7 @@ To have `updateComplete` await additional state before it resolves, implement th
 | **型**&nbsp; | `Promise` | 要素の更新が終了すると、 `Boolean`が返されます。 |
 | **Resolves** <br/><br/>| より多くの保留中の更新がなければ `true`を返します。<br/> <br/>この更新サイクルが別の更新を引き起こした場合は` false`を返します。 |
 
-`updateComplete` Promiseは、要素の更新が完了した時点を解決します。 `updateComplete`を使って更新を待つ:
+`updateComplete` Promiseは、要素の更新が完了した時点をPromiseがresolveされます。更新を待つには`updateComplete`を使ってください:
 
   ```js
   await updateComplete;
@@ -421,7 +421,7 @@ To have `updateComplete` await additional state before it resolves, implement th
   updateComplete.then(() => { /* なにか */ });
   ```
 
-`updateComplete`を解決する前に追加状態を待たせるには、` updateComplete`ゲッターを実装してください:
+`updateComplete`をresolveする前に追加状態を待たせるには、` updateComplete`ゲッターを実装してください:
 
   ```js
   get updateComplete() {
@@ -455,7 +455,7 @@ shouldUpdate(changedProps) {
 
 ## サンプルコード
 
-#### 更新を引き起こすプロパティの変更をカスタマイズする
+#### 更新をトリガするプロパティの変更動作をカスタマイズする
 
 [`shouldUpdate`を実装する](#shouldupdate):
 
@@ -485,7 +485,7 @@ static get properties(){ return {
 ```
 -->
 
-#### プロパティ変更を構成するものをカスタマイズする
+#### それぞれのプロパティ変更をカスタマイズする
 
 プロパティに[`hasChanged`](methods#haschanged)を指定する:
 
@@ -520,7 +520,7 @@ this.requestUpdate();
 
 #### オブジェクトのサブプロパティのプロパティの変更と更新の管理
 
-突然変異（オブジェクトのサブプロパティと配列アイテムの変更）は観測できません。代わりに、オブジェクト全体を書き換えるか、または突然変異の後に[`requestUpdate`](メソッド＃requestupdate)を呼び出します。
+Mutation(オブジェクトのサブプロパティや配列アイテムの変更)は検知できません。代わりに、オブジェクト全体を書き換えるか、または変更後に[`requestUpdate`](メソッド＃requestupdate)を呼び出します。
 
 ```js
 // Option 1: オブジェクト全体を書き直し、更新をトリガする
@@ -547,7 +547,7 @@ this.addEventListener('load-complete', async (e) => {
 ```
 -->
 
-#### プロパティ変更ではないものに対する応答
+#### プロパティ変更でない時の更新
 
 [`requestUpdate`](methods#requestupdate)を呼ぶ:
 
