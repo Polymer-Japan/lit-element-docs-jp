@@ -1,6 +1,6 @@
 /**
  * LitElementを試してみよう https://lit-element.polymer-jp.org/guide/try
- * 穴埋めコード (4. ロジック)
+ * 初期コード (4. ロジック)
  */
 
 import { LitElement, html } from '@polymer/lit-element'; 

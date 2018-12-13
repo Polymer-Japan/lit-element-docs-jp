@@ -1,6 +1,6 @@
 /**
  * LitElementを試してみよう https://lit-element.polymer-jp.org/guide/try
- * 穴埋めコード (5. イベント)
+ * 初期コード (5. イベント)
  */
 
 import { LitElement, html } from '@polymer/lit-element'; 

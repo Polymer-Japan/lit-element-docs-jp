@@ -1,6 +1,6 @@
 /**
  * LitElementを試してみよう https://lit-element.polymer-jp.org/guide/try
- * 穴埋めコード (6. スタイル)
+ * 初期コード (6. スタイル)
  */
 
 import { LitElement, html } from '@polymer/lit-element'; 

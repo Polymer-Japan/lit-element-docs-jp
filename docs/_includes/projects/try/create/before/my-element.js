@@ -1,6 +1,6 @@
 /**
  * LitElementを試してみよう https://lit-element.polymer-jp.org/guide/try
- * 穴埋めコード (1. つくる)
+ * 初期コード (1. つくる)
  */
 
 /**

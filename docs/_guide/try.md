@@ -39,9 +39,9 @@ In this step, you'll fill in the gaps in the starting code to create an element 
 -->
 ## 1. コンポーネントをつくる
 
-このステップでは、下記の穴埋めコードから基本的なHTMLテンプレートを使ったHTML要素クラスを作ります。
+このステップでは、下記の初期コードから基本的なHTMLテンプレートを使ったHTML要素クラスを作ります。
 
-**穴埋めコード**
+**初期コード**
 
 _my-element.js_
 
@@ -141,7 +141,7 @@ Import your new component as a JavaScript module and use it in a web page.
 
 作成したコンポーネントをJavaScriptモジュールとしてWebページに組み込みます。
 
-**穴埋めコード**
+**初期コード**
 
 _index.html_
 
@@ -211,7 +211,7 @@ Declare a property for your component, and use the value in the component's temp
 
 コンポーネントのプロパティを宣言し、コンポーネントのテンプレートに使います。LitElementは、プロパティが変更されると自動的に更新されます。
 
-**穴埋めコード**
+**初期コード**
 
 _my-element.js_
 
@@ -324,7 +324,7 @@ Modify your template to add a loop and a conditional.
 
 テンプレートに繰り返しと条件分岐を追加します。
 
-**穴埋めコード**
+**初期コード**
 
 _my-element.js_
 
@@ -396,7 +396,7 @@ Use lit-html's `@event` annotation to add an event listener to an element inside
 
 lit-htmlでは`@イベント名`という構文で、テンプレート内の要素にイベントリスナーを追加します。
 
-**穴埋めコード**
+**初期コード**
 
 _my-element.js_
 
@@ -470,7 +470,7 @@ Style your element with CSS by including a `style` block in its template. These 
 
 CSSでスタイルを追加するにはテンプレートの中に`style`タグを含めます。これらのスタイルはカプセル化されるため、コンポーネントのテンプレート内にのみ適用されます。
 
-**穴埋めコード**
+**初期コード**
 
 _my-element.js_
 
