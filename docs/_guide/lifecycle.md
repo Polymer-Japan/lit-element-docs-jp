@@ -211,6 +211,7 @@ To implement a custom property setter that supports property options, pass the p
 
 ### performUpdate {#performupdate}
 
+<!-- original:
 ```js
 /**
  * Implement to override default behavior.
@@ -222,6 +223,26 @@ performUpdate() { ... }
 | **Updates?** | No | Property changes inside this method will not trigger an element update. |
 
 By default, `performUpdate` is scheduled as a microtask after the end of the next execution of the browser event loop. To schedule `performUpdate`, implement it as an asynchronous method that awaits some state before calling `super.performUpdate()`. For example:
+
+```js
+async performUpdate() {
+  await new Promise((resolve) => requestAnimationFrame(() => resolve());
+  super.performUpdate();
+}
+```
+-->
+
+```js
+/**
+ * 既定の処理を上書き
+ */
+performUpdate() { ... }
+```
+
+| **引数** | `void` か `Promise` |  更新を実施 |
+| **更新?** | いいえ | このメソッドの内部でのプロパティの変更は、要素の更新をトリガーしません。 |
+
+既定では、 `performUpdate`は、ブラウザのイベントループにおける次の実行の終了後、マイクロタスクとしてスケジュールされます。 `performUpdate`をスケジュールするには、`super.performUpdate()`を呼び出す前にawaitする非同期メソッドとして実装します。例えば:
 
 ```js
 async performUpdate() {
@@ -253,7 +274,7 @@ Controls whether an update should proceed. Implement `shouldUpdate` to specify w
 
 ```js
 /** 
- * デフォルト動作をオーバーライド
+ * 既定の処理を上書き
  */
 shouldUpdate(changedProperties) { ... }
 ```
@@ -304,7 +325,7 @@ See the documentation on [Templates](/templates) for more information.
 
 ```js
 /** 
- * デフォルト動作をオーバーライド
+ * 既定の処理を上書き
  */
 render() { ... }
 ```
@@ -338,7 +359,7 @@ Implement `firstUpdated` to perform one-time work after the element's template h
 
 ```js
 /** 
- * デフォルト動作をオーバーライド
+ * 既定の処理を上書き
  */
 firstUpdated(changedProperties) { ... }
 ```
@@ -378,7 +399,7 @@ Called when the element's DOM has been updated and rendered. Implement to perfor
 
 ```js
 /** 
- * デフォルト動作をオーバーライド
+ * 既定の処理を上書き
  */
 updated(changedProperties) { ... }
 ```
