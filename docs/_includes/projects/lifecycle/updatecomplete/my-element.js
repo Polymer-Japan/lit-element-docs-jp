@@ -1,0 +1,33 @@
+import { LitElement, html } from '@polymer/lit-element';
+
+class MyElement extends LitElement {  
+  static get properties() {
+    return {
+      prop1: { type: Number }
+    };
+  }
+
+  constructor() {
+    super();
+    this.prop1 = 0;
+  }
+
+  render() {
+    return html`      
+      <p>prop1: ${this.prop1}</p>
+      <button @click="${this.changeProp}">prop1</button>
+    `;
+  }
+
+  async getMoreState() {
+    return;
+  }
+
+  async changeProp() {
+    this.prop1 = Math.random();
+    await Promise.all(this.updateComplete, this.getMoreState());
+    console.log('更新完了。その他の状態も完了しました。');
+  }
+}
+
+customElements.define('my-element', MyElement);

@@ -8,23 +8,65 @@ slug: properties
 * ToC
 {:toc}
 
-## プロパティの宣言
+## 概要 {#overview}
 
-<!-- original:
-Declare your element's properties by implementing the `properties` getter, or with TypeScript decorators.
+LitElement manages your declared properties and their corresponding attributes. By default, LitElement will: 
 
-LitElement automatically observes declared properties. When a property changes, LitElement updates your element in the [element update lifecycle](lifecycle).
+* Ensure that an element update is scheduled when any declared property changes.
+* Capture instance values for declared properties. Apply any property values that are set before the browser registers a custom element definition.
+* Set up an observed (not reflected) attribute with the lowercased name of each property.
+* Handle attribute conversion for properties declared as type `String`, `Number`, `Boolean`, `Array`, and `Object`.
+* Use direct comparison (`oldValue !== newValue`) to test for property changes.
+* Apply any property options and accessors declared by a superclass. 
 
-### Implement a properties getter
+{:.alert .alert-warning}
+<div>
 
-To declare properties in the `properties` getter:
--->
+**Remember to declare all of the properties that you want LitElement to manage.** For the property features above to be applied, you must [declare the property](#declare). 
 
-`properties`ゲッターを実装するか、TypeScriptデコレータで要素のプロパティを宣言してください。
+</div>
 
-LitElementは自動的に宣言されたプロパティを観察します。プロパティが変更されると、LitElementは[要素の更新ライフサイクル](/docs/lifecycle/)にある要素を更新します。
+### Property options
 
-`properties`ゲッターでプロパティを宣言するには:
+A property declaration is an object in the following format:
+
+```
+{ optionName1: optionValue1, optionName2: optionValue2, ... }
+```
+
+The following options are available:
+
+* `converter`: [Convert between properties and attributes](#conversion).
+* `type`: [Use LitElement's default attribute converter](#conversion-type).
+* `attribute`: [Configure observed attributes](#observed-attributes).
+* `reflect`: [Configure reflected attributes](#reflected-attributes).
+* `noAccessor`: Whether to set up a default [property accessor](#accessors).
+* `hasChanged`: Specify what constitutes a [property change](#haschanged).
+
+All property declaration options can be specified in a static properties getter, or with TypeScript decorators.
+
+## Declare properties {#declare}
+
+Declare your element's properties by implementing a static `properties` getter, or by using TypeScript decorators:
+
+```js
+// properties getter
+static get properties() {
+  return { 
+    prop1: { type: String }
+  };
+}
+```
+
+```js
+// TypeScript decorators
+export class MyElement extends LitElement {
+  @property( { type : String }  ) prop1 = '';
+```
+
+### Declare properties in a static properties getter
+
+To declare properties in a static `properties` getter:
 
 ```js
 static get properties() { 
@@ -36,57 +78,45 @@ static get properties() {
 }
 ```
 
-{% include project.html folder="docs/properties/declare" openFile="my-element.js" %}
+{:.alert .alert-warning}
+<div>
 
-### TypeScriptデコレータを使う
-
-<!-- original:
-You can also declare properties with TypeScript decorators:
--->
-
-TypeScriptデコレータでプロパティを宣言することもできます:
+**If you implement a static properties getter, initialize your property values in the element constructor.**
 
 ```js
-import { LitElement, html, customElement, property } from '@polymer/lit-element';
-
-@customElement('my-element')
-export class MyElement extends LitElement {
-  @property({type : String})  prop1 = 'Hello World';
-  @property({type : Number})  prop2 = 5;
-  @property({type : Boolean}) prop3 = true;
+constructor() {
+  // Always call super() first
+  super();
+  this.prop1 = 'Hello World';
   ...
 }
 ```
 
-### プロパティのオプションを設定する
+Remember to call `super()` first in your constructor, or your element won't render at all.
 
-<!-- original:
-When you set up your properties, you can specify a property declaration for each one. Within a property declaration, you can configure options for the property.
+</div>
 
-* Configure corresponding attributes and their behavior with the `type`, `attribute` and `reflect` options.
-* Specify the `hasChanged` function to control what constitutes a change for this property.
-
-Property declarations can be specified in the `properties` getter or with TypeScript decorators.
+**Example: Declare properties with a static `properties` getter** 
 
 ```js
-/**
- * An example property declaration
- */
-{ 
-  // Specifies how to convert between property and attribute.
-  type: String,
-
-  // Specifies corresponding observed attribute.
-  attribute: 'my-prop', 
-
-  // Specifies whether to reflect property to attribute on changes.
-  reflect: true,
-
-  // Specifies how to evaluate whether the property has changed.
-  hasChanged(newValue, oldValue) { ... },
-}
+{% include projects/properties/declare/my-element.js %}
 ```
--->
+
+{% include project.html folder="properties/declare" openFile="my-element.js" %}
+
+### Declare properties with TypeScript decorators
+
+You can also declare properties with TypeScript decorators:
+
+```js
+@property({type : String})  prop1 = 'Hello World';
+```
+
+**Example: Declare properties with TypeScript decorators** 
+
+```js
+{% include projects/properties/declaretypescript/my-element.ts %}
+```
 
 このセクションのプロパティオプションのいずれかをTypeScriptデコレータで指定することも、 `properties`ゲッターで指定することもできます。
 
@@ -114,203 +144,201 @@ Property declarations can be specified in the `properties` getter or with TypeSc
 }
 ```
 
-{% include project.html folder="docs/properties/declaretypescript" openFile="my-element.js" %}
+{% include project.html folder="properties/declaretypescript" openFile="my-element.ts" %}
 
-## プロパティの初期化
+## プロパティの初期化 {#initialize}
 
-<!-- original:
-Initialize default property values in the element constructor:
+### コンストラクタでプロパティを初期化
+
+If you implement a static properties getter, initialize your property values in the element constructor:
 
 ```js
+static get properties() { return { /* Property declarations */ }; } 
+
 constructor() {
   // Always call super() first
   super();
+
+  // Initialize properties 
   this.prop1 = 'Hello World';
-  this.prop2 = 5;
-  this.prop3 = true;
 }
 ```
+
+{:.alert .alert-warning}
+<div> 
 
 Remember to call `super()` first in your constructor, or your element won't render at all.
 
-You can also initialize a property from an attribute in markup:
--->
+</div>
 
-要素コンストラクタのデフォルトのプロパティ値を初期化する:
+**Example: Initialize property values in the element constructor** 
 
 ```js
-constructor() {
-  // 常にsuper()を最初に呼び出す
-  super();
-  this.prop1 = 'Hello World';
-  this.prop2 = 5;
-  this.prop3 = true;
-}
+{% include projects/properties/init/my-element.js %}
 ```
 
-あなたのコンストラクタで `super()`を最初に呼び出すことを忘れないでください。そうしないと、要素がレンダリングされません。
+{% include project.html folder="properties/init" openFile="my-element.js" %}
 
-マークアップ内の属性からプロパティを初期化することもできます:
+### Initialize property values when using TypeScript decorators
+
+TypeScript users can initialize property values when they are declared with the `@property` decorator:
+
+```ts
+@property({ type : String }) prop1 = 'Hello World';
+```
+
+**Example: Initialize property values when using TypeScript decorators** 
+
+```js
+{% include projects/properties/inittypescript/my-element.ts %}
+```
+
+{% include project.html folder="properties/inittypescript" openFile="my-element.ts" %}
+
+### Initialize property values from attributes in markup 
+
+You can also initialize property values from observed attributes in markup:
+
+_index.html_ 
 
 ```html
-<my-element prop1="Hi" prop2="7"></my-element>
+<my-element 
+  mystring="hello world"
+  mynumber="5"
+  mybool
+  myobj='{"stuff":"hi"}'
+  myarray='[1,2,3,4]'></my-element>
 ```
 
-<!-- original:
-Values supplied in markup will override the default values in your constructor.
+{% include project.html folder="properties/initmarkup" openFile="index.html" %}
 
-LitElement deserializes a property from an attribute in markup according to its type, so make sure you configure your property type correctly.
+See [observed attributes](#observed-attributes) and [converting between properties and attributes](#conversion) for more information on setting up initialization from attributes.
 
-[Back to top](properties)
--->
+## Configure attributes {#attributes}
 
-マークアップで指定された値は、コンストラクタのデフォルト値よりも優先されます.
+### Convert between properties and attributes {#conversion}
 
-LitElementは、その型に従ってマークアップ内の属性からプロパティを直列化解除するため、[プロパティの型を構成する](#type)を正しく設定してください。
+While element properties can be of any type, attributes are always strings. This impacts the [observed attributes](#observed-attributes) and [reflected attributes](#reflected-attributes) of non-string properties:
 
-[トップへ](properties)
+  * To **observe** an attribute (set a property from an attribute), the attribute value must be converted from a string to match the property type. 
 
-## 関連する属性の設定
+  * To **reflect** an attribute (set an attribute from a property), the property value must be converted to a string.
 
-<!-- original:
-Configure a property's corresponding attributes and attribute behavior with the `type`, `attribute` and `reflect` options.
--->
+#### Use the default converter {#conversion-type}
 
-プロパティの対応する属性と属性の振る舞いを `type`、` attribute`と `reflect`オプションで設定します。
+LitElement has a default converter which handles `String`, `Number`, `Boolean`, `Array`, and `Object` property types.
 
-### プロパティの型の設定
-
-<!-- original:
-While element properties can be of any type, attributes are always strings. A property must be serialized and deserialized to and from its corresponding [observed attribute](#attribute). 
+To use the default converter, specify the `type` option in your property declaration:
 
 ```js
-myProp { type: Boolean }
+// Use LitElement's default converter 
+prop1: { type: String },
+prop2: { type: Number },
+prop3: { type: Boolean },
+prop4: { type: Array },
+prop5: { type: Object }
 ```
 
-By default, LitElement uses the `String` constructor to serialize and deserialize properties and attributes. To make sure a non-string property is handled correctly, configure the property's `type` option.
+The information below shows how the default converter handles conversion for each type.
 
-`type` can be: 
+**Convert from attribute to property**
 
-* A function that performs both serialization and deserialization:
+* For **Strings**, when the attribute is defined, set the property to the attribute value.
+* For **Numbers**, when the attribute is defined, set the property to `Number(attributeValue)`.
+* For **Booleans**, when the attribute is:
+  * non-`null`, set the property to `true`.
+  * `null` or `undefined`, set the property to `false`.
+* For **Objects and Arrays**, when the attribute is:
+  * Defined, set the property value to `JSON.parse(attributeValue)`.
 
-  ```js
-  propName: { type: someFunction }
-  ```
+**Convert from property to attribute** 
 
-* An object with two function properties, `fromAttribute` and `toAttribute`. `fromAttribute` performs deserialization, and `toAttribute` performs serialization:
+* For **Strings**, when the property is:
+  * `null`, remove the attribute.
+  * `undefined`, don't change the attribute.
+  * Defined and not `null`, set the attribute to the property value.
+* For **Numbers**, when the property is:
+  * `null`, remove the attribute.
+  * `undefined`, don't change the attribute.
+  * Defined and not `null`, set the attribute to the property value.
+* For **Booleans**, when the property is:
+  * truthy, create the attribute.
+  * falsy, remove the attribute.
+* For **Objects and Arrays**, when the property is:
+  * `null` or `undefined`, remove the attribute.
+  * Defined and not `null`, set the attribute value to `JSON.stringify(propertyValue)`.
 
-  ```js
-  propName: { type: {
-    toAttribute: serializerFunction,
-    fromAttribute: deserializerFunction
-  }}
-  ```
-
-By default, `type`, `fromAttribute` and `toAttribute` are the `String` constructor. 
-
-To handle deserialization of strings, numbers, and booleans, you can use the corresponding constructor:
--->
-
-要素のプロパティは任意の型にできますが、属性は常に文字列です。プロパティは、対応する[監視対象属性](#attributes)との間で直列化および直列化復元する必要があります。 
-
-デフォルトでは、LitElementは `String`コンストラクタを使用してプロパティと属性を直列化および逆直列化します。非文字列のプロパティが正しく処理されるようにするには、プロパティの `type`オプションを設定します。
-
-`type`でできることは:
-
-* シリアライゼーションとデシリアライズの両方を実行する関数:
-
-  ```js
-  propName: { type: someFunction }
-  ```
-
-* `fromAttribute`と` toAttribute`という2つの関数のプロパティを持つオブジェクトです。 `fromAttribute`は逆直列化を行い、` toAttribute`は直列化を行います:
-
-  ```js
-  propName: { type: {
-    toAttribute: someFunction,
-    fromAttribute: someFunction
-  }}
-  ```
-
-デフォルトでは、 `type`、` fromAttribute`、 `toAttribute`はデフォルトで` String`コンストラクタになります。
-
-文字列、数値、およびブール値の逆シリアル化を処理するには、対応するコンストラクタ:
+**Example: Use the default converter** 
 
 ```js
-return { 
-  myString: { type: String },
-  myNumber: { type: Number },
-  myBoolean: { type: Boolean }
+{% include projects/properties/defaultconverter/my-element.js %}
+```
+
+{% include project.html folder="properties/defaultconverter" openFile="my-element.js" %}
+
+#### Configure a custom converter {#conversion-converter}
+
+You can specify a custom property converter in your property declaration with the `converter` option:
+
+```js
+myProp: { 
+  converter: // Custom property converter
+} 
+```
+
+`converter` can be an object or a function. If it is an object, it can have keys for `fromAttribute` and `toAttribute`: 
+
+```js
+prop1: { 
+  converter: { 
+    fromAttribute: (value, type) => { 
+      // `value` is a string
+      // Convert it to a value of type `type` and return it
+    },
+    toAttribute: (value, type) => { 
+      // `value` is of type `type` 
+      // Convert it to a string and return it
+    }
+  }
 }
 ```
 
-<!-- original:
-Note that when a property of type `Boolean` is deserialized, if it is truthy, the corresponding attribute is created. If the property is falsy, the attribute is removed.
-
-[Back to top](properties)
--->
-
-`Boolean`型のプロパティが逆シリアル化されるとき、真実であれば、対応する属性が作成されることに注意してください。プロパティが偽である場合、属性は削除されます。
-
-[トップへ](properties)
-
-#### プロパティのシリアラズについて
-
-<!-- original:
-**Objects (including arrays) must be handled differently.** LitElement has no default handling for converting between object properties and string attributes. If you need to serialize and deserialize complex properties, you must implement a `type` for them.
-
-One option is to use `JSON.parse` and `JSON.stringify`:
--->
-
-**オブジェクト(配列を含む)は、別の方法で処理する必要があります** LitElementには、オブジェクトのプロパティと文字列の属性を変換するためのデフォルト処理はありません。複雑なプロパティを直列化して逆シリアル化する必要がある場合は、それらのために `type`を実装する必要があります。
-
-1つの方法は `JSON.parse`と` JSON.stringify`を使うことです:
+If `converter` is a function, it is used in place of `fromAttribute`:
 
 ```js
-{% include projects/docs/properties/type/my-element.js %}
+myProp: { 
+  converter: (value, type) => { 
+    // `value` is a string
+    // Convert it to a value of type `type` and return it
+  }
+} 
 ```
 
-<!-- original:
-The following code will **not** deserialize attributes to objects:
+If no `toAttribute` function is supplied for a reflected attribute, the attribute is set to the property value without conversion.
 
-```text
-return { 
-  // this will not deserialize strings to objects
-  // it will just call `Object("some string")` on them 
-  myObj: { type: Object },
-}
-```
+During an update: 
 
-[Back to top](properties)
--->
+  * If `toAttribute` returns `null`, the attribute is removed. 
 
-次のコードは、属性をオブジェクトに逆シリアル化**しません**:
+  * If `toAttribute` returns `undefined`, the attribute is not changed.
 
-```text
-return { 
-  // これは文字列をオブジェクトに逆シリアル化しません
-  // `Object("some string")`を呼び出すだけです
-  myObj: { type: Object },
-}
-```
-
-[トップへ](properties)
-
-### 属性反映の設定
-
-
-<!-- original:
-Changes to observed attributes trigger [`attributeChangedCallback`](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks). When set, observed attributes also update their corresponding property. The property's `type` option determines how the attribute value (a string) is deserialized to the property. 
-
-By default, all declared properties get a corresponding observed attribute. The name of the observed attribute is the property name, lowercased:
+**Example: Configure a custom converter** 
 
 ```js
-static get properties() {
-  return {
-    // observed attribute name is "myprop"
-    myProp: { type: Number }
-  };
-}
+{% include projects/properties/attributeconverter/my-element.js %}
+```
+
+{% include project.html folder="properties/attributeconverter" openFile="my-element.js" %}
+
+### Configure observed attributes {#observed-attributes}
+
+An **observed attribute** fires the custom elements API callback `attributeChangedCallback` whenever it changes. By default, whenever an attribute fires this callback, LitElement sets the property value from the attribute using the property's `fromAttribute` function. See [Convert between properties and attributes](#conversion) for more information.
+
+By default, LitElement creates a corresponding observed attribute for all declared properties. The name of the observed attribute is the property name, lowercased:
+
+```js
+// observed attribute name is "myprop"
+myProp: { type: Number }
 ```
 
 To create an observed attribute with a different name, set `attribute` to a string: 
@@ -320,83 +348,148 @@ To create an observed attribute with a different name, set `attribute` to a stri
 myProp: { attribute: 'my-prop' }
 ```
 
-To prevent an observed attribute from being created for a property, set `attribute` to `false`. The property will not be initialized from attributes in markup, and won't be updated if the attribute changes.
+To prevent an observed attribute from being created for a property, set `attribute` to `false`. The property will not be initialized from attributes in markup, and attribute changes won't affect it.
 
 ```js
-// No observed attribute for you
+// No observed attribute for this property
 myProp: { attribute: false }
 ```
 
-**Example: Configuring observed attributes**
--->
+An observed attribute can be used to provide an initial value for a property via markup. See [Initialize properties with attributes in markup](#initialize-markup).
 
-観測属性の変更は、[`attributeChangedCallback`](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks)をトリガーします。設定すると、監視対象の属性も対応するプロパティを更新します。プロパティの `type`オプションは、属性値(文字列)がどのようにプロパティに逆シリアル化されるかを決定します。
-
-デフォルトでは、宣言されたすべてのプロパティは、対応する監視された属性を取得します。観測属性の名前はプロパティ名で、小文字:
+**Example: Configure observed attributes**
 
 ```js
-static get properties() {
-  return {
-    // 観測された属性名は "myprop"
-    myProp: { type: Number }
-  };
-}
+{% include projects/properties/attributeobserve/my-element.js %}
 ```
 
-別の名前の観測属性を作成するには、 `attribute`を文字列に設定します: 
+{% include project.html folder="properties/attributeobserve" openFile="my-element.js" %}
+
+### Configure reflected attributes {#reflected-attributes}
+
+You can configure a property so that whenever it changes, its value is reflected to its [observed attribute](#observed-attributes). For example:
 
 ```js
-// 観測された属性はmy-propと呼ばれます
-myProp: { attribute: 'my-prop' }
+// Value of property "myProp" will reflect to attribute "myprop"
+myProp: { reflect: true }
 ```
 
-プロパティに対して観測属性が作成されないようにするには、 `attribute`を` false`に設定します。プロパティはマークアップの属性から初期化されず、属性が変更された場合は更新されません。
+When the property changes, LitElement uses the `toAttribute` function in the property's converter to set the attribute value from the new property value. 
+
+* If `toAttribute` returns `null`, the attribute is removed.
+
+* If `toAttribute` returns `undefined`, the attribute is not changed.
+
+* If `toAttribute` itself is undefined, the property value is set to the attribute value without conversion.
+
+{:.alert .alert-info}
+<div>
+
+**LitElement tracks reflection state during updates.** LitElement keeps track of  state information to avoid creating an infinite loop of changes between a property and an observed, reflected attribute.
+
+</div>
+
+**Example: Configure reflected attributes**
 
 ```js
-// あなたの属性はありません
-myProp: { attribute: false }
+{% include projects/properties/attributereflect/my-element.js %}
 ```
 
-**サンプル: 監視対象属性の構成**
+{% include project.html folder="properties/attributereflect" openFile="my-element.js" %}
+
+## Configure property accessors {#accessors}
+
+By default, LitElement generates a property accessor for all declared properties. The accessor is invoked whenever you set the property:
 
 ```js
-{% include projects/docs/properties/attribute/my-element.js %}
+// Declare a property
+static get properties() { return { myProp: { type: String } }; }
+...
+// Later, set the property
+this.myProp = 'hi'; // invokes myProp's generated property accessor
 ```
 
-[トップへ](properties)
+Generated accessors automatically call `requestUpdate`, initiating an update if one has not already begun.
 
-### プロパティの変更を評価する
+### Create custom property accessors {#accessors-custom}
 
-<!-- original:
-You can configure a property so that whenever it changes, its value is reflected to its [observed attribute](#attribute). For example:
--->
-
-変更するたびにその値が[監視された属性](#attribute)に反映されるようにプロパティを構成できます。例えば
+To specify how getting and setting works for a property, create custom accessors:
 
 ```js
-myProp: { type: String, attribute: 'my-prop', reflect: true }
+// Declare a property
+static get properties() { return { myProp: { type: String } }; }
+
+// Custom accessors
+set myProp(value) { ... /* Custom setter */ } 
+get myProp() { ... /* Custom getter */ }
+
+...
+
+// Later, set the property
+this.myProp = 'hi'; // Invokes generated accessor, which calls custom accessor
 ```
 
-<!-- original:
-The property's `type` option determines how the property will be serialized.
--->
+When you create custom property accessors for a property, LitElement still generates its own accessors unless you specify otherwise ([see below](#accessors-noaccessor)). The generated setter:
 
-プロパティの `type`オプションは、プロパティの直列化方法を決定します。詳細については、[プロパティタイプの設定](#type)を参照してください。
+* Saves the previous property value.
+* Calls your custom setter.
+* Requests an update, supplying the property name and its old value to the update lifecycle.
 
-**サンプル: 属性への反映の設定**
+### Prevent LitElement from generating a property accessor {#accessors-noaccessor}
+
+To prevent LitElement from generating property accessors, set `noAccessors` to `true` in the property declaration:
 
 ```js
-{% include projects/docs/properties/attribute/my-element.js %}
+static get properties() { return { 
+  // Don't generate accessors for myProp
+  myProp: { type: Number, noAccessors: true } 
+
+  // Do generate accessors for aProp
+  aProp: { type: String }
+}; }
+
+// Create custom accessors for myProp
+set myProp(value) { this._myProp = Math.floor(value); } 
+get myProp() { return this._myProp; }
+
+updated(changedProperties) { ... /* no changedProperties entry for myProp */ }
+
+...
+// later...
+this.myProp = Math.random()*10; // Invokes custom setter; no generated setter
+this.aProp = 'hi'; // Invokes generated setter
 ```
 
-[トップへ](properties)
+In the example above: 
 
-## プロパティ変更をどのように扱うか指定する
+* No update request will be made when `this.myProp = ...` is executed.
+* The update requested as a result of `this.aProp = ...` will still capture `myProp`'s new value.
+* The change to `myProp` won't register in the element update lifecycle.
+
+To handle update requests and property options in a custom setter, call `this.requestUpdate('propertyName', oldValue)`:
+
+```js
+set myProp(value) { 
+  let oldValue = this._myProp;
+  this._myProp = Math.floor(value); 
+  this.requestUpdate('myProp', oldValue);
+} 
+```
+
+**Example: Custom property accessors** 
+
+```js
+{% include projects/properties/customsetter/my-element.js %}
+```
+
+{% include project.html folder="properties/customsetter" openFile="my-element.js" %}
+
+## Configure property changes
 
 <!-- original:
 All declared properties have a function, `hasChanged`, which is called whenever the property is set. 
 
-`hasChanged` compares the property's old and new values, and evaluates whether or not the property has changed. If `hasChanged` returns true, LitElement starts an element update. See the [Element update lifecycle documentation](lifecycle) for more information on how updates work.
+`hasChanged` compares the property's old and new values, and evaluates whether or not the property has changed. If `hasChanged` returns true, LitElement starts an element update if one is not already scheduled. See the [Element update lifecycle documentation](lifecycle) for more information on how updates work.
 
 By default:
 
@@ -406,14 +499,16 @@ By default:
 To customize `hasChanged` for a property, specify it as a property option:
 
 ```js
-static get properties() { return {
-  myProp: {
-    hasChanged(newVal, oldVal) {
-      // compare newVal and oldVal
-      // return `true` if an update should proceed
-    }
-  }};
-}
+myProp: { hasChanged(newVal, oldVal) {
+  // compare newVal and oldVal
+  // return `true` if an update should proceed
+}}
+```
+
+**Example: Configure property changes** 
+
+```js
+{% include projects/properties/haschanged/my-element.js %}
 ```
 -->
 
@@ -439,4 +534,4 @@ static get properties() { return {
 }
 ```
 
-{% include project.html folder="docs/lifecycle/haschanged" %}
+{% include project.html folder="properties/haschanged" openFile="my-element.js" %}

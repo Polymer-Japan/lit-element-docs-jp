@@ -10,7 +10,7 @@ class MyElement extends LitElement {
     return {
       message: { type: String },
       myBool: { type: Boolean },
-      myArray: {}
+      myArray: { type: Array }
     };
   }
   constructor() {
@@ -26,7 +26,7 @@ class MyElement extends LitElement {
 
       <!-- DONE: 繰り返しを追加 -->
       <ul>
-        ${this.myArray.map(i => html`<li>${i}</li>`)}
+        ${this.myArray.map(item => html`<li>${item}</li>`)}
       </ul>
 
       <!-- DONE: 条件分岐を追加 -->

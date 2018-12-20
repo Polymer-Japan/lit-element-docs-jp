@@ -15,14 +15,12 @@ LitElement-based components update asynchronously in response to observed proper
 
 At a high level, the update lifecycle is:
 
-1.  A property is set.
-2.  The property's `hasChanged` function evaluates whether the property has changed.
-3.  If the property has changed, `requestUpdate` fires, scheduling an update.
-4.  `shouldUpdate` checks whether the update should proceed.
-5.  If the update should proceed, the `update` function reflects the element's properties to its attributes.
-6.  The lit-html `render` function renders DOM changes.
-7.  The `updated` function is called, exposing the properties that changed.
-8.  The `updateComplete` Promise resolves. Any code waiting for it can now run.
+1. A property is set.
+2. Check whether an update is needed. If an update is needed, request one.
+3. Perform the update:
+  * Process properties and attributes.
+  * Render the element.
+4. Resolve a Promise, indicating that the update is complete.
 
 ####  LitElement and the browser event loop
 
@@ -30,7 +28,9 @@ The browser executes JavaScript code by processing a queue of tasks in the [even
 
 When the task completes, before taking the next task from the queue, the browser allocates time to perform work from other sources—including DOM updates, user interactions, and the microtask queue.
 
-LitElement updates are requested asynchronously as Promises, and are queued as microtasks. This means that updates are processed at the end of every iteration of the event loop, making updates fast and responsive.
+By default, LitElement updates are requested asynchronously, and queued as microtasks. This means that Step 3 above (Perform the update) is executed at the end of the next iteration of the event loop.
+
+You can change this behavior so that Step 3 awaits a Promise before performing the update. See [`performUpdate`](#performUpdate) for more information.
 
 For a more detailed explanation of the browser event loop, see [Jake Archibald's article](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/).
 
@@ -68,6 +68,7 @@ In call order, the methods and properties in the update lifecycle are:
 
 1.  [someProperty.hasChanged](#haschanged)
 1.  [requestUpdate](#requestupdate)
+1.  [performUpdate](#performupdate)
 1.  [shouldUpdate](#shouldupdate)
 1.  [update](#update)
 1.  [render](#render)
@@ -75,7 +76,7 @@ In call order, the methods and properties in the update lifecycle are:
 1.  [updated](#updated)
 1.  [updateComplete](#updatecomplete)
 
-### someProperty.hasChanged
+### someProperty.hasChanged {#haschanged}
 
 All declared properties have a function, `hasChanged`, which is called whenever the property is set; if `hasChanged` returns true, an update is scheduled.
 
@@ -154,7 +155,7 @@ let result = await myFunc('stuff');
 
 [プロパティ変更動作をカスタマイズするために`hasChanged`を設定する](/properties#haschanged)も参照してください。
 
-### requestUpdate
+### requestUpdate {#requestupdate}
 
 <!-- original:
 ```js
@@ -191,10 +192,10 @@ To implement a custom property setter that supports property options, pass the p
 **サンプル: 手動で要素の更新を開始する**
 
 ```js
-{% include projects/docs/lifecycle/requestupdate/my-element.js %}
+{% include projects/lifecycle/requestupdate/my-element.js %}
 ```
 
-{% include project.html folder="docs/lifecycle/requestupdate" %}
+{% include project.html folder="lifecycle/requestupdate" openFile="my-element.js" %}
 
 <!-- original:
 **Example: Call `requestUpdate` from a custom property setter**
@@ -203,12 +204,35 @@ To implement a custom property setter that supports property options, pass the p
 **サンプル: カスタムプロパティセッターから `requestUpdate`を呼び出します**
 
 ```js
-{% include projects/docs/lifecycle/customsetter/my-element.js %}
+{% include projects/properties/customsetter/my-element.js %}
 ```
 
-{% include project.html folder="docs/lifecycle/customsetter" %}
+{% include project.html folder="properties/customsetter" openFile="my-element.js" %}
 
-### shouldUpdate
+### performUpdate {#performupdate}
+
+```js
+/**
+ * Implement to override default behavior.
+ */
+performUpdate() { ... }
+```
+
+| **Returns** | `void` or `Promise` |  Performs an update. |
+| **Updates?** | No | Property changes inside this method will not trigger an element update. |
+
+By default, `performUpdate` is scheduled as a microtask after the end of the next execution of the browser event loop. To schedule `performUpdate`, implement it as an asynchronous method that awaits some state before calling `super.performUpdate()`. For example:
+
+```js
+async performUpdate() {
+  await new Promise((resolve) => requestAnimationFrame(() => resolve());
+  super.performUpdate();
+}
+```
+
+{% include project.html folder="lifecycle/performupdate" openFile="my-element.js" %}
+
+### shouldUpdate {#shouldupdate}
 
 <!-- original:
 ```js
@@ -241,12 +265,12 @@ shouldUpdate(changedProperties) { ... }
 **サンプル: どのプロパティの変更によって更新が発生するかをカスタマイズする**
 
 ```js
-{% include projects/docs/lifecycle/shouldupdate/my-element.js %}
+{% include projects/lifecycle/shouldupdate/my-element.js %}
 ```
 
-{% include project.html folder="docs/lifecycle/shouldupdate" %}
+{% include project.html folder="lifecycle/shouldupdate" openFile="my-element.js" %}
 
-### update
+### update {#update}
 
 <!-- original:
 | **Params** | `changedProperties`| `Map`. Keys are the names of changed properties; Values are the corresponding previous values. |
@@ -260,7 +284,7 @@ Reflects property values to attributes and calls `render` to render DOM via lit-
 
 属性値を属性に反映させて要素を更新し、 `render()`を呼び出します。このメソッドをオーバーライドまたは呼び出す必要はありません。
 
-### render
+### render {#render}
 
 <!-- original:
 ```js
@@ -292,7 +316,7 @@ lit-htmlを使用して要素テンプレートをレンダリングします。
 
 詳細については、[テンプレートの作成とレンダリング](../templates)のドキュメントを参照してください。
 
-### firstUpdated
+### firstUpdated {#firstupdated}
 
 <!-- original:
 ```js
@@ -309,7 +333,7 @@ Called after the element's DOM has been updated the first time, immediately befo
 
 Implement `firstUpdated` to perform one-time work after the element's template has been created.
 
-**Example: Focus an input element**
+**Example: Focus an input element on first update**
 -->
 
 ```js
@@ -326,15 +350,15 @@ firstUpdated(changedProperties) { ... }
 
 要素のテンプレートが作成された後にワンタイム作業を実行するように `firstUpdated`をカスタマイズします。
 
-**サンプル: 入力要素をフォーカスする**
+**サンプル: 最初の更新時に入力要素をフォーカスする**
 
 ```js
-{% include projects/docs/lifecycle/firstupdated/my-element.js %}
+{% include projects/lifecycle/firstupdated/my-element.js %}
 ```
 
-{% include project.html folder="docs/lifecycle/firstupdated" %}
+{% include project.html folder="lifecycle/firstupdated" openFile="my-element.js" %}
 
-### updated
+### updated {#updated}
 
 <!-- original:
 ```js
@@ -367,12 +391,12 @@ updated(changedProperties) { ... }
 **サンプル: 更新後に要素をフォーカスする**
 
 ```js
-{% include projects/docs/lifecycle/updated/my-element.js %}
+{% include projects/lifecycle/updated/my-element.js %}
 ```
 
-{% include project.html folder="docs/lifecycle/updated" %}
+{% include project.html folder="lifecycle/updated" openFile="my-element.js" %}
 
-### updateComplete
+### updateComplete {#updatecomplete}
 
 <!-- original:
 ```js
@@ -392,16 +416,6 @@ The `updateComplete` Promise resolves when the element has finished updating. Us
 
   ```js
   this.updateComplete.then(() => { /* do stuff */ });
-  ```
-
-To have `updateComplete` await additional state before it resolves, implement the `updateComplete` getter:
-
-  ```js
-  get updateComplete() {
-    return this.getMoreState().then(() => {
-      return this._updatePromise;
-    });
-  }
   ```
 
 **Example**
@@ -434,26 +448,27 @@ To have `updateComplete` await additional state before it resolves, implement th
 **サンプル**
 
 ```js
-{% include projects/docs/lifecycle/updatecomplete/my-element.js %}
+{% include projects/lifecycle/updatecomplete/my-element.js %}
 ```
 
-{% include project.html folder="docs/lifecycle/updatecomplete" %}
+{% include project.html folder="lifecycle/updatecomplete" openFile="my-element.js" %}
 
 <!-- original:
-## Examples
+## Examples {#examples}
 
-#### Customize which property changes should cause an update
+#### Control when updates are processed
 
-[Implement `shouldUpdate`](#shouldupdate):
+[Implement `performUpdate`](#performupdate):
 
 ```js
-shouldUpdate(changedProps) {
-  return changedProps.has('prop1');
+async performUpdate() {
+  await new Promise((resolve) => requestAnimationFrame(() => resolve());
+  super.performUpdate();
 }
 ```
 -->
 
-## サンプルコード
+## サンプルコード {#examples}
 
 #### 更新をトリガするプロパティの変更動作をカスタマイズする
 
@@ -465,27 +480,21 @@ shouldUpdate(changedProps) {
 }
 ```
 
-{% include project.html folder="docs/lifecycle/shouldupdate" %}
+{% include project.html folder="lifecycle/performupdate" openFile="my-element.js" %}
 
 <!-- original:
-#### Customize what constitutes a property change
+#### Customize which property changes should cause an update
 
-Specify [`hasChanged`](#haschanged) for the property:
+[Implement `shouldUpdate`](#shouldupdate):
 
 ```js
-static get properties(){ return {
-  myProp: {
-    type: Number,
-    /* Only consider myProp to have changed if newVal > oldVal */
-    hasChanged(newVal, oldVal) {
-      return newVal > oldVal;
-    }
-  }
+shouldUpdate(changedProps) {
+  return changedProps.has('prop1');
 }
 ```
 -->
 
-#### それぞれのプロパティ変更をカスタマイズする
+#### 更新の元となるそれぞれのプロパティ変更をカスタマイズする
 
 プロパティに[`hasChanged`](methods#haschanged)を指定する:
 
@@ -501,7 +510,11 @@ static get properties(){ return {
 }
 ```
 
-{% include project.html folder="docs/lifecycle/haschanged" %}
+{% include project.html folder="lifecycle/shouldupdate" openFile="my-element.js" %}
+
+#### Customize what constitutes a property change
+
+Specify [`hasChanged`](#haschanged) for the property. See the [Properties documentation](properties#haschanged).
 
 <!-- original:
 #### Manage property changes and updates for object subproperties
@@ -531,7 +544,7 @@ this.prop1.subProp = 'data';
 this.requestUpdate();
 ```
 
-{% include project.html folder="docs/lifecycle/subproperties" %}
+{% include project.html folder="lifecycle/subproperties" openFile="my-element.js" %}
 
 <!-- original:
 #### Update in response to something that isn't a property change
@@ -559,7 +572,7 @@ this.addEventListener('load-complete', async (e) => {
 });
 ```
 
-{% include project.html folder="docs/lifecycle/shouldupdate" %}
+{% include project.html folder="lifecycle/requestupdate" openFile="my-element.js" %}
 
 <!-- original:
 #### Request an update regardless of property changes
@@ -597,7 +610,7 @@ this.prop1 = '新しい値';
 this.requestUpdate('prop1', oldValue);
 ```
 
-{% include project.html folder="docs/lifecycle/requestupdate" %}
+{% include project.html folder="lifecycle/requestupdate" openFile="my-element.js" %}
 
 <!-- original:
 #### Do something after the first update
@@ -615,7 +628,7 @@ firstUpdated(changedProps) {
 }
 ```
 
-{% include project.html folder="docs/lifecycle/firstupdated" %}
+{% include project.html folder="lifecycle/firstupdated" openFile="my-element.js" %}
 
 <!-- original:
 #### Do something after every update
@@ -633,7 +646,7 @@ updated(changedProps) {
 }
 ```
 
-{% include project.html folder="docs/lifecycle/updated" %}
+{% include project.html folder="lifecycle/updated" openFile="my-element.js" %}
 
 <!-- original:
 #### Do something when the element next updates
@@ -641,12 +654,12 @@ updated(changedProps) {
 Await the [`updateComplete`](#updatecomplete) promise:
 
 ```js
-await updateComplete;
+await this.updateComplete;
 // do stuff
 ```
 
 ```js
-updateComplete.then(() => {
+this.updateComplete.then(() => {
   // do stuff
 });
 ```
@@ -695,4 +708,4 @@ updateComplete.then(() => {
 });
 ```
 
-{% include project.html folder="docs/lifecycle/updatecomplete" %}
+{% include project.html folder="lifecycle/updatecomplete" openFile="my-element.js" %}
