@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: guide
 title: はじめに
 ---
 
@@ -9,160 +9,32 @@ title: はじめに
 
 ## LitElementとは
 
-<!-- original:
 LitElement is a simple base class for creating fast, lightweight web components that work in any web page with any framework.
 
-For rendering, LitElement uses [lit-html](https://lit-html.polymer-project.org/)–a fast HTML templating library. To build an app out of LitElement components, check out [PWA Starter Kit](https://pwa-starter-kit.polymer-project.org/).
--->
+LitElement uses [lit-html](https://lit-html.polymer-project.org/) to render into shadow DOM, and adds API to manage properties and attributes. Properties are observed by default, and elements update asynchronously when their properties change. 
 
-LitElementは、どんなフレームワークのどんなWebページでも動作し、軽量で高速なWebコンポーネントを開発するためのシンプルなベースクラスです。
+To build an app out of LitElement components, check out [PWA Starter Kit](https://pwa-starter-kit.polymer-project.org/).
 
-描画(レンダリング)には[lit-html](https://lit-html.polymer-jp.org/)(高速HTMLテンプレートライブラリ)を使います。LitElementを使ってアプリを構築するのであれば、ぜひ[PWA Starter Kit](https://pwa-starter-kit-dot-polymer-japan.appspot.com/)をチェックしてください。
+## Quick start 
 
-## LitElementコンポーネントをつくる
-
-<!-- original:
-To add LitElement to your project, install the `@polymer/lit-element` package with npm:
--->
-
-LitElementをプロジェクトに追加するには、npmで `@polymer/lit-element`パッケージをインストールします:
-
-```
-npm install @polymer/lit-element --save
-```
-
-<!-- original:
-To create a new class based on LitElement: 
-
-* Import the `LitElement` base class and the `html` helper function.
-* Create a new class that extends the `LitElement` base class.
-* Implement `render` to define a template for your web component.
-* Register your component's HTML tag with the browser.
-
-For example:
--->
-
-LitElementを使ったクラスを作成するには:
-
-* `LitElement`のベースクラスと`html`ヘルパー関数をインポートし、
-* `LitElement`のベースクラスを継承した新しいクラスを作成、
-* テンプレートを描画する`render`関数を実装して
-* ブラウザにHTMLタグとして登録します
-
-例として:
-
-
-_my-element.js_
-
-```js
-{% include projects/docs/create/my-element.js %}
-```
-
-{% include project.html folder="docs/create" openFile="my-element.js" %}
-
-## TypeScriptデコレータを使う
-
-<!-- original:
-You can use the `@customElement` TypeScript decorator to define your class as a custom element:
--->
-
-TypeScriptの`@customElement`デコレータを使って要素を定義できます:
-
-```ts
-{% include projects/docs/typescript/my-element.ts %}
-```
-
-{% include project.html folder="docs/typescript" openFile="my-element.ts" %}
-
-<a name="import">
-
-## コンポーネントをインポートする
-
-### 作成したコンポーネントのインポート
-
-<!-- original:
-In an HTML document:
--->
-
-HTMLでは:
-
-```html
-<head>
-  <script type="module" src="/path/to/my-element.js"></script>
-</head>
-<body>
-  <my-element></my-element>
-</body>
-```
-
-<!-- original:
-In another JavaScript module:
--->
-
-他のJavaScriptモジュールからは:
-
-```js
-// 相対パスを指定
-import './my-element.js';
-
-class MyOtherElement extends LitElement{
-  render(){
-    return html`
-      <my-element></my-element>
-    `;
-  }
-}
-customElements.define('my-other-element', MyOtherElement);
-```
-
-### 他の人が作成したコンポーネントのインポート
-
-<!-- original:
-**Refer to third-party component documentation first.** To work with any existing component made by a third party, see its documentation. This guide should work for most LitElement-based components if they are published on npm.
-
-Many components are published on npm and can be installed from the command line:
--->
-
-**他の人が作成したコンポーネントを使う場合にはちゃんとその文書を参照しましょう** 他者による既存のコンポーネントはそれ自体のドキュメントを読むべきです。このガイドにおいては、npmで公開されているほとんどのLitElementベースのコンポーネントで通用するでしょう。
-
-多くのコンポーネントnpmで公開されており、下記のコマンドラインでインストールできます:
-
+Install:
 
 ```bash
-cd my-project-folder
-npm install package-name --save
+npm install --save @polymer/lit-element
 ```
 
-<!-- original:
-In an HTML document, a component published on npm can be imported from the `node_modules` folder:
--->
-
-HTMLからは読み込むには`node_modules`フォルダを指定します:
-
-```html
-<head>
-  <script type="module" src="node_modules/package-name/existing-element.js"></script>
-</head>
-<body>
-  <existing-element></existing-element>
-</body>
-```
-
-<!-- original:
-To import into another JavaScript module, use the component's package name:
--->
-
-また別のJavaScriptモジュールをインポートするには、コンポーネントのパッケージ名を指定します:
+Import:
 
 ```js
-import 'package-name/existing-element.js';
-
-class MyElement extends LitElement{
-  render(){
-    return html`
-      <existing-element></existing-element>
-    `;
-  }
-}
-customElements.define('my-element', MyElement);
+import { LitElement, html } from '@polymer/lit-element';
 ```
+
+[Download a sample LitElement project](https://github.com/PolymerLabs/start-lit-element).
+
+## Next steps
+
+* [Getting Started](/guide/start): Set up LitElement and create a component.
+* [Templates](/guide/templates): Write templates with lit-html syntax.
+* [Properties](/guide/properties): Manage properties and attributes.
+* [Lifecycle](/guide/lifecycle): Work with the LitElement lifecycle API.
+

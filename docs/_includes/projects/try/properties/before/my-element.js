@@ -1,5 +1,5 @@
 /**
- * LitElementを試してみよう https://lit-element.polymer-jp.org/guide/try
+ * LitElementを試してみよう https://lit-element.polymer-jp.org/try
  * 初期コード (3. プロパティ)
  */
 

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: guide
 title: テンプレート
 slug: templates
 ---

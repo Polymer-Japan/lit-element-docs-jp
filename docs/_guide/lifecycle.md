@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: guide
 title: ライフサイクル
 slug: lifecycle
 ---

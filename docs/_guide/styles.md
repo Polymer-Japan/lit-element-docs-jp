@@ -1,6 +1,6 @@
 ---
-layout: post
-title: CSSスタイリング
+layout: guide
+title: スタイリング
 slug: styles
 ---
 

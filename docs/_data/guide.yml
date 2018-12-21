@@ -1,15 +1,12 @@
 title: LitElement Documentation
 toc:
-  try: 
-    # title: Try LitElement
-    # desc: Try LitElement with interactive code samples.
-    title: 試してみる
-    desc: サンプルをオンラインエディタで試してみる
-    url: /guide/try
   introduction: 
     # title: Introduction
     title: はじめに
     url: /guide
+  getting started: 
+    title: Getting Started
+    url: /guide/start
   templates: 
     # title: Templates
     # desc: Create and render LitElement templates. Use JavaScript expressions to add properties and logic.
@@ -17,7 +14,7 @@ toc:
     desc: テンプレートを作り、描画する。JavaScript式でプロパティとロジックを追加する
     url: /guide/templates
   styles:
-    # title: CSS Styles
+    # title: Styles
     # desc: Style your elements with CSS.
     title: スタイリング
     desc: CSSでスタイリング
@@ -34,9 +31,17 @@ toc:
     title: ライフサイクル
     desc: 描画すべきタイミング、更新やその処理を待つタイミングを指定する
     url: /guide/lifecycle
+<<<<<<< variant A
   tools:
     # title: Tools
     # desc: Tools for developing and deploying LitElement projects.
     title: ツール
     desc: 開発ツールと構築方法
     url: /guide/tools
+>>>>>>> variant B
+####### Ancestor
+  tools:
+    title: Tools
+    desc: Tools for developing and deploying LitElement projects.
+    url: /guide/tools
+======= end
