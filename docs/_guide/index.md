@@ -1,6 +1,6 @@
 ---
 layout: guide
-title: はじめに
+title: 概要
 ---
 
 {::options toc_levels="1..3" /}

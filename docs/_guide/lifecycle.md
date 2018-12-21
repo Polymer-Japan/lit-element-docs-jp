@@ -76,7 +76,7 @@ In call order, the methods and properties in the update lifecycle are:
 1.  [updated](#updated)
 1.  [updateComplete](#updatecomplete)
 
-### someProperty.hasChanged {#haschanged}
+### someProperty.hasChanged
 
 All declared properties have a function, `hasChanged`, which is called whenever the property is set; if `hasChanged` returns true, an update is scheduled.
 
@@ -337,7 +337,7 @@ lit-htmlを使用して要素テンプレートをレンダリングします。
 
 詳細については、[テンプレートの作成とレンダリング](../templates)のドキュメントを参照してください。
 
-### firstUpdated {#firstupdated}
+### firstUpdated
 
 <!-- original:
 ```js
@@ -379,7 +379,7 @@ firstUpdated(changedProperties) { ... }
 
 {% include project.html folder="lifecycle/firstupdated" openFile="my-element.js" %}
 
-### updated {#updated}
+### updated
 
 <!-- original:
 ```js
@@ -417,7 +417,7 @@ updated(changedProperties) { ... }
 
 {% include project.html folder="lifecycle/updated" openFile="my-element.js" %}
 
-### updateComplete {#updatecomplete}
+### updateComplete
 
 <!-- original:
 ```js
@@ -475,7 +475,7 @@ The `updateComplete` Promise resolves when the element has finished updating. Us
 {% include project.html folder="lifecycle/updatecomplete" openFile="my-element.js" %}
 
 <!-- original:
-## Examples {#examples}
+## Examples
 
 #### Control when updates are processed
 
@@ -489,7 +489,7 @@ async performUpdate() {
 ```
 -->
 
-## サンプルコード {#examples}
+## サンプルコード
 
 #### 更新をトリガするプロパティの変更動作をカスタマイズする
 

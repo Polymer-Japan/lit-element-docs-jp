@@ -2,10 +2,11 @@ title: LitElement Documentation
 toc:
   introduction: 
     # title: Introduction
-    title: はじめに
+    title: 概要
     url: /guide
   getting started: 
-    title: Getting Started
+    # title: Getting Started
+    title: はじめる
     url: /guide/start
   templates: 
     # title: Templates
@@ -31,17 +32,3 @@ toc:
     title: ライフサイクル
     desc: 描画すべきタイミング、更新やその処理を待つタイミングを指定する
     url: /guide/lifecycle
-<<<<<<< variant A
-  tools:
-    # title: Tools
-    # desc: Tools for developing and deploying LitElement projects.
-    title: ツール
-    desc: 開発ツールと構築方法
-    url: /guide/tools
->>>>>>> variant B
-####### Ancestor
-  tools:
-    title: Tools
-    desc: Tools for developing and deploying LitElement projects.
-    url: /guide/tools
-======= end

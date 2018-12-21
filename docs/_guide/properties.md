@@ -9,7 +9,7 @@ slug: properties
 {:toc}
 
 <!-- original:
-## Overview {#overview}
+## Overview
 
 LitElement manages your declared properties and their corresponding attributes. By default, LitElement will: 
 
@@ -87,7 +87,7 @@ All property declaration options can be specified in a static properties getter,
 すべてのプロパティ宣言オプションは、静的プロパティゲッターまたはTypeScriptデコレータで指定できます。
 
 <!-- original:
-## Declare properties {#declare}
+## Declare properties
 
 Declare your element's properties by implementing a static `properties` getter, or by using TypeScript decorators:
 
@@ -351,9 +351,9 @@ See [observed attributes](#observed-attributes) and [converting between properti
 属性から初期化する方法の詳細については、[属性の監視](#observed-attributes)および[プロパティと属性間の変換](#conversion)を参照してください。
 
 <!-- original:
-## Configure attributes {#attributes}
+## Configure attributes
 
-### Convert between properties and attributes {#conversion}
+### Convert between properties and attributes
 
 While element properties can be of any type, attributes are always strings. This impacts the [observed attributes](#observed-attributes) and [reflected attributes](#reflected-attributes) of non-string properties:
 
@@ -361,7 +361,7 @@ While element properties can be of any type, attributes are always strings. This
 
   * To **reflect** an attribute (set an attribute from a property), the property value must be converted to a string.
 
-#### Use the default converter {#conversion-type}
+#### Use the default converter
 
 LitElement has a default converter which handles `String`, `Number`, `Boolean`, `Array`, and `Object` property types.
 
@@ -471,7 +471,7 @@ prop5: { type: Object }
 {% include project.html folder="properties/defaultconverter" openFile="my-element.js" %}
 
 <!-- original:
-#### Configure a custom converter {#conversion-converter}
+#### Configure a custom converter
 
 You can specify a custom property converter in your property declaration with the `converter` option:
 
@@ -525,7 +525,7 @@ During an update:
 
 ```js
 myProp: { 
-  converter: // Custom property converter
+  converter: // カスタムコンバータ
 } 
 ```
 
@@ -574,7 +574,7 @@ myProp: {
 {% include project.html folder="properties/attributeconverter" openFile="my-element.js" %}
 
 <!-- original:
-### Configure observed attributes {#observed-attributes}
+### Configure observed attributes
 
 An **observed attribute** fires the custom elements API callback `attributeChangedCallback` whenever it changes. By default, whenever an attribute fires this callback, LitElement sets the property value from the attribute using the property's `fromAttribute` function. See [Convert between properties and attributes](#conversion) for more information.
 
@@ -639,7 +639,7 @@ myProp: { attribute: false }
 {% include project.html folder="properties/attributeobserve" openFile="my-element.js" %}
 
 <!-- original:
-### Configure reflected attributes {#reflected-attributes}
+### Configure reflected attributes
 
 You can configure a property so that whenever it changes, its value is reflected to its [observed attribute](#observed-attributes). For example:
 
@@ -700,7 +700,7 @@ LitElement keeps track of  state information to avoid creating an infinite loop 
 {% include project.html folder="properties/attributereflect" openFile="my-element.js" %}
 
 <!-- original:
-## Configure property accessors {#accessors}
+## Configure property accessors
 
 By default, LitElement generates a property accessor for all declared properties. The accessor is invoked whenever you set the property:
 
@@ -714,7 +714,7 @@ this.myProp = 'hi'; // invokes myProp's generated property accessor
 
 Generated accessors automatically call `requestUpdate`, initiating an update if one has not already begun.
 
-### Create custom property accessors {#accessors-custom}
+### Create custom property accessors
 
 To specify how getting and setting works for a property, create custom accessors:
 
@@ -738,7 +738,7 @@ When you create custom property accessors for a property, LitElement still gener
 * Calls your custom setter.
 * Requests an update, supplying the property name and its old value to the update lifecycle.
 
-### Prevent LitElement from generating a property accessor {#accessors-noaccessor}
+### Prevent LitElement from generating a property accessor
 
 To prevent LitElement from generating property accessors, set `noAccessors` to `true` in the property declaration:
 
@@ -890,10 +890,6 @@ myProp: { hasChanged(newVal, oldVal) {
 ```
 
 **Example: Configure property changes** 
-
-```js
-{% include projects/properties/haschanged/my-element.js %}
-```
 -->
 
 ## プロパティ変更をカスタマイズ {#hasChanged}
@@ -910,14 +906,16 @@ myProp: { hasChanged(newVal, oldVal) {
 プロパティに対して `hasChanged`をカスタマイズするには、それをプロパティオプションとして指定します:
 
 ```js
-static get properties() { return {
-  myProp: {
-    hasChanged(newVal, oldVal) {
-      // newValとoldValを比較する
-      // 更新が進むべきであれば `true`を返します
-    }
-  }};
-}
+myProp: { hasChanged(newVal, oldVal) {
+  // newValとoldValを比較する
+  // 更新が進むべきであれば `true`を返します
+}}
+```
+
+**例: プロパティの変更を設定** 
+
+```js
+{% include projects/properties/haschanged/my-element.js %}
 ```
 
 {% include project.html folder="properties/haschanged" openFile="my-element.js" %}
