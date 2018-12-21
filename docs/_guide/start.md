@@ -1,6 +1,6 @@
 ---
 layout: guide
-title: Getting Started
+title: 使ってみる
 slug: start
 ---
 
@@ -8,6 +8,7 @@ slug: start
 * ToC
 {:toc}
 
+<!-- original:
 ## Setup
 
 You need npm and Node.js to work with LitElement. To install npm and Node.js, see the [instructions on NodeJS.org](https://nodejs.org/en/).
@@ -46,6 +47,45 @@ To create a new class based on LitElement:
 For example:
 
 _my-element.js_
+-->
+## 前準備
+
+LitElementを使うにはnpmとNode.jsが必要です。 npmとNode.jsをインストールするには、[NodeJS.orgの説明](https://nodejs.org/ja/)を参照してください。
+
+LitElementではJavaScriptモジュールが使用だれ、npmパッケージ名で依存関係をインポートします。Webブラウザではファイルのインポートに完全なURLが必要なため、ローカル開発サーバーはWebブラウザに完全に変換したURLパスを提供する必要があります。
+
+ターゲットブラウザ向けに最適したビルドを公開するには、別個にビルドツールとバンドル処理をする必要があります。
+
+1つの選択肢としてPolymer CLIにはモジュール名をその場でパスに変換する開発サーバーが含まれています。そして公開のためにソースコードをパッケージ化するビルドツールも含まれています。
+
+Polymer CLIをnpmでインストールするには:
+
+```bash
+npm install -g polymer-cli
+```
+
+ローカルの開発サーバを起動するには:
+
+```bash
+polymer-serve
+```
+
+ツールの設定やもっと詳しい情報は[Polymer CLI ドキュメント](https://polymer-library.polymer-project.org/3.0/docs/tools/polymer-cli)を参照してください。
+
+コンポーネントの作り方へ読み進めるか、[LitElementのサンプルプロジェクト](https://github.com/PolymerLabs/start-lit-element)をダウンロードしてください。
+
+## コンポーネントを作る
+
+LitElementを使ったクラスを作成するには:
+
+* `LitElement`のベースクラスと`html`ヘルパー関数をインポートし、
+* `LitElement`のベースクラスを継承した新しいクラスを作成、
+* テンプレートを描画する`render`関数を実装して
+* ブラウザにHTMLタグとして登録します
+
+例として:
+
+_my-element.js_
 
 ```js
 {% include projects/docs/create/my-element.js %}
@@ -53,9 +93,14 @@ _my-element.js_
 
 {% include project.html folder="docs/create" openFile="my-element.js" %}
 
+<!-- original:
 ### Use LitElement TypeScript decorators
 
 You can use the `@customElement` TypeScript decorator to define your class as a custom element:
+-->
+### TypeScriptデコレータを使う
+
+TypeScriptの`@customElement`デコレータを使って要素を定義できます:
 
 ```ts
 {% include projects/docs/typescript/my-element.ts %}
@@ -63,6 +108,7 @@ You can use the `@customElement` TypeScript decorator to define your class as a 
 
 {% include project.html folder="docs/typescript" openFile="my-element.ts" %}
 
+<!-- original:
 ## Import a component
 
 ### Import your own LitElement component
@@ -117,6 +163,74 @@ In an HTML document, a component published on npm can be imported from the `node
 ```
 
 To import into another JavaScript module, use the component's package name:
+
+```js
+import 'package-name/existing-element.js';
+
+class MyElement extends LitElement{
+  render(){
+    return html`
+      <existing-element></existing-element>
+    `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+-->
+## コンポーネントのインポート
+
+### 作成したコンポーネントのインポート
+
+HTMLにおいて:
+
+```html
+<head>
+  <script type="module" src="/path/to/my-element.js"></script>
+</head>
+<body>
+  <my-element></my-element>
+</body>
+```
+
+他のJavaScriptモジュールからは:
+
+```js
+// 相対パスを指定
+import './my-element.js';
+
+class MyOtherElement extends LitElement{
+  render(){
+    return html`
+      <my-element></my-element>
+    `;
+  }
+}
+customElements.define('my-other-element', MyOtherElement);
+```
+
+### 他の人が作成したコンポーネントのインポート
+
+**他の人が作成したコンポーネントを使う場合にはちゃんとその文書を参照しましょう** 他者による既存のコンポーネントはそれ自体のドキュメントを読むべきです。このガイドにおいては、npmで公開されているほとんどのLitElementベースのコンポーネントで通用するでしょう。
+
+多くのコンポーネントnpmで公開されており、下記のコマンドラインでインストールできます:
+
+```bash
+cd my-project-folder
+npm install package-name --save
+```
+
+HTMLからは読み込むには`node_modules`フォルダを指定します:
+
+```html
+<head>
+  <script type="module" src="node_modules/package-name/existing-element.js"></script>
+</head>
+<body>
+  <existing-element></existing-element>
+</body>
+```
+
+また別のJavaScriptモジュールをインポートするには、コンポーネントのパッケージ名を指定します:
 
 ```js
 import 'package-name/existing-element.js';

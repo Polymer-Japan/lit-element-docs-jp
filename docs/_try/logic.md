@@ -1,12 +1,20 @@
 ---
 layout: try
 slug: logic
-title: Logic in templates
+title: ロジック
 ---
 
+<!-- original:
 In this step, you'll add a loop and a conditional to your LitElement template.
 
 **Starting code**
+
+_my-element.js_
+-->
+
+ここではテンプレートに繰り返しと条件分岐を追加します。
+
+**初期コード**
 
 _my-element.js_
 
@@ -16,6 +24,7 @@ _my-element.js_
 
 {% include project.html folder="try/logic/before" openFile="my-element.js" %}
 
+<!-- original:
 1. **Add a loop to your template.**
 
     We've added an array property, `myArray`, to my-element.js. To loop over `myArray`, add the following code to your template:
@@ -37,7 +46,32 @@ _my-element.js_
     ```
 
 If you're stuck, click **Launch Code Editor** below to see the completed code for Step 4.
+-->
+1. **繰り返しを追加**
+
+    `myArray`という配列が既にプロパティで宣言されているので、その繰り返し処理を行うには下記のコードを追加してください:
+
+    ```html
+    <ul>
+      ${this.myArray.map(i => html`<li>${i}</li>`)}
+    </ul>
+    ```
+
+2. **条件分岐を追加**
+
+    `myBool`という真偽値(boolan)が既にプロパティで宣言されているので、そこで条件分岐をするには下記のコードを追加してください:
+
+    ```html
+    ${this.myBool?
+      html`<p>Render some HTML if myBool is true</p>`:
+      html`<p>Render some other HTML if myBool is false</p>`}
+    ```
+
+もしうまくいかなかったら、下記の**コードエディタを起動**をクリックして、完成したコードを確認してください。
 
 {% include project.html folder="try/logic/after" openFile="my-element.js" %}
 
+<!-- original:
 [Next: 5. Events](events)
+-->
+[次へ: 5. イベント](events)

@@ -89,14 +89,12 @@ LitElementベースのコンポーネントは、監視されているプロパ�
 
 更新ライフサイクルは:
 
-1. プロパティが設定されると、
-2. **プロパティ毎に設定** される `hasChanged`によって **プロパティが変更されたかどうか** を確認。
-3. プロパティが変更されたなら`requestUpdate()`を呼んで描画をスケジューリングし、
-4. `shouldUpdate` によって描画をすべきか確認。
-5. 描画してよいなら`update`が呼ばれて各属性やプロパティを更新し、
-6. lit-htmlがDOMに描画。
-7. **([訳者追加](https://github.com/Polymer/lit-element#advanced-update-lifecycle)** 最初の描画時は`firstUpdated`が呼ばれつつ) `update`が呼ばれ、プロパティも更新済みとなり、
-8. `updateComplete`がresolveされる
+1. プロパティがセットされる
+2. 更新が必要かどうか確認し、アップデートが必要な場合は、リクエストする
+3. 更新の実施には:
+  * プロパティと属性の処理
+  * 要素を描画
+4. Promiseをresolveして、更新が完了したことを示します。
 
 ####  LitElementとブラウザのイベントループ
 

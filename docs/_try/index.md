@@ -1,14 +1,21 @@
 ---
 layout: try
-title: Try LitElement
+title: 試す
 ---
 
+<!-- original:
 Try LitElement in live-editable code without installing anything. Build your first component, use it in a web page, and add style with CSS. 
 
 This tutorial has live code samples that you can edit, like this:
+-->
+
+オンラインエディタで何もインストールすることなくLitElementを試してみてください！このチュートリアルでは、はじめてのWebコンポーネントを作り、ページに組込み、CSSでスタイルを追加します。
+
+チュートリアルでは次のような、その場で編集できるライブエディタが含まれています:
 
 {% include project.html folder="try/create/after" openFile="my-element.js" %}
 
+<!-- original:
 Click **Preview** at any time to see your code in action. 
 
 {:.alert .alert-info}
@@ -19,3 +26,14 @@ Click **Preview** at any time to see your code in action.
 </div>
 
 [Next: 1. Create a component](create)
+-->
+**Preview**をクリックすると、いつでもコードの実行結果が表示されます。
+
+{:.alert .alert-info}
+<div>
+
+**ローカル開発環境でチュートリアルを行っている場合は、このページのコードをいくつか変更する必要があります** このページのコードサンプルは、StackBlitzエディタ用に書かれています。 ローカルで作業するには、[使ってみる](start)を参照してください。
+
+</div>
+
+[次へ: 1. コンポーネントをつくる](create)

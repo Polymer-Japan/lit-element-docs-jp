@@ -1,6 +1,6 @@
 ---
 layout: guide
-title: Properties
+title: プロパティ
 slug: properties
 ---
 

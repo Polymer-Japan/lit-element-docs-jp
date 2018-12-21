@@ -2,11 +2,11 @@ title: LitElement Documentation
 toc:
   introduction: 
     # title: Introduction
-    title: 概要
+    title: はじめに
     url: /guide
   getting started: 
     # title: Getting Started
-    title: はじめる
+    title: 使ってみる
     url: /guide/start
   templates: 
     # title: Templates

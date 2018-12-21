@@ -49,7 +49,7 @@ For rendering, LitElement uses [lit-html](https://lit-html.polymer-project.org/)
 lit-htmlを使う
 </h2>
 <p>
-For rendering, LitElement uses [lit-html](https://lit-html.polymer-project.org/)—a fast HTML templating library. To build an app out of LitElement components, check out [PWA Starter Kit](https://pwa-starter-kit.polymer-project.org/).
+描画(レンダリング)には[lit-html](https://lit-html.polymer-jp.org/)(高速HTMLテンプレートライブラリ)を使います。LitElementを使ってアプリを構築するのであれば、ぜひ[PWA Starter Kit](https://pwa-starter-kit.polymer-jp.org/)をチェックしてください。
 </p>
 </div>
 
