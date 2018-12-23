@@ -19,21 +19,6 @@
             ]
         }
     },
-    "_query": {
-        "comment": {
-            "parameters": {
-                "queryFn": {
-                    "comment": {
-                        "text": [
-                            "exectute a `selector` (ie, querySelector or querySelectorAll)",
-                            "against `target`."
-                        ]
-                    }
-                }
-            },
-            "shortText": "Base-implementation of `@query` and `@queryAll` decorators."
-        }
-    },
     "property": {
         "comment": {
             "shortText": [
@@ -72,16 +57,6 @@
             "shortText": [
                 "Change function that returns true if `value` is different from `oldValue`.",
                 "This method is used as the default for a property's `hasChanged` function."
-            ]
-        }
-    },
-    "descriptorFromPrototype": {
-        "comment": {
-            "shortText": [
-                "Returns the property descriptor for a property on this prototype by walking",
-                "up the prototype chain. Note that we stop just before Object.prototype, which",
-                "also avoids issues with Symbol polyfills (core-js, get-own-property-symbols),",
-                "which create accessors for the symbols on Object.prototype."
             ]
         }
     }

@@ -75,6 +75,4 @@ customElements.define('my-element', MyElement);
 import { UpdatingElement } from '@polymer/lit-element/lib/updating-element.js';
 ```
 
-Custom Element base class that supports declaring observable properties, reflecting attributes to properties, and the core update lifecycle methods.
-
 プロパティの監視、プロパティから属性への反映、および基本的な更新ライフサイクルを提供するカスタム要素のベースクラス。

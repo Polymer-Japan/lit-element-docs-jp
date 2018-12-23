@@ -2,7 +2,7 @@ module.exports = {
   out: './api/',
   readme: '_api/api-readme.md',
   tsconfig: '_api/en/tsconfig.json',
-  theme: '_api/theme',
+  theme: '_api/localize-theme',
   exclude: [
     '**/test/**/*',
     '**/node_modules/**/*',

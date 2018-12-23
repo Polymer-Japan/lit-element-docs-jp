@@ -1,23 +1,21 @@
 {
     "ComplexAttributeConverter": {
         "comment": {
-            "shortText": "Converts property values to and from attribute values."
+            "shortText": "プロパティ値と属性値の間の変換を行います。"
         },
         "properties": {},
         "methods": {
             "fromAttribute": {
                 "comment": {
                     "shortText": [
-                        "Function called to convert an attribute value to a property",
-                        "value."
+                        "属性値をプロパティ値に変換するために呼び出される関数。"
                     ]
                 }
             },
             "toAttribute": {
                 "comment": {
                     "shortText": [
-                        "Function called to convert a property value to an attribute",
-                        "value."
+                        "プロパティ値を属性値に変換するために呼び出される関数。"
                     ]
                 }
             }

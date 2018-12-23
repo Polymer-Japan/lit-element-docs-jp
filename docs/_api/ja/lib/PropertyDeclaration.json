@@ -1,65 +1,51 @@
 {
     "PropertyDeclaration": {
         "comment": {
-            "shortText": "Defines options for a property accessor."
+            "shortText": "プロパティアクセサのオプションを定義します。"
         },
         "properties": {
             "attribute": {
                 "comment": {
                     "shortText": [
-                        "Indicates how and whether the property becomes an observed attribute.",
-                        "If the value is `false`, the property is not added to `observedAttributes`.",
-                        "If true or absent, the lowercased property name is observed (e.g. `fooBar`",
-                        "becomes `foobar`). If a string, the string value is observed (e.g",
-                        "`attribute: 'foo-bar'`)."
+                        "プロパティが監視対象属性になる方法とその有無",
+                        "値がfalseの場合、そのプロパティはObservAttributesに追加されません。",
+                        "trueまたは存在しない場合は、小文字のプロパティ名が使用されます（たとえば、 `fooBar`は` foobar`になります）。文字列の場合、文字列値が遵守されます（例： `attribute： 'foo-bar'`）。"
                     ]
                 }
             },
             "type": {
                 "comment": {
                     "shortText": [
-                        "Indicates the type of the property. This is used only as a hint for the",
-                        "`converter` to determine how to convert the attribute",
-                        "to/from a property."
+                        "プロパティの種類を示します。これは `converter`が属性とプロパティの間の変換方法を決定するためのヒントとしてのみ使われます。"
                     ]
                 }
             },
             "converter": {
                 "comment": {
                     "shortText": [
-                        "Indicates how to convert the attribute to/from a property. If this value",
-                        "is a function, it is used to convert the attribute value a the property",
-                        "value. If it's an object, it can have keys for `fromAttribute` and",
-                        "`toAttribute`. If no `toAttribute` function is provided and",
-                        "`reflect` is set to `true`, the property value is set directly to the",
-                        "attribute. A default `converter` is used if none is provided; it supports",
-                        "`Boolean`, `String`, `Number`, `Object`, and `Array`. Note,",
-                        "when a property changes and the converter is used to update the attribute,",
-                        "the property is never updated again as a result of the attribute changing,",
-                        "and vice versa."
+                        "属性とプロパティの間の変換方法を示します。",
+                        "この値が関数の場合は、属性値をプロパティ値に変換するために使用されます。",
+                        "それがオブジェクトなら、 `fromAttribute`と` toAttribute`のキーを持つことができます。",
+                        "toAttribute関数が提供されておらず、かつreflectがtrueに設定されている場合、プロパティ値は属性に直接設定されます。",
+                        "何も指定されていない場合はデフォルトの `converter`が使用されます。 `Boolean`、` String`、 `Number`、` Object`、そして `Array`をサポートします。",
+                        "プロパティが変更され、コンバータを使用して属性を更新すると、属性が変更された結果としてそのプロパティが再度更新されることはありません。その逆も同様です。"
                     ]
                 }
             },
             "reflect": {
                 "comment": {
                     "shortText": [
-                        "Indicates if the property should reflect to an attribute.",
-                        "If `true`, when the property is set, the attribute is set using the",
-                        "attribute name determined according to the rules for the `attribute`",
-                        "property option and the value of the property converted using the rules",
-                        "from the `converter` property option."
+                        "プロパティが属性を反映するかどうかを示します。",
+                        "trueの場合、プロパティが設定されると、attribute属性オプションの規則に従って決定された属性名と、converterプロパティオプションの規則を使用して変換されたプロパティの値を使用して属性が設定されます。"
                     ]
                 }
             },
             "noAccessor": {
                 "comment": {
                     "shortText": [
-                        "Indicates whether an accessor will be created for this property. By",
-                        "default, an accessor will be generated for this property that requests an",
-                        "update when set. If this flag is `true`, no accessor will be created, and",
-                        "it will be the user's responsibility to call",
-                        "`this.requestUpdate(propertyName, oldValue)` to request an update when",
-                        "the property changes."
+                        "このプロパティに対してアクセサを作成するかどうかを示します。",
+                        "デフォルトでは、設定時に更新を要求するアクセサがこのプロパティに対して生成されます。",
+                        "このフラグがtrueの場合、アクセサは作成されず、プロパティが変更されたときに更新を要求するためにthis.requestUpdate（propertyName、oldValue）を呼び出すのはユーザの責任です。"
                     ]
                 }
             }
@@ -68,9 +54,7 @@
             "hasChanged": {
                 "comment": {
                     "shortText": [
-                        "A function that indicates if a property should be considered changed when",
-                        "it is set. The function should take the `newValue` and `oldValue` and",
-                        "return `true` if an update should be requested."
+                        "プロパティが設定時に変更されたと見なすべきかどうかを示す関数。この関数は `newValue`と` oldValue`を取り、更新が要求されるべきなら `true`を返すべきです。"
                     ]
                 }
             }

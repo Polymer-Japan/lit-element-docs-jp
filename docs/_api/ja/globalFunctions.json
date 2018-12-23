@@ -5,41 +5,34 @@
                 "options": {
                     "comment": {
                         "shortText": [
-                            "An object that specifis event listener options as accepted by",
-                            "`EventTarget#addEventListener` and `EventTarget#removeEventListener`.",
-                            "Current browsers support the `capture`, `passive`, and `once` options. See:",
-                            "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters"
+                            "`EventTarget＃addEventListener`と` EventTarget＃removeEventListener`によって受け入れられるようにイベントリスナオプションを指定するオブジェクト。 現在のブラウザは `capture`、` passive`、そして `once`オプションをサポートしています。 参照: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters"
                         ]
                     }
                 }
             },
             "shortText": [
-                "Adds event listener options to a method used as an event listener in a",
-                "lit-html template."
+                "lit-htmlテンプレートのイベントリスナーとして使用されるメソッドにイベントリスナーオプションを追加します。"
             ]
         }
     },
-    "_query": {
+    "query": {
         "comment": {
-            "parameters": {
-                "queryFn": {
-                    "comment": {
-                        "text": [
-                            "exectute a `selector` (ie, querySelector or querySelectorAll)",
-                            "against `target`."
-                        ]
-                    }
-                }
-            },
-            "shortText": "Base-implementation of `@query` and `@queryAll` decorators."
+            "shortText": [
+                "クラスプロパティを、要素のrenderRootに対してquerySelectorを実行するgetterに変換するプロパティデコレータ。"
+            ]
+        }
+    },
+    "queryAll": {
+        "comment": {
+            "shortText": [
+                "クラスプロパティを、要素のrenderRootに対してquerySelectorAllを実行するゲッターに変換するプロパティデコレータ。"
+            ]
         }
     },
     "property": {
         "comment": {
             "shortText": [
-                "A property decorator which creates a LitElement property which reflects a",
-                "corresponding attribute value. A `PropertyDeclaration` may optionally be",
-                "supplied to configure property features."
+                "対応する属性値を反映するLitElementプロパティを作成するプロパティデコレータ。プロパティの機能を設定するために `PropertyDeclaration`をオプションで提供することができます。"
             ]
         }
     },
@@ -49,39 +42,42 @@
                 "tagName": {
                     "comment": {
                         "shortText": [
-                            "the name of the custom element to define",
-                            "In TypeScript, the `tagName` passed to `customElement` should be a key of the",
-                            "`HTMLElementTagNameMap` interface. To add your element to the interface,",
-                            "declare the interface in this module:",
+                            "定義するカスタム要素の名前",
+                            "TypeScriptでは、 `customElement`に渡される`tagName`は `HTMLElementTagNameMap`インターフェースのキーとなるはずです。 要素をインターフェースに追加するには下記のようにインターフェースを宣言してください:",
+                            "```",
                             "    @customElement('my-element')",
                             "    export class MyElement extends LitElement {}",
                             "    declare global {",
                             "      interface HTMLElementTagNameMap {",
                             "        'my-element': MyElement;",
                             "      }",
-                            "    }"
+                            "    }",
+                            "```"
                         ]
                     }
                 }
             },
-            "shortText": "Class decorator factory that defines the decorated class as a custom element."
+            "shortText": "カスタム要素を作るクラス用のデコレータ"
         }
     },
     "notEqual": {
         "comment": {
             "shortText": [
-                "Change function that returns true if `value` is different from `oldValue`.",
-                "This method is used as the default for a property's `hasChanged` function."
+                "valueがoldValueと異なる場合にtrueを返す関数を変更する",
+                "このメソッドはプロパティの `hasChanged`関数のデフォルトとして使われます。"
             ]
         }
     },
-    "descriptorFromPrototype": {
+    "observedAttributes": {
+        "comment": {
+            "shortText": "登録されているプロパティに対応する属性の一覧を返します。"
+        }
+    },
+    "updateComplete": {
         "comment": {
             "shortText": [
-                "Returns the property descriptor for a property on this prototype by walking",
-                "up the prototype chain. Note that we stop just before Object.prototype, which",
-                "also avoids issues with Symbol polyfills (core-js, get-own-property-symbols),",
-                "which create accessors for the symbols on Object.prototype."
+                "要素が更新を完了したときに解決するPromiseを返します。",
+                "Promise値は、要素が別の更新を引き起こさずに更新を完了した場合にtrueとなるブール値です。プロパティがupdated()内に設定されている場合、Promiseの結果はfalseです。このゲッターは追加の状態を待つために実装することができます。例えば、この約束を満たす前にレンダリングされた要素を待つのが便利なことがあります。これを行うには、まず `super.updateComplete`を待ってからそれ以降の状態を待ちます。"
             ]
         }
     }

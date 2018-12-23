@@ -181,6 +181,7 @@ type UpdateState = typeof STATE_HAS_UPDATED|typeof STATE_UPDATE_REQUESTED|
  * Base element class which manages element properties and attributes. When
  * properties change, the `update` method is asynchronously called. This method
  * should be supplied by subclassers to render updates as desired.
+ *
  * @noInheritDoc
  */
 export abstract class UpdatingElement extends HTMLElement {

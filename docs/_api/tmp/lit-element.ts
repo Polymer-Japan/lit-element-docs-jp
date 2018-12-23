@@ -9,7 +9,7 @@ export {html, svg} from 'lit-html/lit-html';
 
 /**
  * @noInheritDoc
-*/   
+ */
 export class LitElement extends UpdatingElement {
 
   /**
