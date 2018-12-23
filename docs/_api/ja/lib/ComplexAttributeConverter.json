@@ -1,0 +1,26 @@
+{
+    "ComplexAttributeConverter": {
+        "comment": {
+            "shortText": "Converts property values to and from attribute values."
+        },
+        "properties": {},
+        "methods": {
+            "fromAttribute": {
+                "comment": {
+                    "shortText": [
+                        "Function called to convert an attribute value to a property",
+                        "value."
+                    ]
+                }
+            },
+            "toAttribute": {
+                "comment": {
+                    "shortText": [
+                        "Function called to convert a property value to an attribute",
+                        "value."
+                    ]
+                }
+            }
+        }
+    }
+}

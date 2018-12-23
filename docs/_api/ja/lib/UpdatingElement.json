@@ -1,0 +1,864 @@
+{
+    "UpdatingElement": {
+        "comment": {
+            "shortText": [
+                "Base element class which manages element properties and attributes. When",
+                "properties change, the `update` method is asynchronously called. This method",
+                "should be supplied by subclassers to render updates as desired."
+            ]
+        },
+        "properties": {
+            "_attributeToPropertyMap": {
+                "comment": {
+                    "shortText": [
+                        "Maps attribute names to properties; for example `foobar` attribute",
+                        "to `fooBar` property."
+                    ]
+                }
+            },
+            "_finalized": {
+                "comment": {
+                    "shortText": "Marks class as having finished creating properties."
+                }
+            },
+            "_classProperties": {
+                "comment": {
+                    "shortText": "Memoized list of all class properties, including any superclass properties."
+                }
+            },
+            "_changedProperties": {
+                "comment": {
+                    "shortText": [
+                        "Map with keys for any properties that have changed since the last",
+                        "update cycle with previous values."
+                    ]
+                }
+            },
+            "_reflectingProperties": {
+                "comment": {
+                    "shortText": "Map with keys of properties that should be reflected when updated."
+                }
+            },
+            "renderRoot": {
+                "comment": {
+                    "shortText": [
+                        "Node or ShadowRoot into which element DOM should be rendered. Defaults",
+                        "to an open shadowRoot."
+                    ]
+                }
+            },
+            "classList": {
+                "comment": {
+                    "shortText": [
+                        "Allows for manipulation of element's class content attribute as a",
+                        "set of whitespace-separated tokens through a DOMTokenList object."
+                    ]
+                }
+            },
+            "className": {
+                "comment": {
+                    "shortText": [
+                        "Returns the value of element's class content attribute. Can be set",
+                        "to change it."
+                    ]
+                }
+            },
+            "id": {
+                "comment": {
+                    "shortText": [
+                        "Returns the value of element's id content attribute. Can be set to",
+                        "change it."
+                    ]
+                }
+            },
+            "localName": {
+                "comment": {
+                    "shortText": "Returns the local name."
+                }
+            },
+            "namespaceURI": {
+                "comment": {
+                    "shortText": "Returns the namespace."
+                }
+            },
+            "prefix": {
+                "comment": {
+                    "shortText": "Returns the namespace prefix."
+                }
+            },
+            "shadowRoot": {
+                "comment": {
+                    "shortText": "Returns element's shadow root, if any, and if shadow root's mode is \"open\", and null otherwise."
+                }
+            },
+            "slot": {
+                "comment": {
+                    "shortText": [
+                        "Returns the value of element's slot content attribute. Can be set to",
+                        "change it."
+                    ]
+                }
+            },
+            "tagName": {
+                "comment": {
+                    "shortText": "Returns the HTML-uppercased qualified name."
+                }
+            },
+            "baseURI": {
+                "comment": {
+                    "shortText": "Returns node's node document's document base URL."
+                }
+            },
+            "childNodes": {
+                "comment": {
+                    "shortText": "Returns the children."
+                }
+            },
+            "firstChild": {
+                "comment": {
+                    "shortText": "Returns the first child."
+                }
+            },
+            "isConnected": {
+                "comment": {
+                    "shortText": "Returns true if node is connected and false otherwise."
+                }
+            },
+            "lastChild": {
+                "comment": {
+                    "shortText": "Returns the last child."
+                }
+            },
+            "nextSibling": {
+                "comment": {
+                    "shortText": "Returns the next sibling."
+                }
+            },
+            "nodeName": {
+                "comment": {
+                    "shortText": [
+                        "Returns a string appropriate for the type of node, as",
+                        "follows:",
+                        "Element",
+                        "Its HTML-uppercased qualified name.",
+                        "Attr",
+                        "Its qualified name.",
+                        "Text",
+                        "\"#text\".",
+                        "CDATASection",
+                        "\"#cdata-section\".",
+                        "ProcessingInstruction",
+                        "Its target.",
+                        "Comment",
+                        "\"#comment\".",
+                        "Document",
+                        "\"#document\".",
+                        "DocumentType",
+                        "Its name.",
+                        "DocumentFragment",
+                        "\"#document-fragment\"."
+                    ]
+                }
+            },
+            "ownerDocument": {
+                "comment": {
+                    "shortText": [
+                        "Returns the node document.",
+                        "Returns null for documents."
+                    ]
+                }
+            },
+            "parentElement": {
+                "comment": {
+                    "shortText": "Returns the parent element."
+                }
+            },
+            "parentNode": {
+                "comment": {
+                    "shortText": "Returns the parent."
+                }
+            },
+            "previousSibling": {
+                "comment": {
+                    "shortText": "Returns the previous sibling."
+                }
+            },
+            "children": {
+                "comment": {
+                    "shortText": "Returns the child elements."
+                }
+            },
+            "firstElementChild": {
+                "comment": {
+                    "shortText": "Returns the first child that is an element, and null otherwise."
+                }
+            },
+            "lastElementChild": {
+                "comment": {
+                    "shortText": "Returns the last child that is an element, and null otherwise."
+                }
+            },
+            "nextElementSibling": {
+                "comment": {
+                    "shortText": [
+                        "Returns the first following sibling that",
+                        "is an element, and null otherwise."
+                    ]
+                }
+            },
+            "previousElementSibling": {
+                "comment": {
+                    "shortText": [
+                        "Returns the first preceding sibling that",
+                        "is an element, and null otherwise."
+                    ]
+                }
+            },
+            "onabort": {
+                "comment": {
+                    "shortText": "Fires when the user aborts the download."
+                }
+            },
+            "onblur": {
+                "comment": {
+                    "shortText": "Fires when the object loses the input focus."
+                }
+            },
+            "oncanplay": {
+                "comment": {
+                    "shortText": "Occurs when playback is possible, but would require further buffering."
+                }
+            },
+            "onchange": {
+                "comment": {
+                    "shortText": "Fires when the contents of the object or selection have changed."
+                }
+            },
+            "onclick": {
+                "comment": {
+                    "shortText": "Fires when the user clicks the left mouse button on the object"
+                }
+            },
+            "oncontextmenu": {
+                "comment": {
+                    "shortText": "Fires when the user clicks the right mouse button in the client area, opening the context menu."
+                }
+            },
+            "ondblclick": {
+                "comment": {
+                    "shortText": "Fires when the user double-clicks the object."
+                }
+            },
+            "ondrag": {
+                "comment": {
+                    "shortText": "Fires on the source object continuously during a drag operation."
+                }
+            },
+            "ondragend": {
+                "comment": {
+                    "shortText": "Fires on the source object when the user releases the mouse at the close of a drag operation."
+                }
+            },
+            "ondragenter": {
+                "comment": {
+                    "shortText": "Fires on the target element when the user drags the object to a valid drop target."
+                }
+            },
+            "ondragleave": {
+                "comment": {
+                    "shortText": "Fires on the target object when the user moves the mouse out of a valid drop target during a drag operation."
+                }
+            },
+            "ondragover": {
+                "comment": {
+                    "shortText": "Fires on the target element continuously while the user drags the object over a valid drop target."
+                }
+            },
+            "ondragstart": {
+                "comment": {
+                    "shortText": "Fires on the source object when the user starts to drag a text selection or selected object."
+                }
+            },
+            "ondurationchange": {
+                "comment": {
+                    "shortText": "Occurs when the duration attribute is updated."
+                }
+            },
+            "onemptied": {
+                "comment": {
+                    "shortText": "Occurs when the media element is reset to its initial state."
+                }
+            },
+            "onended": {
+                "comment": {
+                    "shortText": "Occurs when the end of playback is reached."
+                }
+            },
+            "onerror": {
+                "comment": {
+                    "shortText": "Fires when an error occurs during object loading."
+                }
+            },
+            "onfocus": {
+                "comment": {
+                    "shortText": "Fires when the object receives focus."
+                }
+            },
+            "onkeydown": {
+                "comment": {
+                    "shortText": "Fires when the user presses a key."
+                }
+            },
+            "onkeypress": {
+                "comment": {
+                    "shortText": "Fires when the user presses an alphanumeric key."
+                }
+            },
+            "onkeyup": {
+                "comment": {
+                    "shortText": "Fires when the user releases a key."
+                }
+            },
+            "onload": {
+                "comment": {
+                    "shortText": "Fires immediately after the browser loads the object."
+                }
+            },
+            "onloadeddata": {
+                "comment": {
+                    "shortText": "Occurs when media data is loaded at the current playback position."
+                }
+            },
+            "onloadedmetadata": {
+                "comment": {
+                    "shortText": "Occurs when the duration and dimensions of the media have been determined."
+                }
+            },
+            "onloadstart": {
+                "comment": {
+                    "shortText": "Occurs when Internet Explorer begins looking for media data."
+                }
+            },
+            "onmousedown": {
+                "comment": {
+                    "shortText": "Fires when the user clicks the object with either mouse button."
+                }
+            },
+            "onmousemove": {
+                "comment": {
+                    "shortText": "Fires when the user moves the mouse over the object."
+                }
+            },
+            "onmouseout": {
+                "comment": {
+                    "shortText": "Fires when the user moves the mouse pointer outside the boundaries of the object."
+                }
+            },
+            "onmouseover": {
+                "comment": {
+                    "shortText": "Fires when the user moves the mouse pointer into the object."
+                }
+            },
+            "onmouseup": {
+                "comment": {
+                    "shortText": "Fires when the user releases a mouse button while the mouse is over the object."
+                }
+            },
+            "onpause": {
+                "comment": {
+                    "shortText": "Occurs when playback is paused."
+                }
+            },
+            "onplay": {
+                "comment": {
+                    "shortText": "Occurs when the play method is requested."
+                }
+            },
+            "onplaying": {
+                "comment": {
+                    "shortText": "Occurs when the audio or video has started playing."
+                }
+            },
+            "onprogress": {
+                "comment": {
+                    "shortText": "Occurs to indicate progress while downloading media data."
+                }
+            },
+            "onratechange": {
+                "comment": {
+                    "shortText": "Occurs when the playback rate is increased or decreased."
+                }
+            },
+            "onreset": {
+                "comment": {
+                    "shortText": "Fires when the user resets a form."
+                }
+            },
+            "onscroll": {
+                "comment": {
+                    "shortText": "Fires when the user repositions the scroll box in the scroll bar on the object."
+                }
+            },
+            "onseeked": {
+                "comment": {
+                    "shortText": "Occurs when the seek operation ends."
+                }
+            },
+            "onseeking": {
+                "comment": {
+                    "shortText": "Occurs when the current playback position is moved."
+                }
+            },
+            "onselect": {
+                "comment": {
+                    "shortText": "Fires when the current selection changes."
+                }
+            },
+            "onstalled": {
+                "comment": {
+                    "shortText": "Occurs when the download has stopped."
+                }
+            },
+            "onsuspend": {
+                "comment": {
+                    "shortText": "Occurs if the load operation has been intentionally halted."
+                }
+            },
+            "ontimeupdate": {
+                "comment": {
+                    "shortText": "Occurs to indicate the current playback position."
+                }
+            },
+            "onvolumechange": {
+                "comment": {
+                    "shortText": "Occurs when the volume is changed, or playback is muted or unmuted."
+                }
+            },
+            "onwaiting": {
+                "comment": {
+                    "shortText": "Occurs when playback stops because the next frame of a video resource is not available."
+                }
+            }
+        },
+        "methods": {
+            "createProperty": {
+                "comment": {
+                    "shortText": [
+                        "Creates a property accessor on the element prototype if one does not exist.",
+                        "The property setter calls the property's `hasChanged` property option",
+                        "or uses a strict identity check to determine whether or not to request",
+                        "an update."
+                    ]
+                }
+            },
+            "_finalize": {
+                "comment": {
+                    "shortText": [
+                        "Creates property accessors for registered properties and ensures",
+                        "any superclasses are also finalized."
+                    ]
+                }
+            },
+            "_attributeNameForProperty": {
+                "comment": {
+                    "shortText": "Returns the property name for the given attribute `name`."
+                }
+            },
+            "_valueHasChanged": {
+                "comment": {
+                    "shortText": [
+                        "Returns true if a property should request an update.",
+                        "Called when a property value is set and uses the `hasChanged`",
+                        "option for the property if present or a strict identity check."
+                    ]
+                }
+            },
+            "_propertyValueFromAttribute": {
+                "comment": {
+                    "shortText": [
+                        "Returns the property value for the given attribute value.",
+                        "Called via the `attributeChangedCallback` and uses the property's",
+                        "`converter` or `converter.fromAttribute` property option."
+                    ]
+                }
+            },
+            "_propertyValueToAttribute": {
+                "comment": {
+                    "shortText": [
+                        "Returns the attribute value for the given property value. If this",
+                        "returns undefined, the property will *not* be reflected to an attribute.",
+                        "If this returns null, the attribute will be removed, otherwise the",
+                        "attribute will be set to the value.",
+                        "This uses the property's `reflect` and `type.toAttribute` property options."
+                    ]
+                }
+            },
+            "initialize": {
+                "comment": {
+                    "shortText": [
+                        "Performs element initialization. By default this calls `createRenderRoot`",
+                        "to create the element `renderRoot` node and captures any pre-set values for",
+                        "registered properties."
+                    ]
+                }
+            },
+            "_saveInstanceProperties": {
+                "comment": {
+                    "shortText": [
+                        "Fixes any properties set on the instance before upgrade time.",
+                        "Otherwise these would shadow the accessor and break these properties.",
+                        "The properties are stored in a Map which is played back after the",
+                        "constructor runs. Note, on very old versions of Safari (<=9) or Chrome",
+                        "(<=41), properties created for native platform properties like (`id` or",
+                        "`name`) may not have default values set in the element constructor. On",
+                        "these browsers native properties appear on instances and therefore their",
+                        "default value will overwrite any element default (e.g. if the element sets",
+                        "this.id = 'id' in the constructor, the 'id' will become '' since this is",
+                        "the native platform default)."
+                    ]
+                }
+            },
+            "_applyInstanceProperties": {
+                "comment": {
+                    "shortText": "Applies previously saved instance properties."
+                }
+            },
+            "createRenderRoot": {
+                "comment": {
+                    "shortText": [
+                        "Returns the node into which the element should render and by default",
+                        "creates and returns an open shadowRoot. Implement to customize where the",
+                        "element's DOM is rendered. For example, to render into the element's",
+                        "childNodes, return `this`."
+                    ]
+                }
+            },
+            "connectedCallback": {
+                "comment": {
+                    "shortText": "Uses ShadyCSS to keep element DOM updated."
+                }
+            },
+            "disconnectedCallback": {
+                "comment": {
+                    "shortText": [
+                        "Allows for `super.disconnectedCallback()` in extensions while",
+                        "reserving the possibility of making non-breaking feature additions",
+                        "when disconnecting at some point in the future."
+                    ]
+                }
+            },
+            "attributeChangedCallback": {
+                "comment": {
+                    "shortText": "Synchronizes property values when attributes change."
+                }
+            },
+            "requestUpdate": {
+                "comment": {
+                    "parameters": {
+                        "name": {
+                            "comment": {
+                                "text": "(optional) name of requesting property"
+                            }
+                        },
+                        "oldValue": {
+                            "comment": {
+                                "text": "(optional) old value of requesting property"
+                            }
+                        }
+                    },
+                    "shortText": [
+                        "Requests an update which is processed asynchronously. This should",
+                        "be called when an element should update based on some state not triggered",
+                        "by setting a property. In this case, pass no arguments. It should also be",
+                        "called when manually implementing a property setter. In this case, pass the",
+                        "property `name` and `oldValue` to ensure that any configured property",
+                        "options are honored. Returns the `updateComplete` Promise which is resolved",
+                        "when the update completes."
+                    ]
+                }
+            },
+            "_enqueueUpdate": {
+                "comment": {
+                    "shortText": "Sets up the element to asynchronously update."
+                }
+            },
+            "performUpdate": {
+                "comment": {
+                    "text": [
+                        "You can override this method to change the timing of updates. For instance,",
+                        "to schedule updates to occur just before the next frame:",
+                        "```",
+                        "protected async performUpdate(): Promise<unknown> {",
+                        "  await new Promise((resolve) => requestAnimationFrame(() => resolve()));",
+                        "  super.performUpdate();",
+                        "}",
+                        "```"
+                    ],
+                    "shortText": "Performs an element update."
+                }
+            },
+            "shouldUpdate": {
+                "comment": {
+                    "text": "* @param _changedProperties Map of changed properties with old values",
+                    "shortText": [
+                        "Controls whether or not `update` should be called when the element requests",
+                        "an update. By default, this method always returns `true`, but this can be",
+                        "customized to control when to update."
+                    ]
+                }
+            },
+            "update": {
+                "comment": {
+                    "text": "* @param _changedProperties Map of changed properties with old values",
+                    "shortText": [
+                        "Updates the element. This method reflects property values to attributes.",
+                        "It can be overridden to render and keep updated DOM in the element's",
+                        "`renderRoot`. Setting properties inside this method will *not* trigger",
+                        "another update."
+                    ]
+                }
+            },
+            "updated": {
+                "comment": {
+                    "text": [
+                        "Setting properties inside this method will trigger the element to update",
+                        "again after this update cycle completes.",
+                        "* @param _changedProperties Map of changed properties with old values"
+                    ],
+                    "shortText": [
+                        "Invoked whenever the element is updated. Implement to perform",
+                        "post-updating tasks via DOM APIs, for example, focusing an element."
+                    ]
+                }
+            },
+            "firstUpdated": {
+                "comment": {
+                    "text": [
+                        "Setting properties inside this method will trigger the element to update",
+                        "again after this update cycle completes.",
+                        "* @param _changedProperties Map of changed properties with old values"
+                    ],
+                    "shortText": [
+                        "Invoked when the element is first updated. Implement to perform one time",
+                        "work on the element after update."
+                    ]
+                }
+            },
+            "attachShadow": {
+                "comment": {
+                    "shortText": "Creates a shadow root for element and returns it."
+                }
+            },
+            "closest": {
+                "comment": {
+                    "shortText": "Returns the first (starting at element) inclusive ancestor that matches selectors, and null otherwise."
+                }
+            },
+            "getAttribute": {
+                "comment": {
+                    "shortText": "Returns element's first attribute whose qualified name is qualifiedName, and null if there is no such attribute otherwise."
+                }
+            },
+            "getAttributeNS": {
+                "comment": {
+                    "shortText": [
+                        "Returns element's attribute whose namespace is namespace and local name is localName, and null if there is",
+                        "no such attribute otherwise."
+                    ]
+                }
+            },
+            "getAttributeNames": {
+                "comment": {
+                    "shortText": [
+                        "Returns the qualified names of all element's attributes.",
+                        "Can contain duplicates."
+                    ]
+                }
+            },
+            "hasAttribute": {
+                "comment": {
+                    "shortText": "Returns true if element has an attribute whose qualified name is qualifiedName, and false otherwise."
+                }
+            },
+            "hasAttributeNS": {
+                "comment": {
+                    "shortText": "Returns true if element has an attribute whose namespace is namespace and local name is localName."
+                }
+            },
+            "hasAttributes": {
+                "comment": {
+                    "shortText": "Returns true if element has attributes, and false otherwise."
+                }
+            },
+            "matches": {
+                "comment": {
+                    "shortText": "Returns true if matching selectors against element's root yields element, and false otherwise."
+                }
+            },
+            "removeAttribute": {
+                "comment": {
+                    "shortText": "Removes element's first attribute whose qualified name is qualifiedName."
+                }
+            },
+            "removeAttributeNS": {
+                "comment": {
+                    "shortText": "Removes element's attribute whose namespace is namespace and local name is localName."
+                }
+            },
+            "requestFullscreen": {
+                "comment": {
+                    "shortText": "Displays element fullscreen and resolves promise when done."
+                }
+            },
+            "setAttribute": {
+                "comment": {
+                    "shortText": "Sets the value of element's first attribute whose qualified name is qualifiedName to value."
+                }
+            },
+            "setAttributeNS": {
+                "comment": {
+                    "shortText": "Sets the value of element's attribute whose namespace is namespace and local name is localName to value."
+                }
+            },
+            "toggleAttribute": {
+                "comment": {
+                    "shortText": [
+                        "If force is not given, \"toggles\" qualifiedName, removing it if it is",
+                        "present and adding it if it is not present. If force is true, adds qualifiedName. If force is false, removes qualifiedName.",
+                        "Returns true if qualifiedName is now present, and false otherwise."
+                    ]
+                }
+            },
+            "cloneNode": {
+                "comment": {
+                    "shortText": "Returns a copy of node. If deep is true, the copy also includes the node's descendants."
+                }
+            },
+            "contains": {
+                "comment": {
+                    "shortText": "Returns true if other is an inclusive descendant of node, and false otherwise."
+                }
+            },
+            "getRootNode": {
+                "comment": {
+                    "shortText": "Returns node's shadow-including root."
+                }
+            },
+            "hasChildNodes": {
+                "comment": {
+                    "shortText": "Returns whether node has children."
+                }
+            },
+            "isEqualNode": {
+                "comment": {
+                    "shortText": "Returns whether node and otherNode have the same properties."
+                }
+            },
+            "normalize": {
+                "comment": {
+                    "shortText": "Removes empty exclusive Text nodes and concatenates the data of remaining contiguous exclusive Text nodes into the first of their nodes."
+                }
+            },
+            "dispatchEvent": {
+                "comment": {
+                    "shortText": [
+                        "Dispatches a synthetic event event to target and returns true",
+                        "if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise."
+                    ]
+                }
+            },
+            "append": {
+                "comment": {
+                    "shortText": [
+                        "Inserts nodes after the last child of node, while replacing",
+                        "strings in nodes with equivalent Text nodes.",
+                        "Throws a \"HierarchyRequestError\" DOMException if the constraints of",
+                        "the node tree are violated."
+                    ]
+                }
+            },
+            "prepend": {
+                "comment": {
+                    "shortText": [
+                        "Inserts nodes before the first child of node, while",
+                        "replacing strings in nodes with equivalent Text nodes.",
+                        "Throws a \"HierarchyRequestError\" DOMException if the constraints of",
+                        "the node tree are violated."
+                    ]
+                }
+            },
+            "querySelector": {
+                "comment": {
+                    "shortText": [
+                        "Returns the first element that is a descendant of node that",
+                        "matches selectors."
+                    ]
+                }
+            },
+            "querySelectorAll": {
+                "comment": {
+                    "shortText": [
+                        "Returns all element descendants of node that",
+                        "match selectors."
+                    ]
+                }
+            },
+            "after": {
+                "comment": {
+                    "shortText": [
+                        "Inserts nodes just after node, while replacing strings in nodes with equivalent Text nodes.",
+                        "Throws a \"HierarchyRequestError\" DOMException if the constraints of",
+                        "the node tree are violated."
+                    ]
+                }
+            },
+            "before": {
+                "comment": {
+                    "shortText": [
+                        "Inserts nodes just before node, while replacing strings in nodes with equivalent Text nodes.",
+                        "Throws a \"HierarchyRequestError\" DOMException if the constraints of",
+                        "the node tree are violated."
+                    ]
+                }
+            },
+            "remove": {
+                "comment": {
+                    "shortText": "Removes node."
+                }
+            },
+            "replaceWith": {
+                "comment": {
+                    "shortText": [
+                        "Replaces node with nodes, while replacing strings in nodes with equivalent Text nodes.",
+                        "Throws a \"HierarchyRequestError\" DOMException if the constraints of",
+                        "the node tree are violated."
+                    ]
+                }
+            }
+        },
+        "accessors": {
+            "observedAttributes": {
+                "getter": {
+                    "comment": {
+                        "shortText": "Returns a list of attributes corresponding to the registered properties."
+                    }
+                }
+            },
+            "updateComplete": {
+                "getter": {
+                    "comment": {
+                        "shortText": [
+                            "Returns a Promise that resolves when the element has completed updating.",
+                            "The Promise value is a boolean that is `true` if the element completed the",
+                            "update without triggering another update. The Promise result is `false` if",
+                            "a property was set inside `updated()`. This getter can be implemented to",
+                            "await additional state. For example, it is sometimes useful to await a",
+                            "rendered element before fulfilling this Promise. To do this, first await",
+                            "`super.updateComplete` then any subsequent state."
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

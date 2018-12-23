@@ -1,5 +1,5 @@
 > ## 🛠 Status: In Development
-> LitElement is currently in development. It's on the fast track to a 1.0 release, so we encourage you to use it and give us your feedback, but there are things that haven't been finalized yet and you can expect some changes.
+> LitElementは現在開発中です。 1.0リリース向けて最終調整中で、実際に使ってみてもらい、フィードバックをもらえる嬉しいですが、最終的に変更されるものがあります。
 
 # LitElement API Documentation
 

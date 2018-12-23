@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;lib/decorators&quot; | @polymer/lit-element</title>
+	<title>&quot;lib/decorators&quot; | </title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -37,7 +37,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@polymer/lit-element</a>
+					<a href="../index.html" class="title"></a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -86,7 +86,7 @@
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_lib_decorators_.html#constructor" class="tsd-kind-icon">Constructor</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_lib_decorators_.html#constructor" class="tsd-kind-icon">Constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -109,13 +109,13 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>Constructor</h3>
 					<div class="tsd-signature tsd-kind-icon">Constructor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Polymer/lit-element/blob/38d9e16/src/lib/decorators.ts#L20">lib/decorators.ts:20</a></li>
+							<li>Defined in lib/decorators.ts:7</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -129,11 +129,11 @@
 				<h2>Variables</h2>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
 					<a name="query" class="tsd-anchor"></a>
-					<h3>query</h3>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> query</h3>
 					<div class="tsd-signature tsd-kind-icon">query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> =&nbsp;_query((target: NodeSelector, selector: string) &#x3D;&gt;target.querySelector(selector))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Polymer/lit-element/blob/38d9e16/src/lib/decorators.ts#L67">lib/decorators.ts:67</a></li>
+							<li>Defined in lib/decorators.ts:54</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -145,11 +145,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
 					<a name="queryall" class="tsd-anchor"></a>
-					<h3>query<wbr>All</h3>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> query<wbr>All</h3>
 					<div class="tsd-signature tsd-kind-icon">query<wbr>All<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> =&nbsp;_query((target: NodeSelector, selector: string) &#x3D;&gt;target.querySelectorAll(selector))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Polymer/lit-element/blob/38d9e16/src/lib/decorators.ts#L74">lib/decorators.ts:74</a></li>
+							<li>Defined in lib/decorators.ts:61</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -164,7 +164,7 @@
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="customelement" class="tsd-anchor"></a>
-					<h3>custom<wbr>Element</h3>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> custom<wbr>Element</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
 						<li class="tsd-signature tsd-kind-icon">custom<wbr>Element<span class="tsd-signature-symbol">(</span>tagName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
 					</ul>
@@ -172,7 +172,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Polymer/lit-element/blob/38d9e16/src/lib/decorators.ts#L43">lib/decorators.ts:43</a></li>
+									<li>Defined in lib/decorators.ts:30</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -186,19 +186,17 @@
 									<h5>tagName: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>the name of the custom element to define</p>
-											<p>In TypeScript, the <code>tagName</code> passed to <code>customElement</code> should be a key of the
+											<p>the name of the custom element to define
+												In TypeScript, the <code>tagName</code> passed to <code>customElement</code> should be a key of the
 												<code>HTMLElementTagNameMap</code> interface. To add your element to the interface,
-											declare the interface in this module:</p>
-											<pre><code><span class="hljs-meta">@customElement</span>(<span class="hljs-symbol">'my</span>-element')
-export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyElement</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">LitElement</span> </span>{}
-
-declare global {
-  interface <span class="hljs-type">HTMLElementTagNameMap</span> {
-    <span class="hljs-symbol">'my</span>-element': <span class="hljs-type">MyElement</span>;
-  }
-}
-</code></pre>
+												declare the interface in this module:
+												@customElement(&#39;my-element&#39;)
+												export class MyElement extends LitElement {}
+												declare global {
+												interface HTMLElementTagNameMap {
+												&#39;my-element&#39;: MyElement;
+												}
+											}</p>
 										</div>
 									</div>
 								</li>
@@ -209,7 +207,7 @@ declare global {
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="eventoptions" class="tsd-anchor"></a>
-					<h3>event<wbr>Options</h3>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> event<wbr>Options</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
 						<li class="tsd-signature tsd-kind-icon">event<wbr>Options<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AddEventListenerOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
 					</ul>
@@ -217,7 +215,7 @@ declare global {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Polymer/lit-element/blob/38d9e16/src/lib/decorators.ts#L119">lib/decorators.ts:119</a></li>
+									<li>Defined in lib/decorators.ts:106</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -233,8 +231,8 @@ declare global {
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>An object that specifis event listener options as accepted by
-											<code>EventTarget#addEventListener</code> and <code>EventTarget#removeEventListener</code>.</p>
-											<p>Current browsers support the <code>capture</code>, <code>passive</code>, and <code>once</code> options. See:
+												<code>EventTarget#addEventListener</code> and <code>EventTarget#removeEventListener</code>.
+												Current browsers support the <code>capture</code>, <code>passive</code>, and <code>once</code> options. See:
 											<a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters">https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters</a></p>
 										</div>
 									</div>
@@ -246,7 +244,7 @@ declare global {
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
 					<a name="property" class="tsd-anchor"></a>
-					<h3>property</h3>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> property</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
 						<li class="tsd-signature tsd-kind-icon">property<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_lib_updating_element_.propertydeclaration.html" class="tsd-signature-type">PropertyDeclaration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
 					</ul>
@@ -254,7 +252,7 @@ declare global {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Polymer/lit-element/blob/38d9e16/src/lib/decorators.ts#L58">lib/decorators.ts:58</a></li>
+									<li>Defined in lib/decorators.ts:45</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -267,7 +265,7 @@ declare global {
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_lib_updating_element_.propertydeclaration.html" class="tsd-signature-type">PropertyDeclaration</a></h5>
+									<h5><span class="tsd-flag ts-flagオプション">オプション</span> options: <a href="../interfaces/_lib_updating_element_.propertydeclaration.html" class="tsd-signature-type">PropertyDeclaration</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -282,6 +280,9 @@ declare global {
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class="label tsd-is-external">
+						<span>Internals</span>
+					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_demo_ts_element_.html">"demo/ts-<wbr>element"</a>
 					</li>
@@ -292,13 +293,25 @@ declare global {
 						<a href="_lib_updating_element_.html">"lib/updating-<wbr>element"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="_test_lit_element_styling_test_.html">"test/lit-<wbr>element_<wbr>styling_<wbr>test"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_test_lit_element_test_.html">"test/lit-<wbr>element_<wbr>test"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_test_test_helpers_.html">"test/test-<wbr>helpers"</a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Externals</span>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="_lit_element_.html">"lit-<wbr>element"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_lib_decorators_.html#constructor" class="tsd-kind-icon">Constructor</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
@@ -386,5 +399,14 @@ declare global {
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
 <script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-131004707-1', '');
+        ga('send', 'pageview');
+    </script>
 </body>
 </html>
