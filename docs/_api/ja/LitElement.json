@@ -1,0 +1,55 @@
+{
+    "LitElement": {
+        "comment": {},
+        "properties": {
+            "render": {
+                "comment": {
+                    "parameters": {
+                        "Template": {
+                            "comment": {
+                                "text": "描画するテンプレート"
+                            }
+                        },
+                        "Node": {
+                            "comment": {
+                                "text": "描画先のノード"
+                            }
+                        },
+                        "Element": {
+                            "comment": {
+                                "text": "要素名"
+                            }
+                        }
+                    },
+                    "shortText": [
+                        "TemplateResultを要素のDOMに描画するために使用されるレンダリングメソッド。"
+                    ]
+                }
+            }
+        },
+        "methods": {
+            "update": {
+                "comment": {
+                    "parameters": {
+                        "changedProperties": {
+                            "comment": {
+                                "text": "変更されたプロパティと古い値のマップ"
+                            }
+                        }
+                    },
+                    "shortText": [
+                        "要素を更新します。このメソッドはプロパティ値を属性に反映し、 `render`を呼び出してlit-html経由でDOMをレンダリングします。このメソッド内でプロパティを設定しても、別の更新は*引き起こされません*"
+                    ]
+                }
+            },
+            "render": {
+                "comment": {
+                    "shortText": [
+                        "レンダリングタスクを実行するために各更新で呼び出されます。このメソッドはlit-htmlのTemplateResultを返さなければなりません。このメソッド内でプロパティを設定しても、要素の更新はトリガー*されません*。"
+                    ]
+                }
+            }
+        },
+        "accessors": {}
+    }
+}

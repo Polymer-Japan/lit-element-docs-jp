@@ -1,0 +1,63 @@
+{
+    "eventOptions": {
+        "comment": {
+            "parameters": {
+                "options": {
+                    "comment": {
+                        "shortText": [
+                            "An object that specifis event listener options as accepted by",
+                            "`EventTarget#addEventListener` and `EventTarget#removeEventListener`.",
+                            "Current browsers support the `capture`, `passive`, and `once` options. See:",
+                            "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters"
+                        ]
+                    }
+                }
+            },
+            "shortText": [
+                "Adds event listener options to a method used as an event listener in a",
+                "lit-html template."
+            ]
+        }
+    },
+    "property": {
+        "comment": {
+            "shortText": [
+                "A property decorator which creates a LitElement property which reflects a",
+                "corresponding attribute value. A `PropertyDeclaration` may optionally be",
+                "supplied to configure property features."
+            ]
+        }
+    },
+    "customElement": {
+        "comment": {
+            "parameters": {
+                "tagName": {
+                    "comment": {
+                        "shortText": [
+                            "the name of the custom element to define",
+                            "In TypeScript, the `tagName` passed to `customElement` should be a key of the",
+                            "`HTMLElementTagNameMap` interface. To add your element to the interface,",
+                            "declare the interface in this module:",
+                            "    @customElement('my-element')",
+                            "    export class MyElement extends LitElement {}",
+                            "    declare global {",
+                            "      interface HTMLElementTagNameMap {",
+                            "        'my-element': MyElement;",
+                            "      }",
+                            "    }"
+                        ]
+                    }
+                }
+            },
+            "shortText": "Class decorator factory that defines the decorated class as a custom element."
+        }
+    },
+    "notEqual": {
+        "comment": {
+            "shortText": [
+                "Change function that returns true if `value` is different from `oldValue`.",
+                "This method is used as the default for a property's `hasChanged` function."
+            ]
+        }
+    }
+}

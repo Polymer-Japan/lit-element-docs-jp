@@ -1,0 +1,156 @@
+{
+    "UpdatingElement": {
+        "comment": {
+            "shortText": [
+                "要素のプロパティと属性を管理する基本要素クラス。",
+                "プロパティが変わると、 `update`メソッドは非同期に呼び出されます。必要に応じて更新をレンダリングするために、このメソッドはサブクラスによって提供されるべきです。"
+            ]
+        },
+        "properties": {
+            "renderRoot": {
+                "comment": {
+                    "shortText": [
+                        "要素DOMを描画するノードもしくはShadowRoot。既定では開いているshadowRoot。"
+                    ]
+                }
+            }
+        },
+        "methods": {
+            "createProperty": {
+                "comment": {
+                    "shortText": [
+                        "要素プロトタイプにプロパティアクセサが存在しない場合は作成します。",
+                        "プロパティセッターはプロパティの `hasChanged`プロパティオプションを呼び出すか、厳密な身元確認を使って更新を要求するかどうかを決定します。"
+                    ]
+                }
+            },
+            "initialize": {
+                "comment": {
+                    "shortText": [
+                        "要素の初期化を行います。デフォルトでは、これは `createRenderRoot`を呼び出して要素`renderRoot`ノードを作成し、登録されたプロパティのために事前設定された値をキャプチャします。"
+                    ]
+                }
+            },
+            "createRenderRoot": {
+                "comment": {
+                    "shortText": [
+                        "要素が描画されるノードを返します。デフォルトでは、開いているshadowRootを作成して返します。要素のDOMがレンダリングされる場所をカスタマイズするために実装します。たとえば、要素のchildNodeにレンダリングするには、thisを返します。"
+                    ]
+                }
+            },
+            "connectedCallback": {
+                "comment": {
+                    "shortText": "ShadyCSSを使用して要素DOMを常に最新の状態に保ちます。"
+                }
+            },
+            "disconnectedCallback": {
+                "comment": {
+                    "shortText": [
+                        "将来的にどこかの時点で切断されたときに中断のない機能追加を行う可能性を確保しながら、拡張機能で `super.disconnectedCallback()`を可能にします。"
+                    ]
+                }
+            },
+            "attributeChangedCallback": {
+                "comment": {
+                    "shortText": "属性が変更されたときにプロパティ値を同期します。"
+                }
+            },
+            "requestUpdate": {
+                "comment": {
+                    "parameters": {
+                        "name": {
+                            "comment": {
+                                "text": "(optional) 要求プロパティの名前"
+                            }
+                        },
+                        "oldValue": {
+                            "comment": {
+                                "text": "(optional) 要求プロパティの古い値"
+                            }
+                        }
+                    },
+                    "shortText": [
+                        "非同期的に処理される更新を要求します。プロパティを設定することによって引き起こされない何らかの状態に基づいて要素が更新されるべきであるとき、これは呼ばれるべきです。この場合、引数を渡さないでください。プロパティセッターを手動で実装するときにも呼び出す必要があります。この場合、設定されたプロパティオプションが確実に遵守されるように、プロパティ `name`と` oldValue`を渡してください。更新が完了したときに解決される `updateComplete` Promiseを返します。"
+                    ]
+                }
+            },
+            "performUpdate": {
+                "comment": {
+                    "text": [
+                        "このメソッドをオーバーライドして更新のタイミングを変更することができます。例えば、",
+                        "次のフレームの直前に更新が行われるようにスケジュールには:",
+                        "```",
+                        "protected async performUpdate(): Promise<unknown> {",
+                        "  await new Promise((resolve) => requestAnimationFrame(() => resolve()));",
+                        "  super.performUpdate();",
+                        "}",
+                        "```"
+                    ],
+                    "shortText": "要素の更新を実行します。"
+                }
+            },
+            "shouldUpdate": {
+                "comment": {
+                    "parameters": {
+                        "changedProperties": {
+                            "comment": {
+                                "text": "変更されたプロパティと古い値のマップ"
+                            }
+                        }
+                    },
+                    "shortText": [
+                        "要素が更新を要求したときに `update`を呼び出すべきかどうかを制御します。デフォルトでは、このメソッドは常に `true`を返しますが、これはいつ更新するかを制御するためにカスタマイズできます。"
+                    ]
+                }
+            },
+            "update": {
+                "comment": {
+                    "parameters": {
+                        "changedProperties": {
+                            "comment": {
+                                "text": "変更されたプロパティと古い値のマップ"
+                            }
+                        }
+                    },
+                    "shortText": [
+                        "要素を更新します。このメソッドは、プロパティ値を属性に反映します。更新されたDOMを要素の `renderRoot`にレンダリングして保持するためにオーバーライドすることができます。このメソッド内でプロパティを設定しても、別の更新は*引き起こされません*。"
+                    ]
+                }
+            },
+            "updated": {
+                "comment": {
+                    "parameters": {
+                        "changedProperties": {
+                            "comment": {
+                                "text": "変更されたプロパティと古い値のマップ"
+                            }
+                        }
+                    },
+                    "text": [
+                        "このメソッド内でプロパティを設定すると、この更新サイクルが完了した後で要素が再度更新されます。"
+                    ],
+                    "shortText": [
+                        "要素が更新されるたびに呼び出されます。たとえば要素に焦点を合わせるなど、DOM APIを介して更新後のタスクを実行するように実装します。"
+                    ]
+                }
+            },
+            "firstUpdated": {
+                "comment": {
+                    "parameters": {
+                        "changedProperties": {
+                            "comment": {
+                                "text": "変更されたプロパティと古い値のマップ"
+                            }
+                        }
+                    },
+                    "text": [
+                        "このメソッド内でプロパティを設定すると、この更新サイクルが完了した後で要素が再度更新されます。"
+                    ],
+                    "shortText": [
+                        "要素が最初に更新されたときに呼び出されます。更新後に要素に対して一度だけ作業を実行するように実装します。"
+                    ]
+                }
+            }
+        }
+    }
+}

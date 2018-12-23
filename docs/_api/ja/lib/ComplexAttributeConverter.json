@@ -1,0 +1,24 @@
+{
+    "ComplexAttributeConverter": {
+        "comment": {
+            "shortText": "プロパティ値と属性値の間の変換を行います。"
+        },
+        "properties": {},
+        "methods": {
+            "fromAttribute": {
+                "comment": {
+                    "shortText": [
+                        "属性値をプロパティ値に変換するために呼び出される関数。"
+                    ]
+                }
+            },
+            "toAttribute": {
+                "comment": {
+                    "shortText": [
+                        "プロパティ値を属性値に変換するために呼び出される関数。"
+                    ]
+                }
+            }
+        }
+    }
+}

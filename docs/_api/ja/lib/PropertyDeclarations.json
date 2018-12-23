@@ -1,0 +1,11 @@
+{
+    "PropertyDeclarations": {
+        "comment": {
+            "shortText": [
+                "プロパティのPropertyDeclarationオプションへのマップ。各プロパティに対してアクセサが作成され、プロパティはPropertyDeclarationオプションに従って処理されます。"
+            ]
+        },
+        "properties": {},
+        "methods": {}
+    }
+}

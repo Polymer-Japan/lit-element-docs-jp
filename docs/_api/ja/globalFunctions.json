@@ -1,0 +1,84 @@
+{
+    "eventOptions": {
+        "comment": {
+            "parameters": {
+                "options": {
+                    "comment": {
+                        "shortText": [
+                            "`EventTarget＃addEventListener`と` EventTarget＃removeEventListener`によって受け入れられるようにイベントリスナオプションを指定するオブジェクト。 現在のブラウザは `capture`、` passive`、そして `once`オプションをサポートしています。 参照: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters"
+                        ]
+                    }
+                }
+            },
+            "shortText": [
+                "lit-htmlテンプレートのイベントリスナーとして使用されるメソッドにイベントリスナーオプションを追加します。"
+            ]
+        }
+    },
+    "query": {
+        "comment": {
+            "shortText": [
+                "クラスプロパティを、要素のrenderRootに対してquerySelectorを実行するgetterに変換するプロパティデコレータ。"
+            ]
+        }
+    },
+    "queryAll": {
+        "comment": {
+            "shortText": [
+                "クラスプロパティを、要素のrenderRootに対してquerySelectorAllを実行するゲッターに変換するプロパティデコレータ。"
+            ]
+        }
+    },
+    "property": {
+        "comment": {
+            "shortText": [
+                "対応する属性値を反映するLitElementプロパティを作成するプロパティデコレータ。プロパティの機能を設定するために `PropertyDeclaration`をオプションで提供することができます。"
+            ]
+        }
+    },
+    "customElement": {
+        "comment": {
+            "parameters": {
+                "tagName": {
+                    "comment": {
+                        "shortText": [
+                            "定義するカスタム要素の名前",
+                            "TypeScriptでは、 `customElement`に渡される`tagName`は `HTMLElementTagNameMap`インターフェースのキーとなるはずです。 要素をインターフェースに追加するには下記のようにインターフェースを宣言してください:",
+                            "```",
+                            "    @customElement('my-element')",
+                            "    export class MyElement extends LitElement {}",
+                            "    declare global {",
+                            "      interface HTMLElementTagNameMap {",
+                            "        'my-element': MyElement;",
+                            "      }",
+                            "    }",
+                            "```"
+                        ]
+                    }
+                }
+            },
+            "shortText": "カスタム要素を作るクラス用のデコレータ"
+        }
+    },
+    "notEqual": {
+        "comment": {
+            "shortText": [
+                "valueがoldValueと異なる場合にtrueを返す関数を変更する",
+                "このメソッドはプロパティの `hasChanged`関数のデフォルトとして使われます。"
+            ]
+        }
+    },
+    "observedAttributes": {
+        "comment": {
+            "shortText": "登録されているプロパティに対応する属性の一覧を返します。"
+        }
+    },
+    "updateComplete": {
+        "comment": {
+            "shortText": [
+                "要素が更新を完了したときに解決するPromiseを返します。",
+                "Promise値は、要素が別の更新を引き起こさずに更新を完了した場合にtrueとなるブール値です。プロパティがupdated()内に設定されている場合、Promiseの結果はfalseです。このゲッターは追加の状態を待つために実装することができます。例えば、この約束を満たす前にレンダリングされた要素を待つのが便利なことがあります。これを行うには、まず `super.updateComplete`を待ってからそれ以降の状態を待ちます。"
+            ]
+        }
+    }
+}
