@@ -26,3 +26,6 @@ lit-element.d.ts.map
 *.pyc
 
 .DS_Store
+
+# JP API
+/docs/api
