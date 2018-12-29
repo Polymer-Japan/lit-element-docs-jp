@@ -9,7 +9,7 @@ Try LitElement in live-editable code without installing anything. Build your fir
 This tutorial has live code samples that you can edit, like this:
 -->
 
-オンラインエディタで何もインストールすることなくLitElementを試してみてください！このチュートリアルでは、はじめてのWebコンポーネントを作り、ページに組込み、CSSでスタイルを追加します。
+オンラインエディタで何もインストールすることなくLitElementを試してみてください！このチュートリアルでは、はじめてのWebコンポーネントを作り、ページに組み入れ、CSSでスタイルを追加します。
 
 チュートリアルでは次のような、その場で編集できるライブエディタが含まれています:
 
