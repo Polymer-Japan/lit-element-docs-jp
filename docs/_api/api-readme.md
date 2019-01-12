@@ -43,10 +43,10 @@ Custom Element base class that supports declaring observable properties, reflect
 
 # LitElement API ドキュメント
 
-## @polymer/lit-element をインストール
+## lit-element をインストール
 
 ```
-npm install --save @polymer/lit-element
+npm install --save lit-element
 ```
 
 ## モジュール
@@ -58,7 +58,7 @@ lit-htmlのテンプレート機能を使用した [UpdatingElement](#lib-updati
 このモジュールから`LitElement`と`html`をインポートしてください:
 
 ```js
-import { LitElement, html } from '@polymer/lit-element';
+import { LitElement, html } from 'lit-element';
 
 class MyElement extends LitElement {
   render() {
@@ -72,7 +72,7 @@ customElements.define('my-element', MyElement);
 ### [lib/updating-element](/api/modules/_lib_updating_element_.html)
 
 ```js
-import { UpdatingElement } from '@polymer/lit-element/lib/updating-element.js';
+import { UpdatingElement } from 'lit-element/lib/updating-element.js';
 ```
 
 プロパティの監視、プロパティから属性への反映、および基本的な更新ライフサイクルを提供するカスタム要素のベースクラス。

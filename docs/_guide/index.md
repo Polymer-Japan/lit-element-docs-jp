@@ -53,13 +53,13 @@ LitElementはどんなフレームワークのどんなWebページでも動作�
 インストール:
 
 ```bash
-npm install --save @polymer/lit-element
+npm install --save lit-element
 ```
 
 インポート:
 
 ```js
-import { LitElement, html } from '@polymer/lit-element';
+import { LitElement, html } from 'lit-element';
 ```
 
 [LitElementのサンプルプロジェクト](https://github.com/PolymerLabs/start-lit-element)

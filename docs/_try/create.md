@@ -70,7 +70,7 @@ If you're stuck, click **Launch Code Editor** below to see the completed code fo
     `import`文を下記のコードで置き換えてください:
 
     ```js
-    import { LitElement, html } from '@polymer/lit-element';
+    import { LitElement, html } from 'lit-element';
     ```
 
 2.  **LitElementを継承した独自のHTML要素クラスをつくる**
