@@ -25,7 +25,7 @@ Click **Preview** at any time to see your code in action.
 
 </div>
 
-[Next: 1. Create a component](create)
+[Next: 1. Create a component](/try/create)
 -->
 **Preview**をクリックすると、いつでもコードの実行結果が表示されます。
 
@@ -36,4 +36,4 @@ Click **Preview** at any time to see your code in action.
 
 </div>
 
-[次へ: 1. コンポーネントをつくる](create)
+[次へ: 1. コンポーネントをつくる](/try/create)

@@ -3,7 +3,7 @@
  * 初期コード (5. イベント)
  */
 
-import { LitElement, html } from '@polymer/lit-element'; 
+import { LitElement, html } from 'lit-element';
 
 class MyElement extends LitElement {
   static get properties() {

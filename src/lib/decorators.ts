@@ -21,6 +21,24 @@ export type Constructor<T> = {
   new (...args: any[]): T
 };
 
+// From the TC39 Decorators proposal
+interface ClassDescriptor {
+  kind: 'class';
+  elements: ClassElement[];
+  finisher?: <T>(clazz: Constructor<T>) => undefined | Constructor<T>;
+}
+
+// From the TC39 Decorators proposal
+interface ClassElement {
+  kind: 'field'|'method';
+  key: PropertyKey;
+  placement: 'static'|'prototype'|'own';
+  initializer?: Function;
+  extras?: ClassElement[];
+  finisher?: <T>(clazz: Constructor<T>) => undefined | Constructor<T>;
+  descriptor?: PropertyDescriptor;
+}
+
 const legacyCustomElement =
     (tagName: string, clazz: Constructor<HTMLElement>) => {
       window.customElements.define(tagName, clazz);
@@ -148,6 +166,8 @@ const standardQuery = (descriptor: PropertyDescriptor, element: ClassElement) =>
  *
  * @param queryFn exectute a `selector` (ie, querySelector or querySelectorAll)
  * against `target`.
+ * @suppress {visibility} The descriptor accesses an internal field on the
+ * element.
  */
 function _query<T>(queryFn: (target: NodeSelector, selector: string) => T) {
   return (selector: string) => (protoOrDescriptor: Object|ClassElement,

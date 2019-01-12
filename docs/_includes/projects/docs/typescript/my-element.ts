@@ -2,9 +2,9 @@
  * LitElementのベースクラスとhtmlヘルパー関数及び
  * TypeScriptのデコレータをインポート
  **/
-import { 
-  LitElement, html, customElement, property 
-} from '@polymer/lit-element';
+import {
+  LitElement, html, customElement, property
+} from 'lit-element';
 
 /**
  * customElementデコレータを使ってカスタム要素を定義。
@@ -12,7 +12,7 @@ import {
  */
 @customElement('my-element')
 export class MyElement extends LitElement {
-  
+
   /**
    * プロパティの定義。更新時にトリガされる
    */

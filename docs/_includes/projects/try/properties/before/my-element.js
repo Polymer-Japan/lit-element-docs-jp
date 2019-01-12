@@ -3,7 +3,7 @@
  * 初期コード (3. プロパティ)
  */
 
-import { LitElement, html } from '@polymer/lit-element'; 
+import { LitElement, html } from 'lit-element';
 
 class MyElement extends LitElement {
   /**

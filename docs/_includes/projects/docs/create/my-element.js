@@ -1,5 +1,5 @@
 // `LitElement`のベースクラスと`html`ヘルパー関数をインポート
-import { LitElement, html } from '@polymer/lit-element';
+import { LitElement, html } from 'lit-element';
 
 // `LitElement`のベースクラスを継承
 class MyElement extends LitElement {

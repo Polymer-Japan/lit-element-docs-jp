@@ -1,6 +1,6 @@
-import { LitElement, html } from '@polymer/lit-element';
+import { LitElement, html } from 'lit-element';
 
-class MyElement extends LitElement {  
+class MyElement extends LitElement {
   static get properties(){ return {
     myProp: {
       type: Number,
@@ -22,7 +22,7 @@ class MyElement extends LitElement {
       }
     }};
   }
-  
+
   constructor(){
     super();
     this.myProp = 1;
@@ -34,7 +34,7 @@ class MyElement extends LitElement {
       <button @click="${this.getNewVal}">新しい値を取得</button>
     `;
   }
-  
+
   updated(){
     console.log('更新されました');
   }

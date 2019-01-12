@@ -1,6 +1,6 @@
-import { LitElement, html } from '@polymer/lit-element';
+import { LitElement, html } from 'lit-element';
 
-class MyElement extends LitElement { 
+class MyElement extends LitElement {
   constructor() {
     super();
     
@@ -10,7 +10,7 @@ class MyElement extends LitElement {
       console.log(await this.requestUpdate());
     });
   }
-  render() { 
+  render() {
     return html`
       <button @click="${this.fire}">"load-complete"イベントが発火</button>
     `;

@@ -6,7 +6,7 @@
 /**
  * DONE: LitElementのベースクラスとhtmlヘルパー関数をインポート
  */
-import { LitElement, html } from '@polymer/lit-element'; 
+import { LitElement, html } from 'lit-element';
 
 /**
  * DONE: LitElementを継承した独自のHTML要素クラスをつくる
