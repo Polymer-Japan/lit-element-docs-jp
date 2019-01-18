@@ -18,8 +18,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 * Fix jsfiddle reference.
 
+### Changed
+* [Breaking] Property accessors are no longer wrapped when they already exist. Instead the `noAccessor` flag should be set when a user-defined accessor exists on the prototype (and in this case, user-defined accessors must call `requestUpdate` themselves). ([#450](https://github.com/Polymer/lit-element/issues/450)).
+
 ## [2.0.0-rc.2] - 2019-01-11
 ### Fixed
+* Class fields can now be used to define styles, e.g. `static styles = css` and `styles` correctly compose when elements are extended ([#456](https://github.com/Polymer/lit-element/pull/456)).
 * Fix references to `@polymer/lit-element` in README and docs ([#427](https://github.com/Polymer/lit-element/pull/427)).
 * Fix decorator types causing compiler errors for TypeScript users. ([#431](https://github.com/Polymer/lit-element/pull/431)).
 
