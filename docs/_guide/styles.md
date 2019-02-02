@@ -19,15 +19,26 @@ slug: styles
 {:toc}
 
 <!-- original:
-## Use the :host CSS pseudo-class 
+## Use the :host and :host() CSS pseudo-classes
 
-In a style block, use the `:host` CSS pseudo-class to select the host element:
+When styling your custom element, you can use the `:host` and `:host()` CSS pseudo-classes in a `<style>` block to select the host element (the element hosting the root of your shadow DOM). The two pseudo-classes slightly differ in usage:
+
+* Use `:host(...)` when you need to apply a CSS selector (e.g. a class or attribute selector).
+* Use `:host` to refer to the host element, wihout further selection.
+
+Please note, that `:host` and `:host()` (with empty parentheses) do not behave the same. Here's a simple example:
 -->
 
-## :host CSS 疑似クラスを使う
+## :host と :host() CSS 疑似クラスを使う
 
 スタイルブロックでは、`：host` CSS疑似クラスを使ってホスト要素を指定してください:
 
+カスタム要素をスタイルするとき、 `<style>`ブロックで`:host`と `:host()` CSS擬似クラスを使ってホスト要素（shadow DOMのルートをホストする要素）を選択することができます。 2つの擬似クラスは使い方が少し異なります:
+
+* CSSセレクタ(クラスセレクタや属性セレクタなど）を適用する必要がある場合は、 `:host(...)`を使用してください。
+* `:host`を使ってホスト要素を参照し、それ以上は選択しないでください。
+
+`:host`と`:host()`(空の括弧付き)は同じ動作をしないことに注意してください。これは簡単な例です:
 
 _my-element.js_
 
@@ -35,8 +46,9 @@ _my-element.js_
 render() {
   return html`
     <style>
-      :host[hidden] { display: none; }
-      :host { display: block; 
+      :host([hidden]) { display: none; }
+      :host {
+        display: block; 
         border: 1px solid black;
       }
     </style>
@@ -48,31 +60,30 @@ render() {
 {% include project.html folder="docs/style/hostselector" openFile="my-element.js" %}
 
 <!-- original:
-See the MDN documentation on [:host](https://developer.mozilla.org/en-US/docs/Web/CSS/:host()) and [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) for more information.
+See the MDN documentation on [:host](https://developer.mozilla.org/en-US/docs/Web/CSS/:host), [:host()](https://developer.mozilla.org/en-US/docs/Web/CSS/:host()), and [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) for more information.
 
-### Set :host display styles
+### Set host element display styles
 
 Two best practices for working with custom elements are:
 
 * Set a `:host` display style such as `block` or `inline-block` so that your component's `width` and `height` can be set.
 
-* Set a `:host` display style that respects the `hidden` attribute.
-
+* Set a `:host()` display style that respects the `hidden` attribute.
 -->
 
-[:host](https://developer.mozilla.org/en-US/docs/Web/CSS/:host())および[pseudo-classes](https：//developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)のMDNドキュメントを参照してください。
+[:host](https://developer.mozilla.org/en-US/docs/Web/CSS/:host())、[:host()](https://developer.mozilla.org/en-US/docs/Web/CSS/:host())および[pseudo-classes](https：//developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)のMDNドキュメントを参照してください。
 
 ### :hostのスタイルを表示する
 
 カスタム要素を操作するための2つのベストプラクティスは:
 
-* コンポーネントの `width`と` height`が設定できるように、 `:host`表示スタイルを`block`や `inline-block`のように設定してください。
+* コンポーネントの `width`と`height`が設定できるように、 `:host`表示スタイルを`block`や `inline-block`のように設定してください。
 
-* `hidden`属性を尊重した`：host`表示スタイルを設定します。
+* `hidden`属性を尊重した`:host`表示スタイルを設定します。
 
 ```html
 <style>
-  :host[hidden] { display: none; }
+  :host([hidden]) { display: none; }
   :host { display: block; }
 </style>
 ```
@@ -438,7 +449,7 @@ _my-element.js_
 render() {
   return html`
     <style>
-      :host[hidden] { display: none; }
+      :host([hidden]) { display: none; }
       :host { display: block; 
         color: var(--myColor, aliceblue);
         font-family: var(--myFont, Verdana);

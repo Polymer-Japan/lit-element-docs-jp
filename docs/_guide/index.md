@@ -1,6 +1,7 @@
 ---
 layout: guide
 title: はじめに
+permalink: /guide
 ---
 
 {::options toc_levels="1..3" /}

@@ -78,42 +78,38 @@ LitElementは世界中の大小さまざまな組織のウェブデベロッパ�
 <div class="wrapper">
 
 <!-- original:
-<h1 class="title">
-Get started
-</h1>
+<h1 class="title">Get started</h1>
 
-<h2>
-Define a component in JavaScript:
-</h2>
+<h2>Define a component</h2>
 -->
-<h1 class="title">
-はじめる
-</h1>
 
-<h2>
-Webコンポーネントの定義:
-</h2>
+<h1 class="title">はじめる</h1>
 
-<h3 style="margin: 12px 0 0 0;">
-custom-greeting.js
-</h3>
+<h2>Webコンポーネントの定義</h2>
+
+It's easy to define a Web Component with LitElement:
 
 ```js
-{% include projects/index/custom-greeting.js %}
+{% include projects/index-typescript/custom-greeting.ts %}
 ```
 
 <!-- original:
-<h2 style="margin-top: 40px;">Include the component in your web page:</h2>
+<h2 style="margin-top: 40px;">Use a component</h2>
 -->
-<h2 style="margin-top: 40px;">Webコンポーネントをインポート:</h2>
 
-<h3 style="margin: 12px 0 0 0;">
-index.html
-</h3>
+<h2 style="margin-top: 40px;">Webコンポーネントを使う</h2>
+
+Then use it anywhere you use HTML:
 
 ```html
 <custom-greeting></custom-greeting>
 ```
+
+Click **Launch code editor** to see a live sample.
+
+{% include project.html folder="index-typescript" openFile="custom-greeting.js" %}
+
+The example above uses TypeScript and decorators. You can also easily write LitElements in plain JavaScript. Click **Launch code editor** for an example.
 
 {% include project.html folder="index" openFile="custom-greeting.js" %}
 
@@ -132,22 +128,29 @@ index.html
 <div style="flex: 1">
 
 <!-- original:
-<h2 class="caption">Made to share</h2>
-
-Web components built with LitElement are made to share with the world and with others across your organization, no matter what libraries or frameworks they use.
+<h2 class="caption">Fast and light</h2>
 -->
 
-<h2 class="caption">共有しやすく - Made to share</h2>
+<h2 class="caption">速くて軽量</h2>
 
-LitElementで構築されたWebコンポーネントは、ライブラリやフレームワークに依存しないので、組織内や世界中で共有されるように作ることができます。
+<!-- original:
+Whether your end users are in emerging markets or Silicon Valley, they’ll appreciate that LitElement is extremely fast.
+
+LitElement uses [lit-html](https://github.com/Polymer/lit-html) to define and render HTML templates. DOM updates are lightning-fast, because lit-html only re-renders the data that changes.
+-->
+
+あなたにとってのエンドユーザーがベンチャー市場であろうとシリコンバレーであろうと、LitElementが非常に高速なことが喜ばれるでしょう。
+
+LitElementは[lit-html](https://github.com/Polymer/lit-html)を使ってHTMLテンプレートを定義して描画します。lit-htmlは変更されたデータのみを再描画するため、DOMの更新は非常に高速です。
 
 </div>
 <div style="flex: 1">
 
 <!-- original:
-<h2 class="caption">Interoperable</h2>
+<h2 class="caption">Standards-based</h2>
 -->
-<h2 class="caption">高い相互運用性 - Interoperable</h2>
+
+<h2 class="caption">標準への準拠 - Standards-based</h2>
 
 <!-- original:
 LitElement follows the [web components standards](https://developer.mozilla.org/en-US/docs/Web/Web_Components), so your components will work with any framework.
@@ -163,19 +166,16 @@ LitElementは、Webページへ簡単に埋め込める含めるカスタム要�
 <div style="flex: 1">
 
 <!-- original:
-<h2 class="caption">Fast and light</h2>
+<h2 class="caption">Made to share</h2>
 -->
-<h2 class="caption">速くて軽い - Fast and light</h2>
+
+<h2 class="caption">共有しやすく - Made to share</h2>
 
 <!-- original:
-Whether your end users are in emerging markets or Silicon Valley, they’ll appreciate that LitElement is extremely fast.
-
-LitElement uses [lit-html](https://github.com/Polymer/lit-html) to define and render HTML templates. DOM updates are lightning-fast, because lit-html only re-renders the data that changes.
+Web components built with LitElement are made to share with the world and with others across your organization, no matter what libraries or frameworks they use.
 -->
 
-あなたにとってのエンドユーザーがベンチャー市場であろうとシリコンバレーであろうと、LitElementが非常に高速なことが喜ばれるでしょう。
-
-LitElementは[lit-html](https://github.com/Polymer/lit-html)を使ってHTMLテンプレートを定義して描画します。lit-htmlは変更されたデータのみを再描画するため、DOMの更新は非常に高速です。
+LitElementで構築されたWebコンポーネントは、ライブラリやフレームワークに依存しないので、組織内や世界中で共有されるように作ることができます。
 
 </div>
 </div>

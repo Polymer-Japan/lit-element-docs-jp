@@ -1,6 +1,7 @@
 ---
 layout: try
 title: 試す
+permalink: /try
 ---
 
 <!-- original:
