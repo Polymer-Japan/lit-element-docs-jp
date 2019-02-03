@@ -81,13 +81,15 @@ LitElementは世界中の大小さまざまな組織のウェブデベロッパ�
 <h1 class="title">Get started</h1>
 
 <h2>Define a component</h2>
+
+It's easy to define a Web Component with LitElement:
 -->
 
 <h1 class="title">はじめる</h1>
 
 <h2>Webコンポーネントの定義</h2>
 
-It's easy to define a Web Component with LitElement:
+LitElementを使ってWebコンポーネントを定義するのは簡単です:
 
 ```js
 {% include projects/index-typescript/custom-greeting.ts %}
@@ -95,21 +97,31 @@ It's easy to define a Web Component with LitElement:
 
 <!-- original:
 <h2 style="margin-top: 40px;">Use a component</h2>
+
+Then use it anywhere you use HTML:
 -->
 
 <h2 style="margin-top: 40px;">Webコンポーネントを使う</h2>
 
-Then use it anywhere you use HTML:
+このタグはHTMLのどこにでも使うことができます:
 
 ```html
 <custom-greeting></custom-greeting>
 ```
 
+<!-- original:
 Click **Launch code editor** to see a live sample.
+-->
+
+**コードエディタを起動** をクリックしてサンプルを見てください。
 
 {% include project.html folder="index-typescript" openFile="custom-greeting.js" %}
 
+<!-- original:
 The example above uses TypeScript and decorators. You can also easily write LitElements in plain JavaScript. Click **Launch code editor** for an example.
+-->
+
+この例ではTypeScriptとデコレータを使用していますが、プレーンなJavaScriptでも簡単に書くことができます。**コードエディタを起動** をクリックしてサンプルを見てください。
 
 {% include project.html folder="index" openFile="custom-greeting.js" %}
 

@@ -1,24 +1,30 @@
 title: LitElement Documentation
 toc:
   introduction: 
-    title: Try LitElement
+    # title: Try LitElement
+    title: 試してみる
     url: /try
   create: 
-    title: 1. Create
+    # title: 1. Create
+    title: 1. つくる
     url: /try/create
   import: 
-    title: 2. Import
+    # title: 2. Import
+    title: 2. インポート
     url: /try/import
   properties: 
-    title: 3. Properties
+    # title: 3. Properties
+    title: 3. プロパティ
     url: /try/properties
   logic: 
-    title: 4. Logic
+    # title: 4. Logic
+    title: 4. ロジック
     url: /try/logic
   events: 
-    title: 5. Events
+    # title: 5. Events
+    title: 5. イベント
     url: /try/events
   style: 
-    title: 6. Style
+    # title: 6. Style
+    title: 6. スタイリング
     url: /try/style
-            
