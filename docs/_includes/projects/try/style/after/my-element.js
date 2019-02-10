@@ -1,9 +1,4 @@
-/**
- * LitElementを試してみよう https://lit-element.polymer-jp.org/try
- * 完成コード (6. スタイル)
- */
-
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 
 class MyElement extends LitElement {
   static get properties() {
@@ -13,45 +8,38 @@ class MyElement extends LitElement {
       myBool: { type: Boolean }
     };
   }
-
+  static get styles() {
+    return css`
+      p {
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      .red {
+        color: red;
+      }
+      .blue {
+        color: blue;
+      }
+    `;
+  }
   constructor() {
     super();
-    this.message='Hello world! From my-element';
+    this.message = 'Hello world! From my-element';
     this.myArray = ['an','array','of','test','data'];
     this.myBool = true;
   }
-
   render() {
     return html`
-      <!-- DONE: styleタグを追加 -->
-      <style>
-        p {
-          font-family: Roboto;
-          font-size: 16px;
-          font-weight: 500;
-        }
-        .red {
-          color: red;
-        }
-        .blue {
-          color: blue;
-        }
-      </style>
-
-      <!-- DONE: styleを適用 -->
       <p class="${this.myBool?'red':'blue'}">styled paragraph</p>
-
       <p>${this.message}</p>
-      <ul>
-        ${this.myArray.map(item => html`<li>${item}</li>`)}
-      </ul>
-      ${this.myBool?
-        html`<p>Render some HTML if myBool is true</p>`:
+      <ul>${this.myArray.map(item => html`<li>${item}</li>`)}</ul>
+      ${this.myBool ?
+        html`<p>Render some HTML if myBool is true</p>` :
         html`<p>Render some other HTML if myBool is false</p>`}
       <button @click="${this.clickHandler}">Click</button>
     `;
   }
-
   clickHandler(event) {
     console.log(event.target);
     this.myBool = !this.myBool;

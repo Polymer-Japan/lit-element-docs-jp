@@ -8,23 +8,19 @@ toc:
     # title: 1. Create
     title: 1. つくる
     url: /try/create
-  import: 
-    # title: 2. Import
-    title: 2. インポート
-    url: /try/import
   properties: 
-    # title: 3. Properties
-    title: 3. プロパティ
+    # title: 2. Properties
+    title: 2. プロパティ
     url: /try/properties
   logic: 
-    # title: 4. Logic
-    title: 4. ロジック
+    # title: 3. Logic
+    title: 3. ロジック
     url: /try/logic
   events: 
-    # title: 5. Events
-    title: 5. イベント
+    # title: 4. Events
+    title: 4. イベント
     url: /try/events
   style: 
-    # title: 6. Style
-    title: 6. スタイリング
+    # title: 5. Style
+    title: 5. スタイリング
     url: /try/style

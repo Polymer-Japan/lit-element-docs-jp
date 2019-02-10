@@ -33,29 +33,30 @@ declare global {
 /**
  * Converts property values to and from attribute values.
  */
-export interface ComplexAttributeConverter<Type = any, TypeHint = any> {
-
+export interface ComplexAttributeConverter<Type = unknown, TypeHint = unknown> {
   /**
    * Function called to convert an attribute value to a property
    * value.
    */
-  fromAttribute?(value: string, type?: TypeHint): Type;
+  fromAttribute?(value: string|null, type?: TypeHint): Type;
 
   /**
    * Function called to convert a property value to an attribute
    * value.
+   *
+   * It returns unknown instead of string, to be compatible with
+   * https://github.com/WICG/trusted-types (and similar efforts).
    */
-  toAttribute?(value: Type, type?: TypeHint): string|null;
+  toAttribute?(value: Type, type?: TypeHint): unknown;
 }
 
-type AttributeConverter<Type = any, TypeHint = any> =
+type AttributeConverter<Type = unknown, TypeHint = unknown> =
     ComplexAttributeConverter<Type>|((value: string, type?: TypeHint) => Type);
 
 /**
  * Defines options for a property accessor.
  */
-export interface PropertyDeclaration<Type = any, TypeHint = any> {
-
+export interface PropertyDeclaration<Type = unknown, TypeHint = unknown> {
   /**
    * Indicates how and whether the property becomes an observed attribute.
    * If the value is `false`, the property is not added to `observedAttributes`.
@@ -63,14 +64,14 @@ export interface PropertyDeclaration<Type = any, TypeHint = any> {
    * becomes `foobar`). If a string, the string value is observed (e.g
    * `attribute: 'foo-bar'`).
    */
-  attribute?: boolean|string;
+  readonly attribute?: boolean|string;
 
   /**
    * Indicates the type of the property. This is used only as a hint for the
    * `converter` to determine how to convert the attribute
    * to/from a property.
    */
-  type?: TypeHint;
+  readonly type?: TypeHint;
 
   /**
    * Indicates how to convert the attribute to/from a property. If this value
@@ -84,7 +85,7 @@ export interface PropertyDeclaration<Type = any, TypeHint = any> {
    * the property is never updated again as a result of the attribute changing,
    * and vice versa.
    */
-  converter?: AttributeConverter<Type, TypeHint>;
+  readonly converter?: AttributeConverter<Type, TypeHint>;
 
   /**
    * Indicates if the property should reflect to an attribute.
@@ -93,7 +94,7 @@ export interface PropertyDeclaration<Type = any, TypeHint = any> {
    * property option and the value of the property converted using the rules
    * from the `converter` property option.
    */
-  reflect?: boolean;
+  readonly reflect?: boolean;
 
   /**
    * A function that indicates if a property should be considered changed when
@@ -110,7 +111,7 @@ export interface PropertyDeclaration<Type = any, TypeHint = any> {
    * `this.requestUpdate(propertyName, oldValue)` to request an update when
    * the property changes.
    */
-  noAccessor?: boolean;
+  readonly noAccessor?: boolean;
 }
 
 /**
@@ -119,7 +120,7 @@ export interface PropertyDeclaration<Type = any, TypeHint = any> {
  * PropertyDeclaration options.
  */
 export interface PropertyDeclarations {
-  [key: string]: PropertyDeclaration;
+  readonly [key: string]: PropertyDeclaration;
 }
 
 type PropertyDeclarationMap = Map<PropertyKey, PropertyDeclaration>;
@@ -130,28 +131,28 @@ export type PropertyValues = Map<PropertyKey, unknown>;
 
 export const defaultConverter: ComplexAttributeConverter = {
 
-  toAttribute(value: any, type?: any) {
+  toAttribute(value: unknown, type?: unknown): unknown {
     switch (type) {
-    case Boolean:
-      return value ? '' : null;
-    case Object:
-    case Array:
-      // if the value is `null` or `undefined` pass this through
-      // to allow removing/no change behavior.
-      return value == null ? value : JSON.stringify(value);
+      case Boolean:
+        return value ? '' : null;
+      case Object:
+      case Array:
+        // if the value is `null` or `undefined` pass this through
+        // to allow removing/no change behavior.
+        return value == null ? value : JSON.stringify(value);
     }
     return value;
   },
 
-  fromAttribute(value: any, type?: any) {
+  fromAttribute(value: string|null, type?: unknown) {
     switch (type) {
-    case Boolean:
-      return value !== null;
-    case Number:
-      return value === null ? null : Number(value);
-    case Object:
-    case Array:
-      return JSON.parse(value);
+      case Boolean:
+        return value !== null;
+      case Number:
+        return value === null ? null : Number(value);
+      case Object:
+      case Array:
+        return JSON.parse(value!);
     }
     return value;
   }
@@ -172,11 +173,11 @@ export const notEqual: HasChanged = (value: unknown, old: unknown): boolean => {
 };
 
 const defaultPropertyDeclaration: PropertyDeclaration = {
-  attribute : true,
-  type : String,
-  converter : defaultConverter,
-  reflect : false,
-  hasChanged : notEqual
+  attribute: true,
+  type: String,
+  converter: defaultConverter,
+  reflect: false,
+  hasChanged: notEqual
 };
 
 const microtaskPromise = Promise.resolve(true);
@@ -196,7 +197,6 @@ type UpdateState = typeof STATE_HAS_UPDATED|typeof STATE_UPDATE_REQUESTED|
  * should be supplied by subclassers to render updates as desired.
  */
 export abstract class UpdatingElement extends HTMLElement {
-
   /*
    * Due to closure compiler ES6 compilation bugs, @nocollapse is required on
    * all static methods and properties with initializers.  Reference:
@@ -259,10 +259,12 @@ export abstract class UpdatingElement extends HTMLElement {
             JSCompiler_renameProperty('_classProperties', this))) {
       this._classProperties = new Map();
       // NOTE: Workaround IE11 not supporting Map constructor argument.
-      const superProperties = Object.getPrototypeOf(this)._classProperties;
+      const superProperties: PropertyDeclarationMap =
+          Object.getPrototypeOf(this)._classProperties;
       if (superProperties !== undefined) {
-        superProperties.forEach((v: any, k: PropertyKey) =>
-                                    this._classProperties!.set(k, v));
+        superProperties.forEach(
+            (v: PropertyDeclaration, k: PropertyKey) =>
+                this._classProperties!.set(k, v));
       }
     }
   }
@@ -274,9 +276,9 @@ export abstract class UpdatingElement extends HTMLElement {
    * an update.
    * @nocollapse
    */
-  static createProperty(name: PropertyKey,
-                        options:
-                            PropertyDeclaration = defaultPropertyDeclaration) {
+  static createProperty(
+      name: PropertyKey,
+      options: PropertyDeclaration = defaultPropertyDeclaration) {
     // Note, since this can be called by the `@property` decorator which
     // is called before `finalize`, we ensure storage exists for property
     // metadata.
@@ -292,16 +294,21 @@ export abstract class UpdatingElement extends HTMLElement {
     }
     const key = typeof name === 'symbol' ? Symbol() : `__${name}`;
     Object.defineProperty(this.prototype, name, {
-      get(): any { return (this as any)[key]; },
-      set(this: UpdatingElement, value: any) {
+      // tslint:disable-next-line:no-any no symbol in index
+      get(): any {
+        // tslint:disable-next-line:no-any no symbol in index
+        return (this as any)[key];
+      },
+      set(this: UpdatingElement, value: unknown) {
+        // tslint:disable-next-line:no-any no symbol in index
         const oldValue = (this as any)[name];
+        // tslint:disable-next-line:no-any no symbol in index
         (this as any)[key] = value;
-          this.requestUpdate(name, oldValue);
-        },
-        configurable : true,
-        enumerable : true
-      }
-    );
+        this.requestUpdate(name, oldValue);
+      },
+      configurable: true,
+      enumerable: true
+    });
   }
 
   /**
@@ -332,14 +339,15 @@ export abstract class UpdatingElement extends HTMLElement {
       // support symbols in properties (IE11 does not support this)
       const propKeys = [
         ...Object.getOwnPropertyNames(props),
-        ...(typeof Object.getOwnPropertySymbols === 'function')
-            ? Object.getOwnPropertySymbols(props)
-            : []
+        ...(typeof Object.getOwnPropertySymbols === 'function') ?
+            Object.getOwnPropertySymbols(props) :
+            []
       ];
       // This for/of is ok because propKeys is an array
       for (const p of propKeys) {
         // note, use of `any` is due to TypeSript lack of support for symbol in
         // index types
+        // tslint:disable-next-line:no-any no symbol in index
         this.createProperty(p, (props as any)[p]);
       }
     }
@@ -349,15 +357,14 @@ export abstract class UpdatingElement extends HTMLElement {
    * Returns the property name for the given attribute `name`.
    * @nocollapse
    */
-  private static _attributeNameForProperty(name: PropertyKey,
-                                           options: PropertyDeclaration) {
+  private static _attributeNameForProperty(
+      name: PropertyKey, options: PropertyDeclaration) {
     const attribute = options.attribute;
-    return attribute === false
-               ? undefined
-               : (typeof attribute === 'string'
-                      ? attribute
-                      : (typeof name === 'string' ? name.toLowerCase()
-                                                  : undefined));
+    return attribute === false ?
+        undefined :
+        (typeof attribute === 'string' ?
+             attribute :
+             (typeof name === 'string' ? name.toLowerCase() : undefined));
   }
 
   /**
@@ -366,8 +373,8 @@ export abstract class UpdatingElement extends HTMLElement {
    * option for the property if present or a strict identity check.
    * @nocollapse
    */
-  private static _valueHasChanged(value: unknown, old: unknown,
-                                  hasChanged: HasChanged = notEqual) {
+  private static _valueHasChanged(
+      value: unknown, old: unknown, hasChanged: HasChanged = notEqual) {
     return hasChanged(value, old);
   }
 
@@ -377,8 +384,8 @@ export abstract class UpdatingElement extends HTMLElement {
    * `converter` or `converter.fromAttribute` property option.
    * @nocollapse
    */
-  private static _propertyValueFromAttribute(value: string,
-                                             options: PropertyDeclaration) {
+  private static _propertyValueFromAttribute(
+      value: string|null, options: PropertyDeclaration) {
     const type = options.type;
     const converter = options.converter || defaultConverter;
     const fromAttribute =
@@ -394,8 +401,8 @@ export abstract class UpdatingElement extends HTMLElement {
    * This uses the property's `reflect` and `type.toAttribute` property options.
    * @nocollapse
    */
-  private static _propertyValueToAttribute(value: unknown,
-                                           options: PropertyDeclaration) {
+  private static _propertyValueToAttribute(
+      value: unknown, options: PropertyDeclaration) {
     if (options.reflect === undefined) {
       return;
     }
@@ -433,7 +440,9 @@ export abstract class UpdatingElement extends HTMLElement {
    * Performs element initialization. By default captures any pre-set values for
    * registered properties.
    */
-  protected initialize() { this._saveInstanceProperties(); }
+  protected initialize() {
+    this._saveInstanceProperties();
+  }
 
   /**
    * Fixes any properties set on the instance before upgrade time.
@@ -469,6 +478,7 @@ export abstract class UpdatingElement extends HTMLElement {
   private _applyInstanceProperties() {
     // Use forEach so this works even if for/of loops are compiled to for loops
     // expecting arrays
+    // tslint:disable-next-line:no-any
     this._instanceProperties!.forEach((v, p) => (this as any)[p] = v);
     this._instanceProperties = undefined;
   }
@@ -492,12 +502,13 @@ export abstract class UpdatingElement extends HTMLElement {
    * reserving the possibility of making non-breaking feature additions
    * when disconnecting at some point in the future.
    */
-  disconnectedCallback() {}
+  disconnectedCallback() {
+  }
 
   /**
    * Synchronizes property values when attributes change.
    */
-  attributeChangedCallback(name: string, old: string, value: string) {
+  attributeChangedCallback(name: string, old: string|null, value: string|null) {
     if (old !== value) {
       this._attributeToProperty(name, value);
     }
@@ -526,14 +537,14 @@ export abstract class UpdatingElement extends HTMLElement {
       if (attrValue == null) {
         this.removeAttribute(attr);
       } else {
-        this.setAttribute(attr, attrValue);
+        this.setAttribute(attr, attrValue as string);
       }
       // mark state not reflecting
       this._updateState = this._updateState & ~STATE_IS_REFLECTING_TO_ATTRIBUTE;
     }
   }
 
-  private _attributeToProperty(name: string, value: string) {
+  private _attributeToProperty(name: string, value: string|null) {
     // Use tracking info to avoid deserializing attribute value if it was
     // just set from a property setter.
     if (this._updateState & STATE_IS_REFLECTING_TO_ATTRIBUTE) {
@@ -547,7 +558,8 @@ export abstract class UpdatingElement extends HTMLElement {
       // mark state reflecting
       this._updateState = this._updateState | STATE_IS_REFLECTING_TO_PROPERTY;
       this[propName as keyof this] =
-          ctor._propertyValueFromAttribute(value, options);
+          // tslint:disable-next-line:no-any
+          ctor._propertyValueFromAttribute(value, options) as any;
       // mark state not reflecting
       this._updateState = this._updateState & ~STATE_IS_REFLECTING_TO_PROPERTY;
     }
@@ -566,15 +578,15 @@ export abstract class UpdatingElement extends HTMLElement {
    * @param oldValue {any} (optional) old value of requesting property
    * @returns {Promise} A Promise that is resolved when the update completes.
    */
-  requestUpdate(name?: PropertyKey, oldValue?: any) {
+  requestUpdate(name?: PropertyKey, oldValue?: unknown) {
     let shouldRequestUpdate = true;
     // if we have a property key, perform property update steps.
     if (name !== undefined && !this._changedProperties.has(name)) {
       const ctor = this.constructor as typeof UpdatingElement;
       const options =
           ctor._classProperties!.get(name) || defaultPropertyDeclaration;
-      if (ctor._valueHasChanged(this[name as keyof this], oldValue,
-                                options.hasChanged)) {
+      if (ctor._valueHasChanged(
+              this[name as keyof this], oldValue, options.hasChanged)) {
         // track old value when changing.
         this._changedProperties.set(name, oldValue);
         // add to reflecting properties set
@@ -631,7 +643,9 @@ export abstract class UpdatingElement extends HTMLElement {
     return (this._updateState & STATE_UPDATE_REQUESTED);
   }
 
-  protected get hasUpdated() { return (this._updateState & STATE_HAS_UPDATED); }
+  protected get hasUpdated() {
+    return (this._updateState & STATE_HAS_UPDATED);
+  }
 
   /**
    * Performs an element update.
@@ -682,7 +696,9 @@ export abstract class UpdatingElement extends HTMLElement {
    * @returns {Promise} The Promise returns a boolean that indicates if the
    * update resolved without triggering another update.
    */
-  get updateComplete() { return this._updatePromise; }
+  get updateComplete() {
+    return this._updatePromise;
+  }
 
   /**
    * Controls whether or not `update` should be called when the element requests
@@ -723,7 +739,8 @@ export abstract class UpdatingElement extends HTMLElement {
    *
    * * @param _changedProperties Map of changed properties with old values
    */
-  protected updated(_changedProperties: PropertyValues) {}
+  protected updated(_changedProperties: PropertyValues) {
+  }
 
   /**
    * Invoked when the element is first updated. Implement to perform one time
@@ -734,5 +751,6 @@ export abstract class UpdatingElement extends HTMLElement {
    *
    * * @param _changedProperties Map of changed properties with old values
    */
-  protected firstUpdated(_changedProperties: PropertyValues) {}
+  protected firstUpdated(_changedProperties: PropertyValues) {
+  }
 }

@@ -10,19 +10,20 @@ found at http://polymer.github.io/PATENTS.txt
 */
 
 export const supportsAdoptingStyleSheets =
-    ('adoptedStyleSheets' in Document.prototype);
+    ('adoptedStyleSheets' in Document.prototype) &&
+    ('replace' in CSSStyleSheet.prototype);
 
 const constructionToken = Symbol();
 
 export class CSSResult {
-
   _styleSheet?: CSSStyleSheet|null;
 
   readonly cssText: string;
 
   constructor(cssText: string, safeToken: symbol) {
     if (safeToken !== constructionToken) {
-      throw new Error('CSSResult is not constructable. Use `unsafeCss` or `css` instead.');
+      throw new Error(
+          'CSSResult is not constructable. Use `unsafeCSS` or `css` instead.');
     }
     this.cssText = cssText;
   }
@@ -42,6 +43,10 @@ export class CSSResult {
     }
     return this._styleSheet;
   }
+
+  toString(): String {
+    return this.cssText;
+  }
 }
 
 /**
@@ -51,7 +56,7 @@ export class CSSResult {
  * or exfiltrate data to an attacker controlled site. Take care to only use
  * this with trusted input.
  */
-export const unsafeCss = (value: unknown) => {
+export const unsafeCSS = (value: unknown) => {
   return new CSSResult(String(value), constructionToken);
 };
 
@@ -61,21 +66,20 @@ const textFromCSSResult = (value: CSSResult) => {
   } else {
     throw new Error(
         `Value passed to 'css' function must be a 'css' function result: ${
-            value}. Use 'unsafeCss' to pass non-literal values, but
-            take care to ensure page security.` );
+            value}. Use 'unsafeCSS' to pass non-literal values, but
+            take care to ensure page security.`);
   }
 };
 
 /**
  * Template tag which which can be used with LitElement's `style` property to
  * set element styles. For security reasons, only literal string values may be
- * used. To incorporate non-literal values `unsafeCss` may be used inside a
+ * used. To incorporate non-literal values `unsafeCSS` may be used inside a
  * template string part.
  */
-export const css =
-    (strings: TemplateStringsArray, ...values: CSSResult[]) => {
-      const cssText = values.reduce(
-          (acc, v, idx) => acc + textFromCSSResult(v) + strings[idx + 1],
-          strings[0]);
-      return new CSSResult(cssText, constructionToken);
-    };
+export const css = (strings: TemplateStringsArray, ...values: CSSResult[]) => {
+  const cssText = values.reduce(
+      (acc, v, idx) => acc + textFromCSSResult(v) + strings[idx + 1],
+      strings[0]);
+  return new CSSResult(cssText, constructionToken);
+};

@@ -11,119 +11,43 @@ layout: default
 </div>
 </header>
 
-<section>
+<section id="section-snippet">
 <div class="wrapper">
+<!-- original:
 <h1 class="title">
-LitElementについて
+Easily Create Fast, Lightweight Web Components
+</h1>
+-->
+<h1 class="title">
+簡単につくれる高速で軽量なWebコンポーネント
 </h1>
 
 <div class="responsive-row">
 
-<div style="flex:1;">
+<div class="fixed-width-caption">
 <!-- original:
-<h2>
-About
-</h2>
-<p>
-LitElement is a simple base class for creating fast, lightweight web components that work in any web page with any framework.
-</p>
+<h3 class="description">LitElement makes it easy to define Web Components – ideal for sharing elements across your organization or building a UI design system.</h3>
+<h3 class="description">Use your components anywhere you use HTML: in your main document, a CMS, Markdown, or a framework like React or Vue.</h3>
 -->
-<h2>
-高速で軽量なWebコンポーネント
-</h2>
-<p>
-LitElementは、どんなフレームワークのどんなWebページでも動作し、軽量で高速なWebコンポーネントを開発するためのシンプルなベースクラスです。
-</p>
+<h3 class="description">LitElementを使用すると、Webコンポーネントを簡単に定義できます。組織全体で要素を共有したり、UIデザインシステムを構築したりするのに理想的です。</h3>
+<h3 class="description">HTMLを使っているところならどこでもあなたのコンポーネントを使いましょう: メインドキュメントやCMS、Markdown、またはReactやVueなどのフレームワークがあります。</h3>
 </div>
 
-<div style="flex:1;">
-<!-- original:
-<h2>
-Using lit-html
-</h2>
-<p>
-For rendering, LitElement uses [lit-html](https://lit-html.polymer-project.org/)—a fast HTML templating library. To build an app out of LitElement components, check out [PWA Starter Kit](https://pwa-starter-kit.polymer-project.org/).
-</p>
--->
-<h2>
-lit-htmlを使う
-</h2>
-<p>
-描画(レンダリング)には[lit-html](https://lit-html.polymer-jp.org/)(高速HTMLテンプレートライブラリ)を使います。LitElementを使ってアプリを構築するのであれば、ぜひ[PWA Starter Kit](https://pwa-starter-kit.polymer-jp.org/)をチェックしてください。
-</p>
-</div>
 
-<div style="flex:1;">
-<!-- original:
-<h2>
-Who are we?
-</h2>
-<p>
-LitElement is brought to you by developers on the Google Chrome team with the input of web developers at organizations big and small around the world.
-</p>
--->
-<h2>
-開発しているのは
-</h2>
-<p>
-LitElementは世界中の大小さまざまな組織のウェブデベロッパーからの情報をもとに、Google Chromeチームの開発者によってあなたに届けられます。
-</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<section>
-<div class="wrapper">
-
-<!-- original:
-<h1 class="title">Get started</h1>
-
-<h2>Define a component</h2>
-
-It's easy to define a Web Component with LitElement:
--->
-
-<h1 class="title">はじめる</h1>
-
-<h2>Webコンポーネントの定義</h2>
-
-LitElementを使ってWebコンポーネントを定義するのは簡単です:
-
+<div>
 ```js
-{% include projects/index-typescript/custom-greeting.ts %}
+{% include projects/index-typescript/simple-greeting.ts %}
 ```
-
-<!-- original:
-<h2 style="margin-top: 40px;">Use a component</h2>
-
-Then use it anywhere you use HTML:
--->
-
-<h2 style="margin-top: 40px;">Webコンポーネントを使う</h2>
-
-このタグはHTMLのどこにでも使うことができます:
-
 ```html
-<custom-greeting></custom-greeting>
+<simple-greeting name="Everyone"></simple-greeting>
 ```
+</div>
+</div>
 
-<!-- original:
-Click **Launch code editor** to see a live sample.
--->
-
-**コードエディタを起動** をクリックしてサンプルを見てください。
-
-{% include project.html folder="index-typescript" openFile="custom-greeting.js" %}
-
-<!-- original:
-The example above uses TypeScript and decorators. You can also easily write LitElements in plain JavaScript. Click **Launch code editor** for an example.
--->
-
-この例ではTypeScriptとデコレータを使用していますが、プレーンなJavaScriptでも簡単に書くことができます。**コードエディタを起動** をクリックしてサンプルを見てください。
-
-{% include project.html folder="index" openFile="custom-greeting.js" %}
+<div class="inline-action-buttons">
+{% include project.html label="Launch Code Editor (TypeScript)" folder="index-typescript" openFile="simple-greeting.ts" %}
+{% include project.html label="Launch Code Editor (JavaScript)" folder="index" openFile="simple-greeting.js" %}
+</div>
 
 </div>
 </section>
@@ -139,82 +63,35 @@ The example above uses TypeScript and decorators. You can also easily write LitE
 <div class="responsive-row">
 <div style="flex: 1">
 
-<!-- original:
+<h2 class="caption">Delightfully declarative</h2>
+
+LitElement's simple, familiar development model makes it easier than ever to build Web Components.
+
+Express your UI declaratively, as a function of state. No need to learn a custom templating language – you can use the full power of JavaScript in your templates. Elements update automatically when their properties change.
+
+</div>
+<div style="flex: 1">
+
 <h2 class="caption">Fast and light</h2>
--->
 
-<h2 class="caption">速くて軽量</h2>
-
-<!-- original:
 Whether your end users are in emerging markets or Silicon Valley, they’ll appreciate that LitElement is extremely fast.
 
-LitElement uses [lit-html](https://github.com/Polymer/lit-html) to define and render HTML templates. DOM updates are lightning-fast, because lit-html only re-renders the data that changes.
--->
-
-あなたにとってのエンドユーザーがベンチャー市場であろうとシリコンバレーであろうと、LitElementが非常に高速なことが喜ばれるでしょう。
-
-LitElementは[lit-html](https://github.com/Polymer/lit-html)を使ってHTMLテンプレートを定義して描画します。lit-htmlは変更されたデータのみを再描画するため、DOMの更新は非常に高速です。
+LitElement uses [lit-html](https://github.com/Polymer/lit-html) to define and render HTML templates. DOM updates are lightning-fast, because lit-html only re-renders the dynamic parts of your UI – no diffing required.
 
 </div>
 <div style="flex: 1">
 
-<!-- original:
-<h2 class="caption">Standards-based</h2>
--->
+<h2 class="caption">Seamlessly interoperable</h2>
 
-<h2 class="caption">標準への準拠 - Standards-based</h2>
+LitElement follows the [Web Components standards](https://developer.mozilla.org/en-US/docs/Web/Web_Components), so your components will work with any framework.
 
-<!-- original:
-LitElement follows the [web components standards](https://developer.mozilla.org/en-US/docs/Web/Web_Components), so your components will work with any framework.
-
-LitElement uses custom elements for easy inclusion in web pages, and shadow DOM for encapsulation. There’s no new abstraction on top of the web platform.
--->
-
-LitElementは[Webコンポーネント標準](https://developer.mozilla.org/ja/docs/Web/Web_Components)に準拠しているため、コンポーネントはどのフレームワークでも動きます。
-
-LitElementは、Webページへ簡単に埋め込める含めるカスタム要素を使って、カプセル化のためにDOMをShadow DOMとします。現状のWebプラットフォームでこれより斬新な抽象化はありません。
-
-</div>
-<div style="flex: 1">
-
-<!-- original:
-<h2 class="caption">Made to share</h2>
--->
-
-<h2 class="caption">共有しやすく - Made to share</h2>
-
-<!-- original:
-Web components built with LitElement are made to share with the world and with others across your organization, no matter what libraries or frameworks they use.
--->
-
-LitElementで構築されたWebコンポーネントは、ライブラリやフレームワークに依存しないので、組織内や世界中で共有されるように作ることができます。
+LitElement uses Custom Elements for easy inclusion in web pages, and Shadow DOM for encapsulation. There’s no new abstraction on top of the web platform.
 
 </div>
 </div>
 </div>
 </section>
 
-
-<section>
-<div class="wrapper">
-
-<!-- original:
-<h1 class="title">Browser Compatibility</h1>
-<h2 class="description">LitElement works in all major browsers (Chrome, Firefox, IE, Edge, Safari, and Opera). </h2>
--->
-<h1 class="title">ブラウザ互換</h1>
-<h2 class="description">LitElementは全ての主要なブラウザで動作します(Chrome, Firefox, IE, Edge, Safari, Opera)</h2>
-<div id="browser-thumbnails" style="margin-bottom: 20px;">
-<img width="56" width="56" src="{{ site.baseurl }}/images/browsers/chrome_128x128.png" alt="chrome logo">
-<img width="56" width="56" src="{{ site.baseurl }}/images/browsers/firefox_128x128.png" alt="firefox logo">
-<img width="56" width="56" src="{{ site.baseurl }}/images/browsers/internet-explorer_128x128.png" alt="internet explorer logo">
-<img width="56" width="56" src="{{ site.baseurl }}/images/browsers/edge_128x128.png" alt="edge logo">
-<img width="56" width="56" src="{{ site.baseurl }}/images/browsers/safari_128x128.png" alt="safari logo">
-<img width="56" width="56" src="{{ site.baseurl }}/images/browsers/opera_128x128.png" alt="opera logo">
-</div>
-
-</div>
-</section>
 
 <section style="margin-bottom: 60px;">
 <div class="wrapper">
@@ -251,5 +128,27 @@ LitElementで構築されたWebコンポーネントは、ライブラリやフ�
 </div>
 
 </div>
+</div>
+</section>
+
+<section>
+<div class="wrapper">
+
+<!-- original:
+<h1 class="title">Browser Compatibility</h1>
+<h2 class="description">LitElement works in all major browsers (Chrome, Firefox, IE, Edge, Safari, and Opera). </h2>
+-->
+<h1 class="title">ブラウザ互換</h1>
+<h2 class="description">LitElementは全ての主要なブラウザで動作します(Chrome, Firefox, IE, Edge, Safari, Opera)</h2>
+
+<div id="browser-thumbnails" style="margin-bottom: 20px;">
+<img width="56" width="56" src="{{ site.baseurl }}/images/browsers/chrome_128x128.png" alt="chrome logo">
+<img width="56" width="56" src="{{ site.baseurl }}/images/browsers/firefox_128x128.png" alt="firefox logo">
+<img width="56" width="56" src="{{ site.baseurl }}/images/browsers/internet-explorer_128x128.png" alt="internet explorer logo">
+<img width="56" width="56" src="{{ site.baseurl }}/images/browsers/edge_128x128.png" alt="edge logo">
+<img width="56" width="56" src="{{ site.baseurl }}/images/browsers/safari_128x128.png" alt="safari logo">
+<img width="56" width="56" src="{{ site.baseurl }}/images/browsers/opera_128x128.png" alt="opera logo">
+</div>
+
 </div>
 </section>

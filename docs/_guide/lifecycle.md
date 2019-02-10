@@ -80,7 +80,7 @@ In call order, the methods and properties in the update lifecycle are:
 
 All declared properties have a function, `hasChanged`, which is called whenever the property is set; if `hasChanged` returns true, an update is scheduled.
 
-See the Properties documentation for information on [configuring `hasChanged` to customize what constitutes a property change](/properties#haschanged).
+See the Properties documentation for information on [configuring `hasChanged` to customize what constitutes a property change](/properties#configure-property-changes).
 -->
 
 ## 概要
@@ -151,7 +151,7 @@ let result = await myFunc('stuff');
 
 宣言されたすべてのプロパティには、プロパティが設定されるたびに呼び出される関数`hasChanged`があります。 `hasChanged`がtrueを返した場合、更新がスケジュールされます。
 
-[プロパティ変更動作をカスタマイズするために`hasChanged`を設定する](/properties#haschanged)も参照してください。
+[プロパティ変更動作をカスタマイズするために`hasChanged`を設定する](/properties#configure-property-changes)も参照してください。
 
 ### requestUpdate {#requestupdate}
 
@@ -333,7 +333,7 @@ render() { ... }
 
 lit-htmlを使用して要素テンプレートをレンダリングします。
 
-詳細については、[テンプレートの作成とレンダリング](../templates)のドキュメントを参照してください。
+詳細については、[テンプレートの作成とレンダリング](/guide/templates)のドキュメントを参照してください。
 
 ### firstUpdated
 

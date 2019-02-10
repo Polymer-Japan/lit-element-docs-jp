@@ -5,14 +5,14 @@ title: スタイリング
 ---
 
 <!-- original:
-Style your element with CSS by including a `style` block in its template. These styles are encapsulated; they will only apply to your component. 
+Style your component with CSS by defining a static `styles` getter in your class.
 
 **Starting code**
 
 _my-element.js_
 -->
 
-CSSでスタイルを追加するにはテンプレートの中に`style`タグを含めます。これらのスタイルはカプセル化されるため、コンポーネントのテンプレート内にのみ適用されます。
+クラスで静的な`styles`ゲッターを定義し、CSSでコンポーネントをスタイリングしてください。
 
 **初期コード**
 
@@ -25,66 +25,90 @@ _my-element.js_
 {% include project.html folder="try/style/before" openFile="my-element.js" %}
 
 <!-- original:
-1.  **Define your styles.**
+1.  **Import the `css` helper function.**
 
-    To define your styles, add the following code to your template:
+    In my-element.js, replace the `import` statement with the following code:
 
-    ```html
-    <style>
-      p {
-        font-family: Roboto;
-        font-size: 16px;
-        font-weight: 500;
-      }
-      .red {
-        color: red;
-      }
-      .blue {
-        color: blue;
-      }
-    </style>
+    ```js
+    import { LitElement, html, css } from 'lit-element';
     ```
 
-2. **Apply your styles.**
+2.  **Define your styles.**
+
+    To define your styles, add a static `styles` getter to your class:
+
+    ```js
+    static get styles() {
+      return css`
+        p {
+          font-family: Roboto;
+          font-size: 16px;
+          font-weight: 500;
+        }
+        .red {
+          color: red;
+        }
+        .blue {
+          color: blue;
+        }
+      `;
+    }
+    ```
+
+3. **Apply your styles.**
 
     Use `myBool` to apply the styles conditionally. Add the following paragraph to your template:
 
     ```html
-    <p class="${this.myBool?'red':'blue'}">styled paragraph</p>
+    <p class="${this.myBool ? 'red' : 'blue' }">styled paragraph</p>
     ```
 
-If you're stuck, click **Launch Code Editor** below to see the completed code for Step 6.
+Here's the completed code for this step:
 -->
-1.  **styleタグを追加**
+1.  **`css`ヘルパー関数をインポート**
 
-    スタイルを定義するには下記のコードを追加してください:
+    my-element.jsで、`import`文を次のコードで置き換えます:
+
+    ```js
+    import { LitElement, html, css } from 'lit-element';
+    ```
+
+2.  **styleを宣言**
+
+    スタイルを定義するには、クラスに静的な `styles`ゲッターを追加します:
 
     ```html
-    <style>
-      p {
-        font-family: Roboto;
-        font-size: 16px;
-        font-weight: 500;
-      }
-      .red {
-        color: red;
-      }
-      .blue {
-        color: blue;
-      }
-    </style>
+    static get styles() {
+      return css`
+        p {
+          font-family: Roboto;
+          font-size: 16px;
+          font-weight: 500;
+        }
+        .red {
+          color: red;
+        }
+        .blue {
+          color: blue;
+        }
+      `;
+    }
     ```
 
-2. **styleを適用**
+3. **styleを適用**
 
     `myBool`プロパティの真偽値を使ってスタイルを適用するには下記のコードを追加してください:
 
     ```html
-    <p class="${this.myBool?'red':'blue'}">styled paragraph</p>
+    <p class="${this.myBool ? 'red' : 'blue' }">styled paragraph</p>
     ```
 
-もしうまくいかなかったら、下記の**コードエディタを起動**をクリックして、完成したコードを確認してください。
+このステップの完成したコードはこちらです:
 
-{% include project.html folder="try/style/after" openFile="my-element.js" %}
+_my-element.js_
+
+```js
+{% include projects/try/style/after/my-element.js %}
+```
 
 おめでとうございます! あなたはLitElementではじめてのコンポーネントをつくることができました。次は[使ってみる](/guide/start)に進んでローカル開発をセットアップします。

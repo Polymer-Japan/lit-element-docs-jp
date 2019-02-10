@@ -733,7 +733,7 @@ class LightDom extends LitElement {
 ```
 -->
 
-## レンダールートを指定する
+## レンダールートを指定する {#renderroot}
 
 テンプレートが描画されるノード(node)を**レンダールート**と呼びます。
 

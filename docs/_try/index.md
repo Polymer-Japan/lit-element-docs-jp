@@ -22,7 +22,7 @@ Click **Preview** at any time to see your code in action.
 {:.alert .alert-info}
 <div>
 
-**If you're doing the tutorial in your local development environment, you'll need to make some changes to the code on this page.** The code samples on this page are written for the live StackBlitz editor. To work locally, see the [Getting Started page](start). 
+**If you're doing the tutorial in your local development environment, you'll need to make some changes to the code on this page.** The code samples on this page are written for the live StackBlitz editor. To work locally, see the [Getting Started page](/start). 
 
 </div>
 
@@ -33,7 +33,7 @@ Click **Preview** at any time to see your code in action.
 {:.alert .alert-info}
 <div>
 
-**ローカル開発環境でチュートリアルを行っている場合は、このページのコードをいくつか変更する必要があります** このページのコードサンプルは、StackBlitzエディタ用に書かれています。 ローカルで作業するには、[使ってみる](start)を参照してください。
+**ローカル開発環境でチュートリアルを行っている場合は、このページのコードをいくつか変更する必要があります** このページのコードサンプルは、StackBlitzエディタ用に書かれています。 ローカルで作業するには、[使ってみる](/start)を参照してください。
 
 </div>
 

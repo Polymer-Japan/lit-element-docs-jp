@@ -10,9 +10,7 @@ toc:
     url: /guide/start
   templates: 
     # title: Templates
-    # desc: Create and render LitElement templates. Use JavaScript expressions to add properties and logic.
     title: テンプレート
-    desc: テンプレートを作り、描画する。JavaScript式でプロパティとロジックを追加する
     url: /guide/templates
   styles:
     # title: Styles
@@ -22,13 +20,18 @@ toc:
     url: /guide/styles
   properties: 
     # title: Properties
-    # desc: Declare and configure a component's properties and attributes.
     title: プロパティ
-    desc: プロパティや属性を定義、設定する
     url: /guide/properties
+  events:
+    title: Events
+    url: /guide/events
   lifecycle: 
     # title: Lifecycle
-    # desc: Specify when an element should update. Respond to updates, or wait for an update to complete.
     title: ライフサイクル
-    desc: 描画すべきタイミング、更新やその処理を待つタイミングを指定する
     url: /guide/lifecycle
+  publish: 
+    title: Publish a component
+    url: /guide/publish
+  use: 
+    title: Use a component
+    url: /guide/use

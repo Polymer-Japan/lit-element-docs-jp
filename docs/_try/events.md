@@ -5,7 +5,7 @@ title: イベント
 ---
 
 <!-- original:
-In this step, you'll use lit-html's `@event` annotation to add an event listener to an element inside your template. 
+In this step, you'll use lit-html's `@event` annotation to add an event listener to an element inside your template. You'll also add an event handler method to your class which will fire whenever the event occurs.
 
 **Starting code**
 
@@ -13,7 +13,7 @@ _my-element.js_
 
 -->
 
-ここではlit-htmlの`@イベント名`という構文で、テンプレート内の要素にイベントリスナーを追加します。
+ここではlit-htmlの`@イベント名`という構文で、テンプレート内の要素にイベントリスナーを追加します。また、イベントが発生するたびに呼ばれるイベントハンドラもクラスに追加します。
 
 **初期コード**
 
@@ -24,21 +24,23 @@ _my-element.js_
 ```
 
 {% include project.html folder="try/events/before" openFile="my-element.js" %}
+  
+1.  **Add a button with an event listener to your template.**
 
 <!-- original:
 1. **Add an event listener.**
 
-    In my-element.js, in your template, replace the existing HTML `button` element with the following code:
+    In my-element.js, add the following `<button>` element to your HTML template:
 
     ```html
-    <button @click="${this.clickHandler}">Click</button>
+    <button @click=${this.clickHandler}>Click</button>
     ```
 
-    The annotation above adds a listener for the `click` event.
+    The binding syntax `@click=${this.clickHandler}` adds a listener for the `click` event, which calls the `clickHandler` method.
 
-2. **Implement an event handler.** 
+2. **Add the `clickHandler` method to your class.** 
 
-    To handle the `click` event, define the following method on your `MyElement` class:
+    Add the following method to your `MyElement` class:
 
     ```js
     clickHandler(event) {
@@ -46,12 +48,14 @@ _my-element.js_
       this.myBool = !this.myBool;
     }
     ```
+    
+    The `clickHandler` method toggles the boolean property, `myBool`, which you defined in the previous step.
 
-If you're stuck, click **Launch Code Editor** below to see the completed code for Step 5.
+Here's the completed code for this step:
 -->
 1. **イベントリスナを登録**
 
-    HTMLの`button'タグを下記のコードで置き換えてください:
+    my-element.jsで、次の `<button>`要素をHTMLテンプレートに追加してください:
 
     ```html
     <button @click="${(event) => this.clickHandler(event)}">Click</button>
@@ -70,8 +74,12 @@ If you're stuck, click **Launch Code Editor** below to see the completed code fo
     }
     ```
 
-もしうまくいかなかったら、下記の**コードエディタを起動**をクリックして、完成したコードを確認してください。
+    The `clickHandler` method toggles the boolean property, `myBool`, which you defined in the previous step.
 
-{% include project.html folder="try/events/after" openFile="my-element.js" %}
+このステップの完成したコードはこちらです:
 
-[次へ: 6. スタイル](style)
+```js
+{% include projects/try/events/after/my-element.js %}
+```
+
+[次へ: 5. スタイル](style)

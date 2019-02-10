@@ -1,9 +1,4 @@
 /**
- * LitElementを試してみよう https://lit-element.polymer-jp.org/try
- * 初期コード (1. つくる)
- */
-
-/**
  * TODO: LitElementのベースクラスとhtmlヘルパー関数をインポート
  */
 import { } from ''; 

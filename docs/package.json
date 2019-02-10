@@ -8,7 +8,8 @@
     "gen-api-docs-tmp-typedoc-patch": "patch -p0 < _api/ja/typedoc-add-no-inherit.diff",
     "gen-api-docs-ja": "typedoc --options ./_api/typedoc.ja.js --generate-from-json ./_api/ja --localize ja --templateStrings ./_api/ja/shell-strings.json _api/tmp/**/*.ts",
     "serve": "dev_appserver.py _site/app.yaml",
-    "deploy": "npm run build && gcloud app deploy _site/app.yaml --project polymer-lit-element --no-promote"
+    "deploy": "npm run build && gcloud app deploy _site/app.yaml --project polymer-lit-element --no-promote",
+    "deploy-staging": "npm run build && gcloud app deploy _site/app.yaml --project polymer-lit-element-staging"
   },
   "dependencies": {
     "lit-element": "^2.0.0-rc.1",
