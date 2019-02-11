@@ -24,11 +24,9 @@ _my-element.js_
 ```
 
 {% include project.html folder="try/events/before" openFile="my-element.js" %}
-  
-1.  **Add a button with an event listener to your template.**
 
 <!-- original:
-1. **Add an event listener.**
+1.  **Add a button with an event listener to your template.**
 
     In my-element.js, add the following `<button>` element to your HTML template:
 
@@ -53,7 +51,7 @@ _my-element.js_
 
 Here's the completed code for this step:
 -->
-1. **イベントリスナを登録**
+1. **テンプレートにイベントリスナー付きのボタンを追加します。**
 
     my-element.jsで、次の `<button>`要素をHTMLテンプレートに追加してください:
 
@@ -61,11 +59,11 @@ Here's the completed code for this step:
     <button @click="${(event) => this.clickHandler(event)}">Click</button>
     ```
 
-    この構文で`click`イベントにリスナーが追加されます。
+    バインディングする為の構文 `@click=${this.clickHandler}`は`click`イベントのリスナーを追加します。これは`clickHandler`メソッドを呼び出します。
 
-2. **イベントハンドラを実装** 
+2. **クラスに`clickHandler`メソッドを追加してください。**
 
-    `click`イベントに対応するメソッドを`MyElement`クラスに追加するには下記のコードを追加してください:
+    `MyElement`クラスに以下のメソッドを追加します:
 
     ```js
     clickHandler(event) {
@@ -74,7 +72,7 @@ Here's the completed code for this step:
     }
     ```
 
-    The `clickHandler` method toggles the boolean property, `myBool`, which you defined in the previous step.
+    `clickHandler`メソッドは前のステップで定義した真偽値のプロパティ`myBool`を切り替えます。
 
 このステップの完成したコードはこちらです:
 

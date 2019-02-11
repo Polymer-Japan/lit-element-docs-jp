@@ -1,3 +1,6 @@
+> ## 🛠 開発中
+> LitElementは現在開発中です。 1.0リリース向けて最終調整中であり、実際に使用したフィードバックを歓迎しますが、最終的にAPIが変更される場合があります。
+
 <!-- original:
 > ## 🛠 Status: In Development
 > LitElement is currently in development. It's on the fast track to a 1.0 release, so we encourage you to use it and give us your feedback, but there are things that haven't been finalized yet and you can expect some changes.
@@ -38,8 +41,6 @@ import { UpdatingElement } from 'lit-element/lib/updating-element.js';
 
 Custom Element base class that supports declaring observable properties, reflecting attributes to properties, and the core update lifecycle methods.
 -->
-> ## 🛠 開発中
-> LitElementは現在開発中です。 1.0リリース向けて最終調整中であり、実際に使用したフィードバックを歓迎しますが、最終的にAPIが変更される場合があります。
 
 # LitElement API ドキュメント
 

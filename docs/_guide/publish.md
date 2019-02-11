@@ -1,6 +1,6 @@
 ---
 layout: guide
-title: Publish an element
+title: 公開する
 slug: publish
 ---
 

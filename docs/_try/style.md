@@ -111,4 +111,4 @@ _my-element.js_
 {% include projects/try/style/after/my-element.js %}
 ```
 
-おめでとうございます! あなたはLitElementではじめてのコンポーネントをつくることができました。次は[使ってみる](/guide/start)に進んでローカル開発をセットアップします。
+おめでとうございます! あなたはじめてのLitElementコンポーネントをつくることができました。次は[使ってみる](/guide/start)に進んでローカル開発をセットアップしてください。

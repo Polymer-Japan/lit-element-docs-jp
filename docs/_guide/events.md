@@ -1,6 +1,6 @@
 ---
 layout: guide
-title: Events
+title: イベント
 slug: events
 ---
 

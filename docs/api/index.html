@@ -27,8 +27,8 @@
 <nav class="main-nav" markdown="0">
 	<a class="nav-title" href="..">LitElement</a>
 	<div class="flex"></div>
-	<a class="nav-item" href="../try">Try</a>
-	<a class="nav-item" href="../guide">Guide</a>
+	<a class="nav-item" href="../try">試す</a>
+	<a class="nav-item" href="../guide">ガイド</a>
 	<a class="nav-item" href="../api/index.html">API</a>
 	<a class="icon" href="https://github.com/polymer/lit-element" title="GitHub">
 		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentcolor">
@@ -96,27 +96,70 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<blockquote>
-					<h2 id="-status-in-development">🛠 Status: In Development</h2>
-					<p>LitElement is currently in development. It&#39;s on the fast track to a 1.0 release, so we encourage you to use it and give us your feedback, but there are things that haven&#39;t been finalized yet and you can expect some changes.</p>
+					<h2 id="-">🛠 開発中</h2>
+					<p>LitElementは現在開発中です。 1.0リリース向けて最終調整中であり、実際に使用したフィードバックを歓迎しますが、最終的にAPIが変更される場合があります。</p>
 				</blockquote>
-				<h1 id="litelement-api-documentation">LitElement API Documentation</h1>
-				<h2 id="install-lit-element">Install lit-element</h2>
-				<pre><code>npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save lit-element</span></code></pre><h2 id="modules">Modules</h2>
-				<h3 id="lit-element"><a href="/api/modules/_lit_element_.html">lit-element</a></h3>
-				<p>Extends <a href="#lib-updating-element">UpdatingElement</a> to include lit-html templating. Users define a <code>render</code> method to provide an element template, which is called when required by <code>update</code>.</p>
-				<p>Import <code>LitElement</code> and <code>html</code> from this module to create a component:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">import</span> { LitElement, html } <span class="hljs-keyword">from</span> <span class="hljs-string">'lit-element'</span>;
+				<!-- original:
+> ## 🛠 Status: In Development
+> LitElement is currently in development. It's on the fast track to a 1.0 release, so we encourage you to use it and give us your feedback, but there are things that haven't been finalized yet and you can expect some changes.
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyElement</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">LitElement</span> </span>{
+# LitElement API Documentation
+
+## Install lit-element
+
+```
+npm install --save lit-element
+```
+
+## Modules
+
+### [lit-element](/api/modules/_lit_element_.html)
+
+Extends [UpdatingElement](#lib-updating-element) to include lit-html templating. Users define a `render` method to provide an element template, which is called when required by `update`.
+
+Import `LitElement` and `html` from this module to create a component:
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
   render() {
-      <span class="hljs-keyword">return</span> html<span class="hljs-string">`&lt;p&gt;your template here&lt;/p&gt;`</span>;
+      return html`<p>your template here</p>`;
   }
 }
 
-customElements.define(<span class="hljs-string">'my-element'</span>, MyElement);</code></pre>
+customElements.define('my-element', MyElement);
+```
+
+### [lib/updating-element](/api/modules/_lib_updating_element_.html)
+
+```js
+import { UpdatingElement } from 'lit-element/lib/updating-element.js';
+```
+
+Custom Element base class that supports declaring observable properties, reflecting attributes to properties, and the core update lifecycle methods.
+-->
+				<h1 id="litelement-api-">LitElement API ドキュメント</h1>
+				<h2 id="lit-element-">lit-element をインストール</h2>
+				<pre><code>npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save lit-element</span>
+</code></pre><h2 id="-">モジュール</h2>
+				<h3 id="lit-element"><a href="/api/modules/_lit_element_.html">lit-element</a></h3>
+				<p>lit-htmlのテンプレート機能を使用した <a href="#lib-updating-element">UpdatingElement</a>を拡張したものです。要素にテンプレートを提供するために<code>render</code>メソッドを定義します。これは<code>update</code>によって呼び出されます。</p>
+				<p>このモジュールから<code>LitElement</code>と<code>html</code>をインポートしてください:</p>
+				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { LitElement, html } <span class="hljs-keyword">from</span> <span class="hljs-string">'lit-element'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyElement</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">LitElement</span> </span>{
+  render() {
+      <span class="hljs-keyword">return</span> html<span class="hljs-string">`&lt;p&gt;ここにテンプレートを書きます&lt;/p&gt;`</span>;
+  }
+}
+
+customElements.define(<span class="hljs-string">'my-element'</span>, MyElement);
+</code></pre>
 				<h3 id="lib-updating-element"><a href="/api/modules/_lib_updating_element_.html">lib/updating-element</a></h3>
-				<pre><code class="language-js"><span class="hljs-keyword">import</span> { UpdatingElement } <span class="hljs-keyword">from</span> <span class="hljs-string">'lit-element/lib/updating-element.js'</span>;</code></pre>
-				<p>Custom Element base class that supports declaring observable properties, reflecting attributes to properties, and the core update lifecycle methods.</p>
+				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { UpdatingElement } <span class="hljs-keyword">from</span> <span class="hljs-string">'lit-element/lib/updating-element.js'</span>;
+</code></pre>
+				<p>プロパティの監視、プロパティから属性への反映、および基本的な更新ライフサイクルを提供するカスタム要素のベースクラス。</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -124,9 +167,6 @@ customElements.define(<span class="hljs-string">'my-element'</span>, MyElement);
 				<ul>
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
-					</li>
-					<li class="label tsd-is-external">
-						<span>Internals</span>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_demo_ts_element_.html">"demo/ts-<wbr>element"</a>
@@ -141,18 +181,6 @@ customElements.define(<span class="hljs-string">'my-element'</span>, MyElement);
 						<a href="modules/_lib_updating_element_.html">"lib/updating-<wbr>element"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_test_lit_element_styling_test_.html">"test/lit-<wbr>element_<wbr>styling_<wbr>test"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_test_lit_element_test_.html">"test/lit-<wbr>element_<wbr>test"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_test_test_helpers_.html">"test/test-<wbr>helpers"</a>
-					</li>
-					<li class="label tsd-is-external">
-						<span>Externals</span>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="modules/_lit_element_.html">"lit-<wbr>element"</a>
 					</li>
 				</ul>

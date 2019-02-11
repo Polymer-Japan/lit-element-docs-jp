@@ -685,9 +685,7 @@ myProp: { reflect: true }
 {:.alert .alert-info}
 <div>
 
-LitElement keeps track of  state information to avoid creating an infinite loop of changes between a property and an observed, reflected attribute.
-
-**LitElementは更新中に反映状態を追跡します** LitElementは、プロパティと監視している属性との間で引き起される無限ループを回避するために、状態を見ています。
+**LitElementは更新中に反映状態を追跡します** LitElementはプロパティと監視している属性との間で引き起される無限ループを回避するために、状態を見ています。
 
 </div>
 

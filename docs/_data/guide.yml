@@ -6,7 +6,7 @@ toc:
     url: /guide
   getting started: 
     # title: Getting Started
-    title: 使ってみる
+    title: つくってみる
     url: /guide/start
   templates: 
     # title: Templates
@@ -23,15 +23,18 @@ toc:
     title: プロパティ
     url: /guide/properties
   events:
-    title: Events
+    # title: Events
+    title: イベント
     url: /guide/events
   lifecycle: 
     # title: Lifecycle
     title: ライフサイクル
     url: /guide/lifecycle
   publish: 
-    title: Publish a component
+    # title: Publish a component
+    title: 公開する
     url: /guide/publish
   use: 
-    title: Use a component
+    # title: Use a component
+    title: 利用する
     url: /guide/use

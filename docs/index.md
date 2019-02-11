@@ -63,29 +63,50 @@ Easily Create Fast, Lightweight Web Components
 <div class="responsive-row">
 <div style="flex: 1">
 
+<!-- original:
 <h2 class="caption">Delightfully declarative</h2>
 
 LitElement's simple, familiar development model makes it easier than ever to build Web Components.
 
 Express your UI declaratively, as a function of state. No need to learn a custom templating language – you can use the full power of JavaScript in your templates. Elements update automatically when their properties change.
+-->
+<h2 class="caption">楽しく宣言的に</h2>
+
+LitElementのシンプルで馴染みやすい開発モデルにより、Webコンポーネントをこれまで以上に簡単に構築できます。
+
+ステート(状態)を表す関数として宣言的にUIを表現してください。特別なテンプレート言語を学ぶ必要はありません 。 あなたはテンプレートにおいてJavaScriptを最大限使うことができます。要素は、プロパティが変更されると自動的に更新されます。
 
 </div>
 <div style="flex: 1">
 
+<!-- original:
 <h2 class="caption">Fast and light</h2>
 
 Whether your end users are in emerging markets or Silicon Valley, they’ll appreciate that LitElement is extremely fast.
 
 LitElement uses [lit-html](https://github.com/Polymer/lit-html) to define and render HTML templates. DOM updates are lightning-fast, because lit-html only re-renders the dynamic parts of your UI – no diffing required.
+-->
+<h2 class="caption">速くて軽量</h2>
+
+あなたにとってのエンドユーザーがベンチャー市場であろうとシリコンバレーであろうと、LitElementが非常に高速なことが喜ばれるでしょう。
+
+LitElementは[lit-html](https://github.com/Polymer/lit-html)を使ってHTMLテンプレートを定義して描画します。lit-htmlは変更されたデータのみを再描画するため、DOMの更新は非常に高速です。
 
 </div>
 <div style="flex: 1">
 
+<!-- original:
 <h2 class="caption">Seamlessly interoperable</h2>
 
 LitElement follows the [Web Components standards](https://developer.mozilla.org/en-US/docs/Web/Web_Components), so your components will work with any framework.
 
 LitElement uses Custom Elements for easy inclusion in web pages, and Shadow DOM for encapsulation. There’s no new abstraction on top of the web platform.
+-->
+<h2 class="caption">シームレスに相互運用可能</h2>
+
+LitElementは[Webコンポーネント標準](https://developer.mozilla.org/ja/docs/Web/Web_Components)に準拠しているため、コンポーネントはどのフレームワークでも動きます。
+
+LitElementは、Webページへ簡単に埋め込める含めるカスタム要素を使って、カプセル化のためにDOMをShadow DOMとします。現状のWebプラットフォームでこれより斬新な抽象化はありません。
 
 </div>
 </div>

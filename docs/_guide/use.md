@@ -1,6 +1,6 @@
 ---
 layout: guide
-title: Use a component
+title: 利用する
 slug: use
 ---
 

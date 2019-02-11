@@ -1,6 +1,6 @@
 ---
 layout: guide
-title: 使ってみる
+title: つくってみる
 slug: start
 ---
 

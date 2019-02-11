@@ -67,7 +67,7 @@ import { LitElement, html } from 'lit-element';
 
 ## 次のステップへ
 
-* [使ってみる](/guide/start): LitElementでコンポーネントを作成します。
+* [つくってみる](/guide/start): LitElementでコンポーネントを作成します。
 * [テンプレート](/guide/templates): lit-htmlの構文でテンプレートを作成します。
 * [プロパティ](/guide/properties): プロパティと属性を管理します。
 * [ライフサイクル](/guide/lifecycle): ライフサイクルAPIを理解します。

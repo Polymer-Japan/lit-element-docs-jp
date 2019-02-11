@@ -27,5 +27,5 @@ lit-element.d.ts.map
 
 .DS_Store
 
-# JP API
-/docs/api
+# JP
+*.~*
