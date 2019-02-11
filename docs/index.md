@@ -7,7 +7,7 @@ layout: default
 <div class="wrapper">
 <div class="hero-title">{{ site.name }}</div>
 <p class="hero-caption">{{ site.description }}</p>
-<a class="hero-link link-with-arrow" href="{{ site.baseurl }}/guide/">はじめる</a>
+<a class="hero-link link-with-arrow" href="{{ site.baseurl }}/guide">はじめる</a>
 </div>
 </header>
 
@@ -29,8 +29,8 @@ Easily Create Fast, Lightweight Web Components
 <h3 class="description">LitElement makes it easy to define Web Components – ideal for sharing elements across your organization or building a UI design system.</h3>
 <h3 class="description">Use your components anywhere you use HTML: in your main document, a CMS, Markdown, or a framework like React or Vue.</h3>
 -->
-<h3 class="description">LitElementを使用すると、Webコンポーネントを簡単に定義できます。組織全体で要素を共有したり、UIデザインシステムを構築したりするのに理想的です。</h3>
-<h3 class="description">HTMLを使っているところならどこでもあなたのコンポーネントを使いましょう: メインドキュメントやCMS、Markdown、またはReactやVueなどのフレームワークがあります。</h3>
+<h3 class="description">LitElementを使用すると、Webコンポーネントを簡単に定義できます。組織全体でエレメントを共有したり、UIデザインシステムを構築したりするのに理想的です。</h3>
+<h3 class="description">ドキュメントやCMS、MarkdownまたはReactやVueなどのフレームワークなど、HTMLを使っているどこにでもコンポーネントを使っていきましょう。</h3>
 </div>
 
 
@@ -45,8 +45,8 @@ Easily Create Fast, Lightweight Web Components
 </div>
 
 <div class="inline-action-buttons">
-{% include project.html label="Launch Code Editor (TypeScript)" folder="index-typescript" openFile="simple-greeting.ts" %}
-{% include project.html label="Launch Code Editor (JavaScript)" folder="index" openFile="simple-greeting.js" %}
+{% include project.html label="コードエディタを起動 (TypeScript)" folder="index-typescript" openFile="simple-greeting.ts" %}
+{% include project.html label="コードエディタを起動 (JavaScript)" folder="index" openFile="simple-greeting.js" %}
 </div>
 
 </div>
@@ -116,12 +116,12 @@ LitElement uses Custom Elements for easy inclusion in web pages, and Shadow DOM 
 -->
 <div style="flex:1">
 <h2 class="caption">1.</h2>
-<p>[試してみる]({{ site.baseurl }}/guide/try)はオンラインで試せるチュートリアルです。インストールする必要があるものはなにもありません。</p>
+<p>[試してみる]({{ site.baseurl }}/try)はオンラインで試せるチュートリアルです。インストールする必要があるものはなにもありません。</p>
 </div>
 
 <div style="flex:1">
 <h2 class="caption">2.</h2>
-<p>もっと深く知りたければ、 [ローカルにセットアップ]({{ site.baseurl }}/tools) してコンポーネントを構築してください!</p>
+<p>もっと深く知りたければ、 [ローカルにセットアップ]({{ site.baseurl }}/guide/start) してコンポーネントを構築してください!</p>
 </div>
 
 <div style="flex:1">
