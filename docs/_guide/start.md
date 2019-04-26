@@ -73,7 +73,7 @@ npm install -g polymer-cli
 ローカルの開発サーバを起動するには:
 
 ```bash
-polymer-serve
+polymer serve
 ```
 
 ツールの設定やもっと詳しい情報は[Polymer CLI ドキュメント](https://polymer-library.polymer-project.org/3.0/docs/tools/polymer-cli)を参照してください。
