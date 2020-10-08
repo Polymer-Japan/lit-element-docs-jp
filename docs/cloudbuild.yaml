@@ -19,7 +19,7 @@ steps:
   args: ['build']
 - name: 'ubuntu'
   args: ['mkdir', '-p', 'docs/_site']
-- name: jekyll/jekyll
+- name: jekyll/jekyll:3.8.6
   dir: docs
   args: ['jekyll', 'build']
 - name: 'gcr.io/cloud-builders/gcloud'
