@@ -102,7 +102,7 @@ Here's the completed code for this step:
 _my-element.js_
 
 ```js
-{% include projects/try/create/atfer/my-element.js %}
+{% include projects/try/create/after/my-element.js %}
 ```
 
 <!-- original:
